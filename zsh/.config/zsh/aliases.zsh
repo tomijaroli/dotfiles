@@ -32,3 +32,7 @@ alias psmem="ps aux | sort -nr -k 4 | head -5"
 # Most CPU consuming processes
 alias psmem="ps aux | sort -nr -k 3 | head -5"
 
+# Search on google
+function google() {
+    open -a "Safari" "http://www.google.com/search?q= $1";
+}
