@@ -11,14 +11,15 @@ unsetopt BEEP
 HISTFILE=~/.zsh_history
 
 # Sources
-# plug "$HOME/.config/zsh/aliases.zsh"
+plug "$HOME/.config/zsh/prompt.zsh"
+plug "$HOME/.config/zsh/aliases.zsh"
 plug "$HOME/.config/zsh/exports.zsh"
 
 # Plugins
 plug "zsh-users/zsh-autosuggestions"
 plug "hlissner/zsh-autopair"
 plug "zap-zsh/supercharge"
-plug "zap-zsh/zap-prompt"
+# plug "zap-zsh/zap-prompt"
 plug "zap-zsh/fzf"
 plug "zap-zsh/exa"
 plug "zap-zsh/nvm"
