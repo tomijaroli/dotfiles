@@ -7,9 +7,6 @@ unsetopt BEEP
 # Load Zap plugin manager
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 
-# History
-HISTFILE=~/.zsh_history
-
 # Sources
 plug "$HOME/.config/zsh/prompt.zsh"
 plug "$HOME/.config/zsh/aliases.zsh"
@@ -19,10 +16,8 @@ plug "$HOME/.config/zsh/exports.zsh"
 plug "zsh-users/zsh-autosuggestions"
 plug "hlissner/zsh-autopair"
 plug "zap-zsh/supercharge"
-# plug "zap-zsh/zap-prompt"
 plug "zap-zsh/fzf"
 plug "zap-zsh/exa"
-plug "zap-zsh/nvm"
 plug "zsh-users/zsh-syntax-highlighting"
 
 # Keybinds
