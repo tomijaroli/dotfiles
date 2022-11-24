@@ -25,7 +25,13 @@ xcode-select --install
 #### GNU Stow
 
 ```
-brew doctor && brew install stow
+brew install stow && brew doctor
+```
+
+#### EXA (optional)
+
+```
+brew install stow && brew exa
 ```
 
 #### Zap - ZSH plugin manager
