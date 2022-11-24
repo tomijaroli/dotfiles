@@ -31,7 +31,7 @@ brew install stow && brew doctor
 #### EXA (optional)
 
 ```
-brew install stow && brew exa
+brew install exa && brew doctor
 ```
 
 #### Zap - ZSH plugin manager
