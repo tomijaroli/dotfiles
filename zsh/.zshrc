@@ -11,7 +11,8 @@ unsetopt BEEP
 plug "$HOME/.config/zsh/prompt.zsh"
 plug "$HOME/.config/zsh/aliases.zsh"
 plug "$HOME/.config/zsh/exports.zsh"
-plug "$HOME/.config/zsh/.secrets.zsh" # make sure to never track this file
+# make sure to never track your secret file
+[ -f $HOME/.config/zsh/.secrets.zsh ] && plug "$HOME/.config/zsh/.secrets.zsh"
 
 # Plugins
 plug "zsh-users/zsh-autosuggestions"
