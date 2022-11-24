@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Options
+stty stop undef
+unsetopt BEEP
+
+# Load Zap plugin manager
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 
 # History
