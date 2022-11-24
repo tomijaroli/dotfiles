@@ -2,7 +2,7 @@
 
 ## Installation
 
-## Clone this repository to your home folder
+### Clone this repository to your home folder
 
 ```
 git clone git@github.com:tomijaroli/dotfiles.git ~/dotfiles
