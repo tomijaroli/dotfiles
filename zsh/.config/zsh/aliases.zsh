@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo "Loading aliases"
 # zsh
 alias zrc="nvim ~/.config/zsh/"
 alias zl="zsh -l"
@@ -12,14 +11,11 @@ alias nvimrc="nvim ~/.config/nvim/"
 # Git
 alias grevert="git reset --hard"
 function grc() {
-    CURRENT_BRANCH=
-
     git branch -m $(git rev-parse --abbrev-ref HEAD) $1
 }
 
 # EXA ls
 if [ -x "$(command -v exa)" ]; then
-    echo "EXA found"
     alias ls="exa -Slhg --icons --group-directories-first --color=always"
     alias la="exa -Slhga --icons --group-directories-first --color=always"
     alias lt="exa --tree --icons"
