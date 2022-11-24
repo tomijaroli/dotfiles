@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Loading aliases"
 # zsh
 alias zrc="nvim ~/.config/zsh/"
 alias zl="zsh -l"
@@ -18,6 +19,7 @@ function grc() {
 
 # EXA ls
 if [ -x "$(command -v exa)" ]; then
+    echo "EXA found"
     alias ls="exa -Slhg --icons --group-directories-first --color=always"
     alias la="exa -Slhga --icons --group-directories-first --color=always"
     alias lt="exa --tree --icons"
