@@ -33,7 +33,7 @@ brew install stow exa
 #### Intstall native apps via Homebrew
 
 ```
-brew install --cask alacritty stow exa
+brew install --cask alacritty
 ```
 
 #### Zap - ZSH plugin manager
