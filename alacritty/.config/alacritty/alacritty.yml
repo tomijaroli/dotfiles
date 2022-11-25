@@ -16,7 +16,7 @@ window:
   decorations: buttonless
 
   # Background opacity
-  opacity: 0.85
+  opacity: 0.9
 
   # Allow terminal applications to change Alacritty's window title.
   dynamic_title: true
@@ -114,3 +114,4 @@ keybindings:
   - { key: Right, mods: Command, chars: "\x1bOF", mode: AppCursor } # End
   - { key: Back, mods: Command, chars: "\x15" }
   - { key: Back, mods: Alt, chars: "\x1b\x7f" } # Delete word
+  - { key: N, mods: Command, action: SpawnNewInstance } # Delete word
