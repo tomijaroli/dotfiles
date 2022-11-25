@@ -1,5 +1,7 @@
 # Dotfiles
 
+This is a simple and minimalistic dotfile setup inspired by [Chris@Machine](https://github.com/ChristianChiarulli/Machfiles)'s setup.
+
 ## Installation
 
 ### Clone this repository to your home folder
