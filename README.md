@@ -24,16 +24,16 @@ xcode-select --install
 /usr/bin/ruby -e "$(curl -fsSL (https://raw.githubusercontent.com/Homebrew/install/master/install))"
 ```
 
-#### GNU Stow
+#### Install cli apps via Homebrew
 
 ```
-brew install stow && brew doctor
+brew install stow exa
 ```
 
-#### EXA (optional)
+#### Intstall native apps via Homebrew
 
 ```
-brew install exa && brew doctor
+brew install --cask alacritty stow exa
 ```
 
 #### Zap - ZSH plugin manager
