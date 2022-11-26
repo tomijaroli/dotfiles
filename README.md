@@ -27,7 +27,7 @@ xcode-select --install
 #### Install cli apps via Homebrew
 
 ```
-brew install stow exa
+brew install stow exa tmux
 ```
 
 #### Intstall native apps via Homebrew
