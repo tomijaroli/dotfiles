@@ -2,7 +2,7 @@ window:
   # Window dimensions (changes require restart)
   dimensions:
     columns: 147
-    lines: 31
+    lines: 30
 
   # Window padding (changes require restart)
   padding:

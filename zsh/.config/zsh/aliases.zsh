@@ -13,6 +13,7 @@ alias grevert="git reset --hard"
 function grc() {
     git branch -m $(git rev-parse --abbrev-ref HEAD) $1
 }
+alias grmi="git rm -r --cached . && git add ."
 
 # EXA ls
 if [ -x "$(command -v exa)" ]; then

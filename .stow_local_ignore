@@ -15,6 +15,7 @@ CVS
 _darcs
 \.hg
 
+.git/
 \.git
 \.gitignore
 
