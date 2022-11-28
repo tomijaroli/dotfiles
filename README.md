@@ -50,7 +50,7 @@ brew install --cask alacritty
 sh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.sh)
 ```
 
-### TPM - TMUX Package manager
+#### TPM - TMUX Package manager
 
 ```
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
