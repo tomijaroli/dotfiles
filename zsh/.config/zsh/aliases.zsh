@@ -8,6 +8,15 @@ alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git
 # nvim config
 alias nvimrc="nvim ~/.config/nvim/"
 
+# TMUX
+alias tn="tmux new -s"
+alias ta="tmux attach -t"
+alias td="tmux detach"
+alias tls="tmux ls"
+alias tkc="tmux list-panes -a -F '#{pane_tty} #{session_name}' | tmux kill-session -t $1"
+alias tka="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
+alias tks="tmux kill-server"
+
 # Git
 alias grevert="git reset --hard"
 function grc() {
