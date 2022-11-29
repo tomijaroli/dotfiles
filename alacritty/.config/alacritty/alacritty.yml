@@ -1,8 +1,8 @@
 window:
   # Window dimensions (changes require restart)
   dimensions:
-    columns: 147
-    lines: 30
+    columns: 164
+    lines: 36
 
   # Window padding (changes require restart)
   padding:
@@ -22,7 +22,7 @@ window:
   dynamic_title: true
 
   # If `true`, bold text is drawn using the bright color variants.
-  draw_bold_text_with_bright_colors: true
+  draw_bold_text_with_bright_colors: false
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -45,15 +45,15 @@ font:
     family: Hack NFM
     style: Italic
 
-  size: 16.0
+  size: 12.0
   ligatures: true
   offset:
     x: 0
-    y: 12
+    y: 8
 
   glyph_offset:
     x: 0
-    y: 6
+    y: 4
 
 colors:
   primary:
