@@ -23,6 +23,7 @@ plug "zap-zsh/exa"
 plug "zsh-users/zsh-syntax-highlighting"
 
 # Keybinds
+bindkey -e
 bindkey '^ ' autosuggest-accept
 
 export PATH="$HOME/.local/bin":$PATH
@@ -31,3 +32,4 @@ if command -v bat &> /dev/null; then
     alias cat="bat -pp --theme \"Visual Studio Dark+\"" 
     alias catt="bat --theme \"Visual Studio Dark+\"" 
 fi
+
