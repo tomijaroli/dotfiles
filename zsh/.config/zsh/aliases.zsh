@@ -18,11 +18,19 @@ alias tka="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)
 alias tks="tmux kill-server"
 
 # Git
+alias fetch="git fetch -p"
+alias co="git checkout"
+alias commit="git commit -m"
+alias commitall="git commit -am"
+alias push="git push origin"
+alias rebase="git rebase"
+alias gri="git rebase -i"
+alias pick="git cherry-pick"
 alias grevert="git reset --hard"
+alias grmi="git rm -r --cached . && git add ."
 function grc() {
     git branch -m $(git rev-parse --abbrev-ref HEAD) $1
 }
-alias grmi="git rm -r --cached . && git add ."
 
 # EXA ls
 if [ -x "$(command -v exa)" ]; then
