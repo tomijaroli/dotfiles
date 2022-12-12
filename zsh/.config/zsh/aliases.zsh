@@ -32,6 +32,7 @@ function grc() {
     git branch -m $(git rev-parse --abbrev-ref HEAD) $1
 }
 alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias prunemerged="git branch --merged | egrep -v '(^\*|master|production|develop)' >/tmp/merged-branches && nvim /tmp/merged-branches && xargs git branch -d </tmp/merged-branches"
 
 # EXA ls
 if [ -x "$(command -v exa)" ]; then
