@@ -50,7 +50,7 @@ alias fgrep="fgrep --color=auto"
 alias psmem="ps aux | sort -nr -k 4 | head -5"
 
 # Most CPU consuming processes
-alias psmem="ps aux | sort -nr -k 3 | head -5"
+alias pscpu="ps aux | sort -nr -k 3 | head -5"
 
 # Search on google
 function google() {
