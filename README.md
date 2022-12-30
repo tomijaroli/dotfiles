@@ -26,6 +26,15 @@ git clone git@github.com:tomijaroli/dotfiles.git ~/dotfiles
 xcode-select --install
 ```
 
+#### Nix package manager
+```
+sh <(curl -L https://nixos.org/nix/install)
+```
+#### Install custom nix derivatives
+```
+nix-env -i -f ~/dotfiles/*.nix
+```
+
 #### Homebrew
 
 ```
@@ -35,7 +44,7 @@ xcode-select --install
 #### Install cli apps via Homebrew
 
 ```
-brew install stow exa tmux
+brew install stow ripgrep exa tmux zoxide fzf tldr dog
 ```
 
 #### Intstall native apps via Homebrew

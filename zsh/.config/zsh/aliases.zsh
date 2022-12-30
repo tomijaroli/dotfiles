@@ -7,6 +7,7 @@ alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git
 
 # nvim config
 alias nvimrc="nvim ~/.config/nvim/"
+alias vim="nvim"
 
 # TMUX
 alias tn="tmux new -s"
@@ -16,6 +17,10 @@ alias tls="tmux ls"
 alias tkc="tmux list-panes -a -F '#{pane_tty} #{session_name}' | tmux kill-session -t $1"
 alias tka="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
 alias tks="tmux kill-server"
+
+# Navigation
+alias j="z"
+alias f="zi"
 
 # Git
 alias fetch="git fetch -p"
@@ -34,12 +39,19 @@ function grc() {
 alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 alias prunemerged="git branch --merged | egrep -v '(^\*|master|production|develop)' >/tmp/merged-branches && nvim /tmp/merged-branches && xargs git branch -d </tmp/merged-branches"
 
+# Listing
+alias ls="ls --color=auto -F"
+alias ll="ls --color=auto -F -l"
+alias lla="ls --color=auto -F -la"
+alias la="ls --color=auto -F -a"
+
 # EXA ls
-if [ -x "$(command -v exa)" ]; then
-    alias ls="exa -Slhg --icons --group-directories-first --color=always"
-    alias la="exa -Slhga --icons --group-directories-first --color=always"
-    alias lt="exa --tree --icons"
-fi
+# Decided to uninstall exa for now, using `ls-colors` instead, more lightweight solution
+# if [ -x "$(command -v exa)" ]; then
+#     alias ls="exa -Slhg --icons --group-directories-first --color=always"
+#     alias la="exa -Slhga --icons --group-directories-first --color=always"
+#     alias lt="exa --tree --icons"
+# fi
 
 # Colorize grep output (good for log files)
 alias grep="grep --color=auto"
@@ -56,3 +68,6 @@ alias pscpu="ps aux | sort -nr -k 3 | head -5"
 function google() {
     open -a "Safari" "http://www.google.com/search?q= $1";
 }
+
+# Find aliases
+alias findalias="PS4='+%x:%I>' zsh -i -x -c '' |& grep "
