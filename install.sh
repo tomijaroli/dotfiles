@@ -3,24 +3,29 @@
 # Install Xcode Commandline tools
 xcode-select -p 1>/dev/null
 if [[ $? != 0 ]] ; then
+    echo "Installing Xcode Commandline tools..."
     xcode-select --install
+    echo "Xcode Commandline tools installed."
 fi
 
 # Clone dotfiles repository
+echo "Cloning dotfiles repository..."
 git clone https://github.com/tomijaroli/dotfiles.git dotfiles-demo
 
 # Install or update Homebrew
 which -s brew
 if [[ $? != 0 ]] ; then
     # Install Homebrew
+    echo "Homebrew installation not found, installing..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
-    # Update brew formulae and packages
+    # Update brew formulae
+    echo "Homebrew installation found, updating..."
     brew update
-    brew upgrade
 fi
 
 # Install packages via homebrew 
+echo "Installing packages via Homebrew..."
 brew doctor
 brew install magic-wormhole nvm
 brew install --cask alacritty amethyst appcleaner fork insomnia meetingbar proxyman
@@ -30,23 +35,37 @@ brew install --cask alacritty amethyst appcleaner fork insomnia meetingbar proxy
 # Install nix package manager
 which -s nix-env
 if [[ $? != 0 ]] ; then
+    echo "Installing nix package manager..."
     sh <(curl -L https://nixos.org/nix/install)
 fi
 
+# TODO: Need to find a proper solution to source the nix mid-script so I don't have to reload the shell.
+# Reload shell to register nix env
+# echo "Reloading shell..."
+# zsh -l
+
 # Install packages via nix
-nixpkgs = (stow bat fzf git git-lfs neovim poetry ripgrep stow tldr tmux tree yarn zoxide)
-for package in ${ nixpkgs[@] }; do
+echo "Installing packages via nix package manager..."
+nixpkgs=(stow bat fzf git git-lfs neovim poetry ripgrep stow tldr tmux tree yarn zoxide)
+for package in ${nixpkgs[@]}; do
+    echo "Installing $package..."
     nix-env -iA nixpkgs.$package
 done
 
 # Install custom nix derivatives
+echo "Installing custom nix derivatives..."
 nix-env -i -f ~/dotfiles/*.nix
 
 # Install zap zsh plugin manager
+echo "Installing zap plugin manager for zsh..."
 sh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.sh)
 
 # Install TPM - TMUX Package manager
+echo "Installing TPM - TMUX Package manager..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install dotfiles config with stow
+echo "Installing dotfiles configuration..."
 cd ~/dotfiles && stow */
+
+echo "All done!"
