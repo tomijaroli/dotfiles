@@ -1,17 +1,34 @@
 #!/bin/bash
 
 # Install Xcode Commandline tools
-xcode-select -p 1>/dev/null
-if [[ $? != 0 ]] ; then
-    echo "Installing Xcode Commandline tools..."
-    xcode-select --install &> /dev/null
-
-    # Wait until XCode Command Line Tools installation has finished.
-    until $(xcode-select --print-path &> /dev/null); do
-        sleep 5;
-    done
-    echo "Xcode Commandline tools installed."
+if [[ $(xcode-select -p 1>dev/null) != 0 ]]; then
+    XCODE_MESSAGE="$(osascript -e 'tell app "System Events" to display dialog "Please click install when Command Line Developer Tools appears"')"
+    if [ "$XCODE_MESSAGE" = "button returned:OK" ]; then
+        xcode-select --install
+    else
+        echo "You have cancelled the installation, please rerun the installer."
+        # you have forgotten to exit here
+        exit
+    fi
 fi
+
+until [[ $(xcode-select -p 1>dev/null) != 0 ]]
+    echo -n "."
+    sleep 5
+done
+echo
+echo "Xcode Commandline tools installed."
+# xcode-select -p 1>/dev/null
+# if [[ $? != 0 ]] ; then
+#     echo "Installing Xcode Commandline tools..."
+#     xcode-select --install &> /dev/null
+#
+#     # Wait until XCode Command Line Tools installation has finished.
+#     until $(xcode-select --print-path &> /dev/null); do
+#         sleep 5;
+#     done
+#     echo "Xcode Commandline tools installed."
+# fi
 
 # Clone dotfiles repository
 echo "Cloning dotfiles repository..."
