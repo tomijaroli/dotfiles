@@ -1,16 +1,25 @@
 #!/bin/bash
 
-# Install Xcode Commandline tools
 if [[ $(xcode-select -p 1>/dev/null) != 0 ]]; then
-    XCODE_MESSAGE="$(osascript -e 'tell app "System Events" to display dialog "Please click install when Command Line Developer Tools appears"')"
-    if [ "$XCODE_MESSAGE" = "button returned:OK" ]; then
-        xcode-select --install
-    else
-        echo "You have cancelled the installation, please rerun the installer."
-        # you have forgotten to exit here
-        exit
-    fi
+    echo "Xcode Command Line Tools for Xcode not found. Installing from Software Update..."
+
+    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
+    PROD=$(softwareupdate -l | grep "\*.*Command Line" | tail -n 1 | sed 's/^[^C]* //')
+    softwareupdate -i "$PROD" --verbose;
+
 fi
+
+# # Install Xcode Commandline tools
+# if [[ $(xcode-select -p 1>/dev/null) != 0 ]]; then
+#     XCODE_MESSAGE="$(osascript -e 'tell app "System Events" to display dialog "Please click install when Command Line Developer Tools appears"')"
+#     if [ "$XCODE_MESSAGE" = "button returned:OK" ]; then
+#         xcode-select --install
+#     else
+#         echo "You have cancelled the installation, please rerun the installer."
+#         # you have forgotten to exit here
+#         exit
+#     fi
+# fi
 
 until [[ $(xcode-select -p 1>/dev/null) != 0 ]]
     echo -n "."
