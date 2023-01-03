@@ -10,7 +10,7 @@ fi
 
 # Clone dotfiles repository
 echo "Cloning dotfiles repository..."
-git clone https://github.com/tomijaroli/dotfiles.git dotfiles-demo
+git clone https://github.com/tomijaroli/dotfiles.git ~/dotfiles
 
 # Install or update Homebrew
 which -s brew
@@ -46,7 +46,7 @@ fi
 
 # Install packages via nix
 echo "Installing packages via nix package manager..."
-nixpkgs=(stow bat fzf git git-lfs neovim poetry ripgrep stow tldr tmux tree yarn zoxide)
+nixpkgs=(bat fzf git git-lfs neovim nmap poetry ripgrep stow tldr tmux tree yarn zoxide)
 for package in ${nixpkgs[@]}; do
     echo "Installing $package..."
     nix-env -iA nixpkgs.$package
