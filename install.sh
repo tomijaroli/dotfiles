@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install Xcode Commandline tools
-if [[ $(xcode-select -p 1>dev/null) != 0 ]]; then
+if [[ $(xcode-select -p 1>/dev/null) != 0 ]]; then
     XCODE_MESSAGE="$(osascript -e 'tell app "System Events" to display dialog "Please click install when Command Line Developer Tools appears"')"
     if [ "$XCODE_MESSAGE" = "button returned:OK" ]; then
         xcode-select --install
@@ -12,7 +12,7 @@ if [[ $(xcode-select -p 1>dev/null) != 0 ]]; then
     fi
 fi
 
-until [[ $(xcode-select -p 1>dev/null) != 0 ]]
+until [[ $(xcode-select -p 1>/dev/null) != 0 ]]
     echo -n "."
     sleep 5
 done
