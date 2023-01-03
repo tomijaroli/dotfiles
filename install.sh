@@ -4,7 +4,12 @@
 xcode-select -p 1>/dev/null
 if [[ $? != 0 ]] ; then
     echo "Installing Xcode Commandline tools..."
-    xcode-select --install
+    xcode-select --install &> /dev/null
+
+    # Wait until XCode Command Line Tools installation has finished.
+    until $(xcode-select --print-path &> /dev/null); do
+        sleep 5;
+    done
     echo "Xcode Commandline tools installed."
 fi
 
