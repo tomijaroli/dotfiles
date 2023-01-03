@@ -27,8 +27,8 @@ fi
 # Install packages via homebrew 
 echo "Installing packages via Homebrew..."
 brew doctor
-brew install magic-wormhole nvm
-brew install --cask alacritty amethyst appcleaner fork insomnia meetingbar proxyman
+brew install magic-wormhole nvm pyenv rbenv ruby-build swiftlint xcodegen
+brew install --cask alacritty amethyst appcleaner discord fork google-chrome insomnia meetingbar proxyman
 # Future improvement: use Brewfile for installation
 # https://github.com/Homebrew/homebrew-bundle
 

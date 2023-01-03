@@ -71,3 +71,4 @@ function google() {
 
 # Find aliases
 alias findalias="PS4='+%x:%I>' zsh -i -x -c '' |& grep "
+
