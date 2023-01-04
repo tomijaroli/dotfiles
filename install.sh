@@ -49,7 +49,7 @@ export PATH="$PATH:/nix/var/nix/profiles/default/bin"
 
 # Install packages via nix
 echo "Installing packages via nix package manager..."
-nixpkgs=(bat fzf git git-lfs neovim nmap poetry ripgrep stow tldr tmux tree yarn zoxide)
+nixpkgs=(bat fzf git git-lfs neovim nmap poetry ripgrep stow tldr tmux tree tree-sitter yarn zoxide)
 for package in ${nixpkgs[@]}; do
     echo "Installing $package..."
     nix-env -iA nixpkgs.$package
@@ -83,6 +83,13 @@ cd ~/dotfiles && ~/.nix-profile/bin/stow */
 
 echo "Installing neovim config..."
 git clone https://github.com/tomijaroli/nvim-config.git ~/.config/nvim
+
+echo "Installing node..."
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+nvm install node
+nvm use stable
 
 echo "Installing patched fonts..."
 fonts/install.sh
