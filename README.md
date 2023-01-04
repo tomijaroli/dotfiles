@@ -13,7 +13,7 @@ Also I aimed to keep the setup as lightweight as possible (e.g. no oh-my-zsh use
 
 ## Preview
 
-![Screenshot 2022-11-26 at 17 59 23](https://user-images.githubusercontent.com/3617451/204097683-cd667925-a3f5-4dda-a18b-6aaa4f1477c6.jpg)
+![Screenshot 2023-01-04 at 21 12 52](https://user-images.githubusercontent.com/3617451/210640572-bd947c4c-2f76-4c7c-ac30-5990361d3362.jpg)
 
 ## Installation
 
