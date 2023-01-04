@@ -21,7 +21,7 @@ fi
 #     fi
 # fi
 
-until [[ $(xcode-select -p 1>/dev/null) != 0 ]] do
+while [[ $(xcode-select -p 1>/dev/null) != 0 ]]; do
     echo -n "."
     sleep 5
 done
