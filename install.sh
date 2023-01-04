@@ -59,7 +59,7 @@ nix-env -i -f ~/dotfiles/*.nix
 
 # Install zap zsh plugin manager
 echo "Installing zap plugin manager for zsh..."
-sh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.sh)
+/bin/bash -c "$(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.sh)"
 
 # Install TPM - TMUX Package manager
 echo "Installing TPM - TMUX Package manager..."
