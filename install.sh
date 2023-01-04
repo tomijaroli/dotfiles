@@ -6,38 +6,7 @@ if [[ $(xcode-select -p 1>/dev/null) != 0 ]]; then
     touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
     PROD=$(softwareupdate -l | grep "\*.*Command Line" | tail -n 1 | sed 's/^[^C]* //')
     softwareupdate -i "$PROD" --verbose;
-
 fi
-
-# # Install Xcode Commandline tools
-# if [[ $(xcode-select -p 1>/dev/null) != 0 ]]; then
-#     XCODE_MESSAGE="$(osascript -e 'tell app "System Events" to display dialog "Please click install when Command Line Developer Tools appears"')"
-#     if [ "$XCODE_MESSAGE" = "button returned:OK" ]; then
-#         xcode-select --install
-#     else
-#         echo "You have cancelled the installation, please rerun the installer."
-#         # you have forgotten to exit here
-#         exit
-#     fi
-# fi
-
-while [[ $(xcode-select -p 1>/dev/null) != 0 ]]; do
-    echo -n "."
-    sleep 5
-done
-echo
-echo "Xcode Commandline tools installed."
-# xcode-select -p 1>/dev/null
-# if [[ $? != 0 ]] ; then
-#     echo "Installing Xcode Commandline tools..."
-#     xcode-select --install &> /dev/null
-#
-#     # Wait until XCode Command Line Tools installation has finished.
-#     until $(xcode-select --print-path &> /dev/null); do
-#         sleep 5;
-#     done
-#     echo "Xcode Commandline tools installed."
-# fi
 
 # Clone dotfiles repository
 echo "Cloning dotfiles repository..."
@@ -70,10 +39,9 @@ if [[ $? != 0 ]] ; then
     sh <(curl -L https://nixos.org/nix/install)
 fi
 
-# TODO: Need to find a proper solution to source the nix mid-script so I don't have to reload the shell.
 # Reload shell to register nix env
-# echo "Reloading shell..."
-# zsh -l
+echo "Reloading shell..."
+[ -f ~/.zshrc ] && source ~/.zshrc
 
 # Install packages via nix
 echo "Installing packages via nix package manager..."
@@ -98,5 +66,8 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # Install dotfiles config with stow
 echo "Installing dotfiles configuration..."
 cd ~/dotfiles && stow */
+
+echo "Installing neovim config..."
+git clone https://github.com/tomijaroli/nvim-config.git ~/.config/nvim
 
 echo "All done!"

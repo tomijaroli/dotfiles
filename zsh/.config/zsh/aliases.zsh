@@ -2,7 +2,7 @@
 
 # zsh
 alias dotrc="nvim ~/dotfiles"
-alias zl="zsh -l"
+alias zl=". ~/.zshrc"
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 
 # nvim config
