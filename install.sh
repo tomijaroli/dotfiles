@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if [[ $(xcode-select -p 1>/dev/null) != 0 ]]; then
+xcode-select -p &> /dev/null
+if [[ $? -ne 0 ]]; then
     echo "Xcode Command Line Tools for Xcode not found. Installing from Software Update..."
 
     touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
