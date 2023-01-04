@@ -69,6 +69,16 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install dotfiles config with stow
 echo "Installing dotfiles configuration..."
+if [[ -f ~/.zshrc ]]; then
+    echo "Existing ~/.zshrc file found, created backup at ~/.zshrc.bak"
+    mv ~/.zshrc ~/.zshrc.bak
+fi
+
+if [[ -f ~/.zprofile ]]; then
+    echo "Existing ~/.zprofile file found, created backup at ~/.zprofile.bak"
+    mv ~/.zprofile ~/.zprofile.bak
+fi
+
 cd ~/dotfiles && ~/.nix-profile/bin/stow */
 
 echo "Installing neovim config..."
