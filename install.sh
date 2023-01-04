@@ -84,4 +84,7 @@ cd ~/dotfiles && ~/.nix-profile/bin/stow */
 echo "Installing neovim config..."
 git clone https://github.com/tomijaroli/nvim-config.git ~/.config/nvim
 
+echo "Installing patched fonts..."
+fonts/install.sh
+
 echo "All done!"
