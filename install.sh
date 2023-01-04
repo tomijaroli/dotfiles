@@ -69,7 +69,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install dotfiles config with stow
 echo "Installing dotfiles configuration..."
-cd ~/dotfiles && stow */
+cd ~/dotfiles && ~/.nix-profile/bin/stow */
 
 echo "Installing neovim config..."
 git clone https://github.com/tomijaroli/nvim-config.git ~/.config/nvim
