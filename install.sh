@@ -42,7 +42,9 @@ if [[ $? != 0 ]] ; then
 fi
 
 # Reload shell to register nix env
-echo "Reloading shell..."
+echo "Reloading nix environment"
+export PATH="$PATH:/nix/var/nix/profiles/default/bin"
+source ~/.nix-profile/etc/profile.d/nix.sh
 [ -f ~/.zshrc ] && source ~/.zshrc
 
 # Install packages via nix
