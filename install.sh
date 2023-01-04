@@ -17,7 +17,7 @@ which -s brew
 if [[ $? != 0 ]] ; then
     # Install Homebrew
     echo "Homebrew installation not found, installing..."
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
     # Update brew formulae
     echo "Homebrew installation found, updating..."
