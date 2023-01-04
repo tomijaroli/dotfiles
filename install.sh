@@ -38,7 +38,7 @@ echo "Installing packages via Homebrew..."
 which -s nix-env
 if [[ $? != 0 ]] ; then
     echo "Installing nix package manager..."
-    sh <(curl -L https://nixos.org/nix/install)
+    /bin/bash -c "$(curl -L https://nixos.org/nix/install)"
 fi
 
 # Reload shell to register nix env
