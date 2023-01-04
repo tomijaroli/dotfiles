@@ -46,12 +46,13 @@ alias lla="ls --color=auto -F -la"
 alias la="ls --color=auto -F -a"
 
 # EXA ls
-# Decided to uninstall exa for now, using `ls-colors` instead, more lightweight solution
-# if [ -x "$(command -v exa)" ]; then
-#     alias ls="exa -Slhg --icons --group-directories-first --color=always"
-#     alias la="exa -Slhga --icons --group-directories-first --color=always"
-#     alias lt="exa --tree --icons"
-# fi
+if [ -x "$(command -v exa)" ]; then
+    alias ls="exa --icons --group-directories-first --color=always"
+    alias ll="exa -Slhg --icons --group-directories-first --color=always"
+    alias lla="exa -Slhga --icons --group-directories-first --color=always"
+    alias la="exa -Shga --icons --group-directories-first --color=always"
+    alias tree="exa --tree --icons"
+fi
 
 # Colorize grep output (good for log files)
 alias grep="grep --color=auto"
