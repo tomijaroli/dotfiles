@@ -13,7 +13,8 @@ window:
   dynamic_padding: false
 
   # Window decorations
-  decorations: buttonless
+  # decorations: buttonless
+  decorations: none
 
   # Background opacity
   opacity: 0.9
