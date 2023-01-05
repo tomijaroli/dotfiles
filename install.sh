@@ -30,7 +30,7 @@ fi
 echo "Installing packages via Homebrew..."
 /opt/homebrew/bin/brew doctor
 /opt/homebrew/bin/brew install magic-wormhole nvm pyenv rbenv ruby-build swiftlint xcodegen
-/opt/homebrew/bin/brew install --cask alacritty amethyst appcleaner discord fork google-chrome insomnia meetingbar proxyman
+/opt/homebrew/bin/brew install --cask alacritty amethyst appcleaner discord fork google-chrome insomnia kitty meetingbar proxyman
 # Future improvement: use Brewfile for installation
 # https://github.com/Homebrew/homebrew-bundle
 
@@ -59,8 +59,9 @@ done
 echo "Installing custom nix derivatives..."
 nix-env -i -f ~/dotfiles/*.nix
 
-echo "Disable font smoothing for Alacritty..."
+echo "Disable font smoothing for terminals..."
 defaults write org.alacritty AppleFontSmoothing -int 0
+defaults write net.kovidgoyal.kitty AppleFontSmoothing -int 0
 
 # Install zap zsh plugin manager
 echo "Installing zap plugin manager for zsh..."
