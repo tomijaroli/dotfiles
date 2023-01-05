@@ -13,7 +13,7 @@ window:
   dynamic_padding: false
 
   # Window decorations
-  # decorations: buttonless
+  # use 'buttonless' for rounded corners
   decorations: none
 
   # Background opacity
