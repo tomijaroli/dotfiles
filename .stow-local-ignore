@@ -4,6 +4,8 @@
 #
 # See 'info stow' section "4 Ignore Lists" for more information
 
+nix/
+
 RCS
 .+,v
 
@@ -22,3 +24,9 @@ _darcs
 ^/README.*
 ^/LICENSE.*
 ^/COPYING
+
+install.sh
+fonts/
+\.rgignore
+^/*.nix
+ISSUE_TEMPLATE
