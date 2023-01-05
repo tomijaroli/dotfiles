@@ -59,6 +59,9 @@ done
 echo "Installing custom nix derivatives..."
 nix-env -i -f ~/dotfiles/*.nix
 
+echo "Disable font smoothing for Alacritty..."
+defaults write org.alacritty AppleFontSmoothing -int 0
+
 # Install zap zsh plugin manager
 echo "Installing zap plugin manager for zsh..."
 /bin/bash -c "$(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.sh)"
