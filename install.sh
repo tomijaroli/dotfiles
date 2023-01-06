@@ -49,7 +49,7 @@ export PATH="$PATH:/nix/var/nix/profiles/default/bin"
 
 # Install packages via nix
 echo "Installing packages via nix package manager..."
-nixpkgs=(bat fzf git git-lfs neovim nmap poetry ripgrep stow tldr tmux tree tree-sitter yarn zoxide)
+nixpkgs=(bat exa fzf git git-lfs neovim nmap poetry ripgrep stow tldr tmux tree tree-sitter yarn zoxide zsh)
 for package in ${nixpkgs[@]}; do
     echo "Installing $package..."
     nix-env -iA nixpkgs.$package
