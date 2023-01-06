@@ -12,8 +12,7 @@ The goal of the project was to create a one command installer, so every time I h
 Also I aimed to keep the setup as lightweight as possible (e.g. no oh-my-zsh used).
 
 ## Preview
-
-![Screenshot 2023-01-04 at 21 12 52](https://user-images.githubusercontent.com/3617451/210640572-bd947c4c-2f76-4c7c-ac30-5990361d3362.jpg)
+![Screenshot 2023-01-06 at 16 00 20](https://user-images.githubusercontent.com/3617451/211028707-faf600a3-d404-4e43-b6e8-c00a59fbbe95.jpg)
 
 ## Installation
 
@@ -56,7 +55,3 @@ alacritty amethyst appcleaner discord fork google-chrome insomnia meetingbar pro
 ```
 bat fzf git git-lfs neovim nmap poetry ripgrep stow tldr tmux tree tree-sitter yarn zoxide
 ```
-
-## Known issues
-
-- Alacritty terminal's font spacing messes the tmux status line, and the neovim lualine up, so I had to compensate the 8pt spacing with 4pt glyph offset. It's still not looking the best, but I can live with this for now.
