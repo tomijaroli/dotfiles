@@ -53,5 +53,5 @@ alacritty amethyst appcleaner discord fork google-chrome insomnia meetingbar pro
 ### via nix-env
 
 ```
-bat fzf git git-lfs neovim nmap poetry ripgrep stow tldr tmux tree tree-sitter yarn zoxide
+bat exa fzf git git-lfs neovim nmap poetry ripgrep stow tldr tmux tree tree-sitter yarn zoxide zsh
 ```
