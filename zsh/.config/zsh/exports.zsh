@@ -15,6 +15,10 @@ export PATH="$HOME/.local/bin":$PATH
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
 
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
