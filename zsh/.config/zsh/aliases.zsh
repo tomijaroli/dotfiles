@@ -32,6 +32,7 @@ alias rebase="git rebase"
 alias gri="git rebase -i"
 alias pick="git cherry-pick"
 alias grevert="git reset --hard"
+alias revertlast="git reset --soft HEAD~1"
 alias grmi="git rm -r --cached . && git add ."
 function grc() {
     git branch -m $(git rev-parse --abbrev-ref HEAD) $1
