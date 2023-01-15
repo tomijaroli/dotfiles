@@ -1,4 +1,4 @@
-#!/bin/bash
+
 
 xcode-select -p &> /dev/null
 if [[ $? -ne 0 ]]; then
@@ -83,7 +83,7 @@ if [[ -f ~/.zprofile ]]; then
     mv ~/.zprofile ~/.zprofile.bak
 fi
 
-cd ~/dotfiles && ~/.nix-profile/bin/stow alacritty kitty tmux zsh
+cd ~/dotfiles && ~/.nix-profile/bin/stow alacritty kitty lldb tmux zsh
 
 echo "Installing neovim config..."
 git clone https://github.com/tomijaroli/nvim-config.git ~/.config/nvim
