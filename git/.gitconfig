@@ -1,0 +1,9 @@
+[user]
+	email = tamas.jaroli@gmail.com
+	name = Tomi Jaroli
+[rebase]
+    autosquash = true
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
