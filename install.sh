@@ -58,7 +58,7 @@ if [[ -f ~/.zprofile ]]; then
     mv ~/.zprofile ~/.zprofile.bak
 fi
 
-cd ~/dotfiles && /opt/homebrew/bin/stow alacritty dircolors kitty lldb tmux zsh
+cd ~/dotfiles && /opt/homebrew/bin/stow alacritty dircolors git kitty lldb tmux zsh
 
 echo "Installing neovim config..."
 git clone https://github.com/tomijaroli/nvim-config.git ~/.config/nvim
