@@ -12,6 +12,7 @@ The goal of the project was to create a one command installer, so every time I h
 Also I aimed to keep the setup as lightweight as possible (e.g. no oh-my-zsh used).
 
 ## Preview
+
 ![Screenshot 2023-01-06 at 16 00 20](https://user-images.githubusercontent.com/3617451/211028707-faf600a3-d404-4e43-b6e8-c00a59fbbe95.jpg)
 
 ## Installation
@@ -24,8 +25,6 @@ sh <(curl -sL https://raw.githubusercontent.com/tomijaroli/dotfiles/main/install
 
 - Xcode Command Line Tools installation
 - [Homebrew](https://brew.sh/) installation, with the packages and casks needed
-- [Nix package manager](https://nixos.org/) installation, with the packages needed
-- Installs my custom nix derivatives
 - Plugin manager installation for TMUX ([TPM](https://github.com/tmux-plugins/tpm)) and for ZSH ([Zap](https://github.com/zap-zsh/zap) - minimal plugin manager)
 - Installs and links all my configuration files from the `dotfiles` folder
 - Installs my [neovim](https://neovim.io/) config
@@ -41,17 +40,11 @@ My neovim configuration lives in another repository, [can be found here](https:/
 ### via Homebrew
 
 ```
-magic-wormhole nvm pyenv rbenv ruby-build swiftlint xcodegen
+bat coreutils exa fzf git git-lfs magic-wormhole neovim nmap nvm poetry pyenv ripgrep rbenv ruby-build stow swiftlint tldr tmux tree tree-sitter xcodegen yarn zoxide zsh
 ```
 
 ### via Homebrew casks
 
 ```
 alacritty amethyst appcleaner discord fork google-chrome insomnia meetingbar proxyman
-```
-
-### via nix-env
-
-```
-bat exa fzf git git-lfs neovim nmap poetry ripgrep stow tldr tmux tree tree-sitter yarn zoxide zsh
 ```

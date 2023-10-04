@@ -34,3 +34,4 @@ export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
 
 eval "$(zoxide init zsh)"
 eval "$(gdircolors ~/.dircolors)"
+export EXA_COLORS=$LS_COLORS
