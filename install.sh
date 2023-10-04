@@ -29,35 +29,10 @@ fi
 # Install packages via homebrew 
 echo "Installing packages via Homebrew..."
 /opt/homebrew/bin/brew doctor
-/opt/homebrew/bin/brew install magic-wormhole nvm pyenv rbenv ruby-build swiftlint xcodegen
+/opt/homebrew/bin/brew install bat coreutils exa fzf git git-lfs magic-wormhole neovim nmap nvm poetry pyenv ripgrep rbenv ruby-build stow swiftlint tldr tmux tree tree-sitter xcodegen yarn zoxide zsh
 /opt/homebrew/bin/brew install --cask alacritty amethyst appcleaner discord dozer firefox fork google-chrome insomnia kitty meetingbar obsidian proxyman
 # Future improvement: use Brewfile for installation
 # https://github.com/Homebrew/homebrew-bundle
-
-# Install nix package manager
-which -s nix-env
-if [[ $? != 0 ]] ; then
-    echo "Installing nix package manager..."
-    /bin/bash -c "$(curl -L https://nixos.org/nix/install)"
-fi
-
-# Reload shell to register nix env
-echo "Reloading nix environment"
-export PATH="$PATH:/nix/var/nix/profiles/default/bin"
-[ -f ~/.nix.profile/etc/profile.d/nix.sh ] && source ~/.nix-profile/etc/profile.d/nix.sh
-[ -f ~/.zshrc ] && source ~/.zshrc
-
-# Install packages via nix
-echo "Installing packages via nix package manager..."
-nixpkgs=(bat exa fzf git git-lfs neovim nmap poetry ripgrep stow tldr tmux tree tree-sitter yarn zoxide zsh)
-for package in ${nixpkgs[@]}; do
-    echo "Installing $package..."
-    nix-env -iA nixpkgs.$package
-done
-
-# Install custom nix derivatives
-echo "Installing custom nix derivatives..."
-nix-env -i -f ~/dotfiles/*.nix
 
 echo "Disable font smoothing for terminals..."
 defaults write org.alacritty AppleFontSmoothing -int 0
@@ -83,7 +58,7 @@ if [[ -f ~/.zprofile ]]; then
     mv ~/.zprofile ~/.zprofile.bak
 fi
 
-cd ~/dotfiles && ~/.nix-profile/bin/stow alacritty kitty lldb tmux zsh
+cd ~/dotfiles && /opt/homebrew/bin/stow alacritty dircolors kitty lldb tmux zsh
 
 echo "Installing neovim config..."
 git clone https://github.com/tomijaroli/nvim-config.git ~/.config/nvim
