@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/zsh
 
 # History
-HISTFILE="$XDG_DATA_HOME"/zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
+export HISTFILE="$XDG_DATA_HOME"/.zsh_history
+export HISTSIZE=1000000
+export SAVEHIST=1000000
 
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export EDITOR="nvim"
@@ -31,6 +31,7 @@ export NVM_DIR="$HOME/.nvm"
 
 export ANDROID_HOME=/Users/$USER/Library/Android/sdk
 export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
+export PATH="$PATH:$HOME/scripts"
 
 eval "$(zoxide init zsh)"
 eval "$(gdircolors ~/.dircolors)"
