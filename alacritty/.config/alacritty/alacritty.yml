@@ -56,34 +56,8 @@ font:
     x: 0
     y: 0
 
-colors:
-  primary:
-    background: "#1f2227"
-    foreground: "#abb2bf"
-
-  normal:
-    black: "#4C566A"
-    red: "#bf616a"
-    green: "#A3BE8C"
-    yellow: "#D7BA7D"
-    blue: "#5e81ac"
-    magenta: "#B48EAD"
-    cyan: "#88c0d0"
-    white: "#abb2bf"
-
-  bright:
-    black: "#4C566A"
-    red: "#bf616a"
-    green: "#A3BE8C"
-    yellow: "#D7BA7D"
-    blue: "#5e81ac"
-    magenta: "#B48EAD"
-    cyan: "#88c0d0"
-    white: "#abb2bf"
-
-  cursor:
-    text: "#3B4252"
-    cursor: "#ECEFF4"
+import:
+  - ~/.config/alacritty/themes/catppuccin_macchiato.yaml
 
 cursor:
   style:
