@@ -31,6 +31,7 @@ echo "Installing packages via Homebrew..."
 /opt/homebrew/bin/brew doctor
 /opt/homebrew/bin/brew install bat coreutils exa fzf git git-lfs magic-wormhole neovim nmap nvm poetry pyenv ripgrep rbenv ruby-build stow swiftlint tldr tmux tree tree-sitter xcodegen yarn zoxide zsh
 /opt/homebrew/bin/brew install --cask alacritty amethyst appcleaner discord dozer firefox fork google-chrome insomnia kitty meetingbar obsidian proxyman
+/opt/homebrew/bin/brew intsall koekeishiya/formulae/yabai koekeishiya/formulae/skhd
 # Future improvement: use Brewfile for installation
 # https://github.com/Homebrew/homebrew-bundle
 
@@ -58,7 +59,7 @@ if [[ -f ~/.zprofile ]]; then
     mv ~/.zprofile ~/.zprofile.bak
 fi
 
-cd ~/dotfiles && /opt/homebrew/bin/stow alacritty dircolors git kitty lldb tmux zsh
+cd ~/dotfiles && /opt/homebrew/bin/stow alacritty dircolors git kitty lldb skhd tmux yabai zsh
 
 echo "Installing neovim config..."
 git clone https://github.com/tomijaroli/nvim-config.git ~/.config/nvim

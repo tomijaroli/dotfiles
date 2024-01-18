@@ -2,3 +2,4 @@
 .zsh_history
 .secrets.zsh
 debug_log_file_path
+.DS_Store

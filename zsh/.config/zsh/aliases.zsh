@@ -9,6 +9,11 @@ alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git
 alias vim="nvim"
 alias vimrc="vim ~/.config/nvim/"
 
+# yabai + skhd
+alias startwm="yabai --start-service && skhd --start-service"
+alias restartwm="yabai --restart-service && skhd --restart-service"
+alias stopwm="yabai --stop-service && skhd --stop-service"
+
 # TMUX
 alias tn="tmux new -s"
 alias ta="tmux attach -t"
