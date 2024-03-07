@@ -19,7 +19,7 @@ alias tn="tmux new -s"
 alias ta="tmux attach -t"
 alias td="tmux detach"
 alias tls="tmux ls"
-alias tkc="tmux list-panes -a -F '#{pane_tty} #{session_name}' | tmux kill-session -t $1"
+alias tkc="tmux kill-session"
 alias tka="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
 alias tks="tmux kill-server"
 
