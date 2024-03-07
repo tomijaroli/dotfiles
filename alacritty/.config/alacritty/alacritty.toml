@@ -8,7 +8,7 @@ shape = "Beam"
 size = 14.0
 
 [font.bold]
-family = "Hack NFM"
+family = "MesloLGS NF"
 style = "Bold"
 
 [font.glyph_offset]
@@ -16,11 +16,11 @@ x = 0
 y = 0
 
 [font.italic]
-family = "Hack NFM"
+family = "MesloLGS NF"
 style = "Italic"
 
 [font.normal]
-family = "Hack NFM"
+family = "MesloLGS NF"
 style = "Regular"
 
 [font.offset]
