@@ -29,7 +29,7 @@ fi
 # Install packages via homebrew 
 echo "Installing packages via Homebrew..."
 /opt/homebrew/bin/brew doctor
-/opt/homebrew/bin/brew install bat coreutils exa fzf git git-lfs magic-wormhole neovim nmap nvm poetry pyenv ripgrep rbenv ruby-build stow swiftformat swiftlint tldr tmux tree tree-sitter xcodegen yarn zoxide zsh
+/opt/homebrew/bin/brew install bat coreutils exa fzf git git-lfs lazygit magic-wormhole neovim nmap nvm poetry pyenv ripgrep rbenv ruby-build stow swiftformat swiftlint tldr tmux tree tree-sitter xcodegen yarn zoxide zshb
 /opt/homebrew/bin/brew install --cask alacritty appcleaner discord dozer firefox fork google-chrome insomnia kitty meetingbar obsidian proxyman
 /opt/homebrew/bin/brew install koekeishiya/formulae/yabai koekeishiya/formulae/skhd
 # Future improvement: use Brewfile for installation
