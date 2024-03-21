@@ -47,6 +47,7 @@ alias prunemerged="git branch --merged | egrep -v '(^\*|master|production|develo
 function moveonto() {
     git rebase -i HEAD~$1 --onto $2
 }
+alias lg="lazygit"
 
 # Listing
 alias ls="ls --color=auto -F"
