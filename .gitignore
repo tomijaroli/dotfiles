@@ -3,3 +3,4 @@
 .secrets.zsh
 debug_log_file_path
 .DS_Store
+Brewfile.lock.json

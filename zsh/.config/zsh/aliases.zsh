@@ -55,13 +55,13 @@ alias ll="ls --color=auto -F -l"
 alias lla="ls --color=auto -F -la"
 alias la="ls --color=auto -F -a"
 
-# EXA ls
-if [ -x "$(command -v exa)" ]; then
-    alias ls="exa --icons --group-directories-first --color=always"
-    alias ll="exa -Slhg --icons --group-directories-first --color=always"
-    alias lla="exa -Slhga --icons --group-directories-first --color=always"
-    alias la="exa -Shga --icons --group-directories-first --color=always"
-    alias tree="exa --tree --icons"
+# EZA ls
+if [ -x "$(command -v eza)" ]; then
+    alias ls="eza --icons --group-directories-first --color=always"
+    alias ll="eza -Slhg --icons --group-directories-first --color=always"
+    alias lla="eza -Slhga --icons --group-directories-first --color=always"
+    alias la="eza -Shga --icons --group-directories-first --color=always"
+    alias tree="eza --tree --icons"
 fi
 
 # Colorize grep output (good for log files)
