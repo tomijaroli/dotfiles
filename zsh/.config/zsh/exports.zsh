@@ -33,6 +33,9 @@ export ANDROID_HOME=/Users/$USER/Library/Android/sdk
 export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
 export PATH="$PATH:$HOME/scripts"
 
+export GOPATH="$HOME/Developer/go"
+export PATH="$PATH:$GOPATH/bin"
+
 eval "$(zoxide init zsh)"
 eval "$(gdircolors ~/.dircolors)"
 export EXA_COLORS=$LS_COLORS

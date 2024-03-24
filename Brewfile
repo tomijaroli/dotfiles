@@ -34,6 +34,9 @@ brew "nmap"
 brew "docker"
 brew "docker-completion"
 
+# Go lang environment
+brew "go"
+
 # NodeJS environment
 brew "nvm"
 brew "yarn"
