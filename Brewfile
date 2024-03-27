@@ -54,6 +54,7 @@ brew "mockolo"
 brew "needle"
 brew "swiftformat"
 brew "swiftlint"
+brew "xcbeautify"
 brew "xcodegen"
 
 # Tiling window management
