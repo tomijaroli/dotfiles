@@ -49,6 +49,18 @@ function moveonto() {
 }
 alias lg="lazygit"
 
+# iOS development
+alias xkill="killall Xcode"
+function xopen() {
+    project_file=$(find . -type d -maxdepth 1 -name '*.xcodeproj')
+    if [ -z "$project_file" ]
+    then
+        echo "Project file not found in the current directory!"
+    else
+        open ${project_file}
+    fi
+}
+
 # Listing
 alias ls="ls --color=auto -F"
 alias ll="ls --color=auto -F -l"
