@@ -1,0 +1,7 @@
+## Vim related files for iOS development
+buildServer.json
+app_logs.log
+original_logs.log
+report.json
+settings.json
+xcodebuild.log
