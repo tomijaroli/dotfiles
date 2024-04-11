@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 xcode-select -p &> /dev/null
 if [[ $? -ne 0 ]]; then
