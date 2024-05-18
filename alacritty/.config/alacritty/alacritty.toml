@@ -65,7 +65,8 @@ multiplier = 3
 decorations = "none"
 dynamic_padding = false
 dynamic_title = true
-opacity = 1
+opacity = 0.8
+blur = true
 
 [window.dimensions]
 columns = 164
