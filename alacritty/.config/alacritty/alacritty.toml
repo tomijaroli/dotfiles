@@ -1,5 +1,8 @@
 import = ["/Users/tomi/.config/alacritty/themes/catppuccin_macchiato.toml"]
 
+[shell]
+program = "/opt/homebrew/bin/bash"
+
 [cursor.style]
 blinking = "Never"
 shape = "Beam"
