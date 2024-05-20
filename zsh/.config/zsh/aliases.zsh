@@ -60,6 +60,7 @@ function xopen() {
         open ${project_file}
     fi
 }
+alias xrl="xed .; osascript -e 'tell app "XCode" to close window 0'; xed ."
 
 # Listing
 alias ls="ls --color=auto -F"
