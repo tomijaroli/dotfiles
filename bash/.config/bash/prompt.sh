@@ -1,26 +1,27 @@
 #!/bin/bash
 
-# autoload -Uz vcs_info
-# autoload -U colors && colors
+source "$HOME/.config/bash/git-prompt.sh"
 
-# zstyle ':vcs_info:*' enable git
+reset=$(tput sgr0)
+bold=$(tput bold)
+red=$(tput setaf 9)
+green=$(tput setaf 10)
+yellow=$(tput setaf 11)
+blue=$(tput setaf 12)
+cyan=$(tput setaf 14)
+white=$(tput setaf 15)
 
-# precmd_vcs_info() { vcs_info }
-# precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWCOLORHINTS=1
 
-# zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+__color_prompt_with_git_info() {
+	local pre_git_ps1 post_git_ps1
 
-# +vi-git-untracked(){
-#     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-#         git status --porcelain | grep '??' &> /dev/null ; then
-#         hook_com[staged]+='!'
-#     fi
-# }
+	pre_git_ps1="\[$reset\]\[$bold\]\[$blue\][\[$white\]\u\[$red\]@\[$white\]\h\[$blue\]] \[$green\]➜ \[$cyan\]\W\[$reset\] "
+	post_git_ps1="\[$white\]$ \[$reset\]"
 
-# zstyle ':vcs_info:*' check_for_changes true
+	__git_ps1 "$pre_git_ps1" "$post_git_ps1" "\[$blue\](\[$yellow\] \[$blue\]%s\[$blue\]) "
+}
 
-# zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c%{$fg[yellow]%}%{$fg[blue]%} %b%{$fg[blue]%})"
-
-PROMPT="%B%{$fg[blue]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%m%{$fg[blue]%}] %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )%{$fg[cyan]%}%c%{$reset_color%}"
-PROMPT+="\$vcs_info_msg_0_ "
+PROMPT_COMMAND=__color_prompt_with_git_info

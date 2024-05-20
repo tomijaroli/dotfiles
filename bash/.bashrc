@@ -24,13 +24,4 @@
 
 set -o vi
 
-reset=$(tput sgr0)
-bold=$(tput bold)
-red=$(tput setaf 9)
-green=$(tput setaf 10)
-blue=$(tput setaf 12)
-cyan=$(tput setaf 14)
-white=$(tput setaf 15)
-
-source "$HOME/.config/bash/git-prompt.sh"
-export PS1="\[$reset\]\[$bold\]\[$blue\][\[$white\]\u\[$red\]@\[$white\]\h\[$blue\]] \[$green\]➜ \[$cyan\]\W\[$blue\]$(__git_ps1)\[$reset\] $ "
+source "$HOME/.config/bash/prompt.sh"
