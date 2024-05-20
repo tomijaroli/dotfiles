@@ -1,6 +1,6 @@
 .zcompdump
 .zsh_history
-.secrets.zsh
+.secrets.*
 debug_log_file_path
 .DS_Store
 Brewfile.lock.json
