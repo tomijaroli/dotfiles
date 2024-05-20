@@ -1,29 +1,22 @@
-# source "$HOME/.config/zsh/prompt.zsh"
-
-# autoload -Uz vcs_info
-# autoload -U colors && colors
-#
-# zstyle ':vcs_info:*' enable git
-#
-# precmd_vcs_info() { vcs_info }
-# precmd_functions+=( precmd_vcs_info )
-# setopt prompt_subst
-#
-# zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-#
-# +vi-git-untracked(){
-#     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-#         git status --porcelain | grep '??' &> /dev/null ; then
-#         hook_com[staged]+='!'
-#     fi
-# }
-#
-# zstyle ':vcs_info:*' check_for_changes true
-#
-# zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c%{$fg[yellow]%}%{$fg[blue]%} %b%{$fg[blue]%})"
-
+# Options
 set -o vi
+set bell-style none
+stty stop undef
 
+# Auto completion
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+
+# Imports
 source "$HOME/.config/bash/prompt.bash"
 source "$HOME/.config/bash/exports.bash"
 source "$HOME/.config/bash/aliases.bash"
+[ -f $HOME/.config/bash/.secrets.bash ] && source "$HOME/.config/bash/.secrets.bash"
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# Colored cat
+if command -v bat &> /dev/null; then
+    alias cat="bat -pp --theme \"visual studio dark+\"" 
+    alias catt="bat --theme \"visual studio dark+\"" 
+fi
