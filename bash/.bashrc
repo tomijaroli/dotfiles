@@ -24,5 +24,6 @@
 
 set -o vi
 
-source "$HOME/.config/bash/prompt.sh"
+source "$HOME/.config/bash/prompt.bash"
+source "$HOME/.config/bash/exports.bash"
 source "$HOME/.config/bash/aliases.bash"
