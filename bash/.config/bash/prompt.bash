@@ -21,7 +21,7 @@ __color_prompt_with_git_info() {
 	pre_git_ps1="\[$reset\]\[$bold\]\[$blue\][\[$white\]\u\[$red\]@\[$white\]\h\[$blue\]] \[$green\]➜ \[$cyan\]\W\[$reset\] "
 	post_git_ps1="\[$white\]$ \[$reset\]"
 
-	__git_ps1 "$pre_git_ps1" "$post_git_ps1" "\[$blue\](\[$yellow\] \[$blue\]%s\[$blue\]) "
+	__git_ps1 "$pre_git_ps1" "$post_git_ps1" "\[$blue\](\[$blue\]%s\[$blue\]) "
 }
 
 PROMPT_COMMAND=__color_prompt_with_git_info

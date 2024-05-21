@@ -263,19 +263,24 @@ __git_ps1_colorize_gitstring ()
 		local c_green=$'\001\e[32m\002'
 		local c_lblue=$'\001\e[1;34m\002'
 		local c_clear=$'\001\e[0m\002'
+		local custom_blue=$(tput setaf 12)
 	fi
 	local bad_color=$c_red
 	local ok_color=$c_green
 	local flags_color="$c_lblue"
+	local branch_sign_color="$(tput setaf 11)"
 
 	local branch_color=""
 	if [ $detached = no ]; then
-		branch_color="$ok_color"
+		branch_color="$custom_blue"
 	else
 		branch_color="$bad_color"
 	fi
 	if [ -n "$c" ]; then
 		c="$branch_color$c$c_clear"
+	fi
+	if [ -n "$branch_sign" ]; then
+		branch_sign="$branch_sign_color$branch_sign$c_clear"
 	fi
 	b="$branch_color$b$c_clear"
 
@@ -541,6 +546,7 @@ __git_ps1 ()
 	local c=""
 	local p="" # short version of upstream state indicator
 	local upstream="" # verbose version of upstream state indicator
+	local branch_sign=""
 
 	if [ "true" = "$inside_gitdir" ]; then
 		if [ "true" = "$bare_repo" ]; then
@@ -549,10 +555,11 @@ __git_ps1 ()
 			b="GIT_DIR!"
 		fi
 	elif [ "true" = "$inside_worktree" ]; then
+		branch_sign=""
 		if [ -n "${GIT_PS1_SHOWDIRTYSTATE-}" ] &&
 		   [ "$(git config --bool bash.showDirtyState)" != "false" ]
 		then
-			git diff --no-ext-diff --quiet || w="*"
+			git diff --no-ext-diff --quiet || w="!"
 			git diff --no-ext-diff --cached --quiet || i="+"
 			if [ -z "$short_sha" ] && [ -z "$i" ]; then
 				i="#"
@@ -593,8 +600,8 @@ __git_ps1 ()
 		__git_ps1_colorize_gitstring
 	fi
 
-	local f="$h$w$i$s$u$p"
-	local gitstring="$c$b${f:+$z$f}${sparse}$r${upstream}${conflict}"
+	local f="$h$w$i$s$u$p$branch_sign"
+	local gitstring="$f $c$b${sparse}$r${upstream}${conflict}"
 
 	if [ $pcmode = yes ]; then
 		if [ "${__git_printf_supports_v-}" != yes ]; then
