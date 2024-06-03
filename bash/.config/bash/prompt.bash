@@ -14,11 +14,16 @@ white=$(tput setaf 15)
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWCOLORHINTS=1
+export GIT_PS1_SHOWSTATEBEFOREBRANCHNAME=true
 
 __color_prompt_with_git_info() {
 	local pre_git_ps1 post_git_ps1
 
-	pre_git_ps1="\[$reset\]\[$bold\]\[$blue\][\[$white\]\u\[$red\]@\[$white\]\h\[$blue\]] \[$green\]➜ \[$cyan\]\W\[$reset\] "
+	if [[ ${EUID} == 0 ]]; then
+		pre_git_ps1="\[$reset\]\[$bold\]\[$blue\][\[$white\]\u\[$red\]@\[$white\]\h\[$blue\]] \[$green\]➜ \[$cyan\]\W\[$reset\] "
+	else
+		pre_git_ps1="\[$reset\]\[$bold\]\[$blue\][\[$white\]\u\[$red\]@\[$white\]\h\[$blue\]] \[$green\]➜ \[$cyan\]\W\[$reset\] "
+	fi
 	post_git_ps1="\[$white\]$ \[$reset\]"
 
 	__git_ps1 "$pre_git_ps1" "$post_git_ps1" "\[$blue\](\[$blue\]%s\[$blue\]) "
