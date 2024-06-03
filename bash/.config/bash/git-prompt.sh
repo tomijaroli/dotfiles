@@ -601,7 +601,17 @@ __git_ps1 ()
 	fi
 
 	local f="$h$w$i$s$u$p$branch_sign"
-	local gitstring="$f $c$b${sparse}$r${upstream}${conflict}"
+	local lf rf
+
+	if [ "true" = "${GIT_PS1_SHOWSTATEBEFOREBRANCHNAME-}" ]; then
+		lf="$f "
+		rf=""
+	else
+		lf=""
+		rf=" $f"
+	fi
+
+	local gitstring="$lf$c$b$rf${sparse}$r${upstream}${conflict}"
 
 	if [ $pcmode = yes ]; then
 		if [ "${__git_printf_supports_v-}" != yes ]; then
