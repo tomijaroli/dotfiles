@@ -1,0 +1,4 @@
+mode=run
+allow_images=true
+image_size=12
+width=30%
