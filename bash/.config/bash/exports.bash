@@ -60,3 +60,5 @@ export EXA_COLORS=$LS_COLORS
 
 export LDFLAGS="-L/usr/local/opt/bzip2/lib"
 export CPPFLAGS="-I/usr/local/opt/bzip2/include"
+
+eval "$(starship init bash)"
