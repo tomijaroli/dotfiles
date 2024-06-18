@@ -55,7 +55,7 @@ export PATH="$PATH:$GOPATH/bin"
 
 # Zoxide
 eval "$(zoxide init bash)"
-eval "$(gdircolors ~/.dircolors)"
+eval "$(dircolors ~/.dircolors)"
 export EXA_COLORS=$LS_COLORS
 
 export LDFLAGS="-L/usr/local/opt/bzip2/lib"
