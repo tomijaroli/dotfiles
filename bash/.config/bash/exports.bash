@@ -15,10 +15,11 @@ export MANWIDTH=999
 export PATH="$HOME/.local/bin":$PATH
 
 # Homebrew
-if [[ $(uname -m) == "Darwin" ]]; then
-    export PATH="/opt/homebrew/bin:$PATH"
-    export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-fi
+# Uncomment for macOS
+# if [[ $(uname -m) == "Darwin" ]]; then
+#     export PATH="/opt/homebrew/bin:$PATH"
+#     export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+# fi
 
 # Python
 export PYENV_ROOT="$HOME/.pyenv"
@@ -33,11 +34,15 @@ eval "$(rbenv init - --path)"
 eval "$(rbenv init -)"
 
 # Nvm
-if [[ $(uname -m) == "Darwin" ]]; then
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
-    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-fi
+# Uncomment for macOS
+# if [[ $(uname -m) == "Darwin" ]]; then
+#     export NVM_DIR="$HOME/.nvm"
+#     [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
+#     [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+# fi
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # Android
 export ANDROID_HOME=/Users/$USER/Library/Android/sdk
@@ -52,3 +57,6 @@ export PATH="$PATH:$GOPATH/bin"
 eval "$(zoxide init bash)"
 eval "$(gdircolors ~/.dircolors)"
 export EXA_COLORS=$LS_COLORS
+
+export LDFLAGS="-L/usr/local/opt/bzip2/lib"
+export CPPFLAGS="-I/usr/local/opt/bzip2/include"
