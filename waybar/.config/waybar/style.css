@@ -1,0 +1,208 @@
+/* Global styles */
+
+* {
+    border: none;
+    font-family: "Noto Sans", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Window style */
+
+window#waybar {
+    background-color: rgba(43, 48, 59, 0.65);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/* Button styles */
+
+/* Global buttons */
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    /* box-shadow: inset 0 -3px transparent; */
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background-color: rgba(100, 114, 125, 0.2);
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+/* Workspace buttons */
+
+#workspaces button {
+    padding: 0 0.6em;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+#workspaces button:hover {
+    background: rgba(100, 114, 125, 0.2);
+}
+
+#workspaces button.active {
+    background-color: rgba(100, 114, 125, 0.2);
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+#workspaces button.focused {
+    background-color: #64727D;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+/* Mode style */
+
+#mode {
+    background-color: #64727D;
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+/* Module styles */
+
+/* Normal styles */
+
+#clock,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#language,
+#mode,
+#scratchpad,
+#mpd {
+    padding: 0 6px;
+    margin: 2px 2px;
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left>widget:first-child>#workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right>widget:last-child>#workspaces {
+    margin-right: 0;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+/* Focus styles */
+
+label:focus {
+    background-color: #000000;
+}
+
+#clock:hover,
+#language:hover,
+#network:hover,
+#pulseaudio:hover {
+    background-color: rgba(100, 110, 125, 0.2);
+}
+
+#clock.active,
+#language.active,
+#network.active,
+#pulseaudio.active {
+    background-color: rgba(100, 110, 125, 0.4);
+}
+
+/* Network status */
+
+#network.disconnected {
+    background-color: #f53c3c;
+}
+
+/* Audio control */
+
+#pulseaudio.muted {
+    background-color: #bbccdd;
+    color: #333333;
+}
+
+#wireplumber.muted {
+    background-color: #f53c3c;
+}
+
+/* Custom media player */
+
+#custom-media {
+    background-color: #66cc99;
+    color: #ffffff;
+}
+
+#custom-media.custom-spotify {
+    background-color: #66cc99;
+}
+
+#custom-media.custom-vlc {
+    background-color: #ffa000;
+}
+
+/* MPD */
+
+#mpd {
+    background-color: #66cc99;
+    color: #ffffff;
+}
+
+#mpd.disconnected {
+    background-color: #f53c3c;
+}
+
+#mpd.stopped {
+    background-color: #90b1b1;
+}
+
+#mpd.paused {
+    background-color: #51a37a;
+}
+
+/* Tray */
+
+#tray {
+    background-color: #bbccdd;
+}
+
+#tray>.passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray>.needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+/* Scratchpad */
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+    background-color: transparent;
+}
