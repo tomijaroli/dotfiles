@@ -82,7 +82,7 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "hyprland/language": {
-        "format": "{shortDescription}-{short}"
+        "format": "{shortDescription}"
     },
     "pulseaudio": {
         "format": "{icon} ",
