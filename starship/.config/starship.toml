@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-add_newline = false
+add_newline = true
 format = '$username$hostname$directory$git_status$git_branch$character '
 
 [character]
