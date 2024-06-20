@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # History
-export HISTFILE="$XDG_DATA_HOME"/.bash_history
+export HISTFILE="$HOME"/.bash_history
 export HISTSIZE=1000000
 export SAVEHIST=1000000
 
