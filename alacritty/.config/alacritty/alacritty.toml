@@ -1,4 +1,4 @@
-import = ["/Users/tomi/.config/alacritty/themes/catppuccin_macchiato.toml"]
+import = ["~/.config/alacritty/themes/nord.toml"]
 
 [cursor.style]
 blinking = "Never"
