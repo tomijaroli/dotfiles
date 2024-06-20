@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# hyprland
+alias hrl="hyprctl reload"
+
 # bash
 alias dotrc="nvim ~/dotfiles"
 alias bl=". ~/.bashrc"
