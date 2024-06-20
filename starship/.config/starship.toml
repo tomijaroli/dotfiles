@@ -1,21 +1,22 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = false
-format = '$username$hostname $directory$git_status$git_branch$character '
+format = '$username$hostname$directory$git_status$git_branch$character '
 
 [character]
 success_symbol = '[\$](white)'
+error_symbol = '[\$](red)'
 format = ' [$symbol]($style)'
 
 [username]
-show_always = true
+# show_always = true # uncomment to show username always
 style_user = "white bold"
 format = '[\[[$user]($style)](blue bold)'
 
 [hostname]
-ssh_only = false
+# ssh_only = false # uncomment to show hostname always
 style = "white bold"
-format = '[[@](red bold)[$hostname]($style)\]](blue bold)'
+format = '[[@](red bold)[$hostname]($style)\]](blue bold) '
 
 [directory]
 style = "cyan bold"
