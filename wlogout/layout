@@ -12,7 +12,7 @@
 }
 {
     "label" : "logout",
-    "action" : "sleep 0.5; swaymsg exit",
+    "action" : "sleep 0.5; hyprctl dispatch exit",
     "text" : "Exit",
     "keybind" : "e"
 }

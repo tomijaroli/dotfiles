@@ -82,6 +82,7 @@ button:hover {
 #language,
 #mode,
 #scratchpad,
+#custom-exit,
 #mpd {
     padding: 0 6px;
     margin: 2px 2px;
@@ -120,14 +121,16 @@ label:focus {
 #clock:hover,
 #language:hover,
 #network:hover,
-#pulseaudio:hover {
+#pulseaudio:hover,
+#custom-exit:hover {
     background-color: rgba(100, 110, 125, 0.2);
 }
 
 #clock.active,
 #language.active,
 #network.active,
-#pulseaudio.active {
+#pulseaudio.active,
+#custom-exit.active {
     background-color: rgba(100, 110, 125, 0.4);
 }
 
