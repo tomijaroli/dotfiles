@@ -5,11 +5,13 @@ alias hrl="hyprctl reload"
 
 # bash
 alias dotrc="nvim ~/dotfiles"
+alias jd="z dotfiles"
 alias bl=". ~/.bashrc"
 
 # nvim
 alias vim="nvim"
 alias vimrc="nvim ~/.config/nvim/"
+alias jv="z nvim"
 
 # window management - yabai + skhd
 if [[ $(uname -m) == "Darwin" ]]; then
