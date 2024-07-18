@@ -19,3 +19,7 @@ if command -v bat &> /dev/null; then
     alias cat="bat -pp --theme \"visual studio dark+\"" 
     alias catt="bat --theme \"visual studio dark+\"" 
 fi
+
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
