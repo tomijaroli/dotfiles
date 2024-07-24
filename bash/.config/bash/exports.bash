@@ -7,14 +7,18 @@ export SAVEHIST=1000000
 
 export EDITOR="nvim"
 export TERMINAL="alacritty"
-export BROWSER="Safari"
+if [[ $(uname -m) == "Darwin" ]]; then
+    export BROWSER="Safari"
+fi
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 export PATH="$HOME/.local/bin":$PATH
 
 # Homebrew
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+if [[ $(uname -m) == "Darwin" ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+    export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+fi
 
 # Python
 export PYENV_ROOT="$HOME/.pyenv"
@@ -29,9 +33,11 @@ eval "$(rbenv init - --path)"
 eval "$(rbenv init -)"
 
 # Nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+if [[ $(uname -m) == "Darwin" ]]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+fi
 
 # Android
 export ANDROID_HOME=/Users/$USER/Library/Android/sdk

@@ -12,9 +12,11 @@ alias vimrc="vim ~/.config/nvim/"
 alias jv="z ~/.config/nvim"
 
 # yabai + skhd
-alias startwm="yabai --start-service && skhd --start-service"
-alias restartwm="yabai --restart-service && skhd --restart-service"
-alias stopwm="yabai --stop-service && skhd --stop-service"
+if [[ $(uname -m) == "Darwin" ]]; then
+    alias startwm="yabai --start-service && skhd --start-service"
+    alias restartwm="yabai --restart-service && skhd --restart-service"
+    alias stopwm="yabai --stop-service && skhd --stop-service"
+fi
 
 # TMUX
 alias tn="tmux new -s"
@@ -52,17 +54,19 @@ function moveonto() {
 alias lg="lazygit"
 
 # iOS development
+if [[ $(uname -m) == "Darwin" ]]; then
 alias xkill="killall Xcode"
-function xopen() {
-    project_file=$(find . -type d -maxdepth 1 -name '*.xcodeproj')
-    if [ -z "$project_file" ]
-    then
-        echo "Project file not found in the current directory!"
-    else
-        open ${project_file}
-    fi
-}
-alias xrl="xed .; osascript -e 'tell app "XCode" to close window 0'; xed ."
+    function xopen() {
+        project_file=$(find . -type d -maxdepth 1 -name '*.xcodeproj')
+        if [ -z "$project_file" ]
+        then
+            echo "Project file not found in the current directory!"
+        else
+            open ${project_file}
+        fi
+    }
+    alias xrl="xed .; osascript -e 'tell app "XCode" to close window 0'; xed ."
+fi
 
 # Listing
 
@@ -92,9 +96,11 @@ alias psmem="ps aux | sort -nr -k 4 | head -5"
 alias pscpu="ps aux | sort -nr -k 3 | head -5"
 
 # Search on google
-function google() {
-    open -a "Safari" "http://www.google.com/search?q= $1";
-}
+if [[ $(uname -m) == "Darwin" ]]; then
+    function google() {
+        open -a "Safari" "http://www.google.com/search?q= $1";
+    }
+fi
 
 # Find aliases
 alias findalias="PS4='+%x:%I>' zsh -i -x -c '' |& grep "
