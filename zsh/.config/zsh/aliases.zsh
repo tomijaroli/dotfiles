@@ -3,11 +3,13 @@
 # zsh
 alias dotrc="nvim ~/dotfiles"
 alias zl=". ~/.zshrc"
-alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
+alias zapu="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
+alias jd="z ~/dotfiles"
 
 # nvim config
 alias vim="nvim"
 alias vimrc="vim ~/.config/nvim/"
+alias jv="z ~/.config/nvim"
 
 # yabai + skhd
 alias startwm="yabai --start-service && skhd --start-service"
@@ -63,10 +65,6 @@ function xopen() {
 alias xrl="xed .; osascript -e 'tell app "XCode" to close window 0'; xed ."
 
 # Listing
-alias ls="ls --color=auto -F"
-alias ll="ls --color=auto -F -l"
-alias lla="ls --color=auto -F -la"
-alias la="ls --color=auto -F -a"
 
 # EZA ls
 if [ -x "$(command -v eza)" ]; then
@@ -75,6 +73,11 @@ if [ -x "$(command -v eza)" ]; then
     alias lla="eza -Slhga --icons --group-directories-first --color=always"
     alias la="eza -Shga --icons --group-directories-first --color=always"
     alias tree="eza --tree --icons"
+else
+    alias ls="ls --color=auto -F"
+    alias ll="ls --color=auto -F -l"
+    alias lla="ls --color=auto -F -la"
+    alias la="ls --color=auto -F -a"
 fi
 
 # Colorize grep output (good for log files)
