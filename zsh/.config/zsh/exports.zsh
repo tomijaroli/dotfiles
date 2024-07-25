@@ -7,7 +7,7 @@ export SAVEHIST=1000000
 
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export EDITOR="nvim"
-export TERMINAL="alacritty"
+export TERMINAL="xterm-kitty"
 export BROWSER="Safari"
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
