@@ -1,5 +1,5 @@
-require "plugins.autocommands.lsp-autocommands"
-local lsp_autocommand_callbacks = require "plugins.autocommands.lsp-autocommand-callbacks"
+require "plugins.autocommands.lsp"
+local lsp_autocommand_callbacks = require "plugins.autocommands.callbacks.lsp"
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())

@@ -1,4 +1,4 @@
-require "plugins.autocommands.oil-autocommands"
+require "plugins.autocommands.oil"
 
 local oil = require "oil"
 

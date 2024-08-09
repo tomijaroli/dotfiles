@@ -8,6 +8,6 @@ require("trouble").setup {
     cycle_results = false,
 }
 
-require "plugins.autocommands.trouble-autocommands"
+require "plugins.autocommands.trouble"
 
 vim.keymap.set("n", "<leader>tt", "<cmd>TroubleToggle quickfix<cr>", { desc = "[T]oggle [T]rouble Quick Fix" })

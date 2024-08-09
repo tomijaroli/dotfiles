@@ -1,4 +1,4 @@
-local trouble_autocommand_callbacks = require "plugins.autocommands.trouble-autocommand-callbacks"
+local trouble_autocommand_callbacks = require "plugins.autocommands.callbacks.trouble"
 
 vim.api.nvim_create_autocmd("User", {
     pattern = { "XcodebuildBuildFinished", "XcodebuildTestsFinished" },
