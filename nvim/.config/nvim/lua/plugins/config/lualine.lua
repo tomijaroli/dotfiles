@@ -1,5 +1,3 @@
-local lualine = require "lualine"
-
 local function xcodebuild_device()
     if vim.g.xcodebuild_platform == "macOS" then
         return " macOS"
@@ -12,7 +10,7 @@ local function xcodebuild_device()
     return " " .. vim.g.xcodebuild_device_name
 end
 
-lualine.setup {
+require("lualine").setup {
     options = {
         icons_enabled = true,
         theme = "auto",

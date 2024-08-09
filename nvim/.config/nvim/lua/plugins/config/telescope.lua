@@ -1,6 +1,4 @@
-local telescope = require "telescope"
-
-telescope.setup {
+require("telescope").setup {
     defaults = {
         path_display = { "smart" },
     },

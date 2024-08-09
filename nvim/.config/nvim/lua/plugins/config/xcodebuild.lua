@@ -1,7 +1,6 @@
-local xcodebuild = require "xcodebuild"
 local progress_handle
 
-xcodebuild.setup {
+require("xcodebuild").setup {
     show_build_progress_bar = false,
     logs = {
         auto_open_on_success_tests = false,
