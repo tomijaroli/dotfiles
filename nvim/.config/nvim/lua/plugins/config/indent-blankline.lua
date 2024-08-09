@@ -1,6 +1,4 @@
-local ibl = require "ibl"
-
-ibl.setup {
+require("ibl").setup {
     scope = { enabled = false },
     exclude = {
         filetypes = {

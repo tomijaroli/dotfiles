@@ -1,6 +1,4 @@
-local fidget = require "fidget"
-
-fidget.setup {
+require("fidget").setup {
     notification = {
         window = {
             normal_hl = "String",
