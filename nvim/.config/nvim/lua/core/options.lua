@@ -77,9 +77,3 @@ vim.opt.guicursor = {
     "sm:block-blinkwait175-blinkoff150-blinkon175", -- Cmdline mode: block blink
     "a:blinkon0", -- Prevent blinking in all modes
 }
-
--- Restore cursor shape when exiting neovim
-vim.api.nvim_create_autocmd("VimLeave", {
-    pattern = "*",
-    command = "set guicursor=a:ver25",
-})
