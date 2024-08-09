@@ -1,12 +1,12 @@
 return {
-  "gbprod/nord.nvim",
-  name = "nord",
-  priority = 1000,
-  lazy = false,
-  opts = {},
-  config = function()
-    require "plugins.config.nord"
-  end,
+    "gbprod/nord.nvim",
+    name = "nord",
+    priority = 1000,
+    lazy = false,
+    opts = {},
+    config = function()
+        require "plugins.config.nord"
+    end,
 }
 
 -- Some nice themes:
