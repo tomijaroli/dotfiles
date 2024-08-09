@@ -10,4 +10,4 @@ require("trouble").setup {
 
 require "plugins.autocommands.trouble"
 
-vim.keymap.set("n", "<leader>tt", "<cmd>TroubleToggle quickfix<cr>", { desc = "[T]oggle [T]rouble Quick Fix" })
+vim.keymap.set("n", "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>", { desc = "[T]oggle [T]rouble Quick Fix" })
