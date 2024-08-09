@@ -1,5 +1,3 @@
--- vim.cmd "autocmd!"
-
 -- Line number settings
 vim.opt.number = true
 vim.opt.relativenumber = true
