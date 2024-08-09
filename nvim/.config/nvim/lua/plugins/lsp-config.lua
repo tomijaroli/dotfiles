@@ -7,7 +7,6 @@ return {
         {
             "j-hui/fidget.nvim",
             event = "VeryLazy",
-            opts = {},
             config = function()
                 require "plugins.config.fidget"
             end,

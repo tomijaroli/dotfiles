@@ -3,7 +3,6 @@ return {
     name = "nord",
     priority = 1000,
     lazy = false,
-    opts = {},
     config = function()
         require "plugins.config.nord"
     end,

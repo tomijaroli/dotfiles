@@ -3,7 +3,6 @@ return {
     dependencies = {
         "nvim-tree/nvim-web-devicons",
     },
-    opts = {},
     config = function()
         require "plugins.config.oil"
     end,

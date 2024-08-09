@@ -7,14 +7,12 @@ return {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
         event = "VeryLazy",
-        opts = {},
         config = function()
             require "plugins.config.indent-blankline"
         end,
     },
     {
         "windwp/nvim-autopairs",
-        opts = {},
         config = function()
             require "plugins.config.autopairs"
         end,
