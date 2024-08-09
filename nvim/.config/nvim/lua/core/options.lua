@@ -70,10 +70,10 @@ vim.cmd [[set iskeyword+=-]]
 
 -- Set cursor shapes for different modes
 vim.opt.guicursor = {
-    "n-v-c:block", -- Normal, visual, command mode: block
-    "i-ci:ver25", -- Insert mode: beam
-    "r-cr:hor20", -- Replace mode: underline
-    "o:hor50", -- Operator-pending mode: half-block
-    "sm:block-blinkwait175-blinkoff150-blinkon175", -- Cmdline mode: block blink
-    "a:blinkon0", -- Prevent blinking in all modes
+  "n-v-c:block", -- Normal, visual, command mode: block
+  "i-ci:ver25", -- Insert mode: beam
+  "r-cr:hor20", -- Replace mode: underline
+  "o:hor50", -- Operator-pending mode: half-block
+  "sm:block-blinkwait175-blinkoff150-blinkon175", -- Cmdline mode: block blink
+  "a:blinkon0", -- Prevent blinking in all modes
 }
