@@ -45,6 +45,7 @@ local servers = {
   },
   pyright = {},
   tsserver = {},
+  yamlls = {},
 }
 
 require("mason").setup()
