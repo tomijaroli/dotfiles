@@ -50,3 +50,4 @@ export PATH="$PATH:$GOPATH/bin"
 eval "$(zoxide init zsh)"
 eval "$(gdircolors ~/.dircolors)"
 export EXA_COLORS=$LS_COLORS
+export TMUX_THEME="nord"
