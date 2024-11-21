@@ -3,6 +3,7 @@
 " ========================================
 
 set nocompatible
+set nobackup
 
 " Line number settings
 
