@@ -2,7 +2,7 @@ general.import = ["/Users/tomi/.config/alacritty/themes/nord.toml"]
 
 [cursor.style]
 blinking = "Never"
-shape = "Beam"
+shape = "Block"
 
 [font]
 size = 14.0
