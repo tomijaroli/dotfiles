@@ -1,4 +1,4 @@
-import = ["/Users/tomi/.config/alacritty/themes/nord.toml"]
+general.import = ["/Users/tomi/.config/alacritty/themes/nord.toml"]
 
 [cursor.style]
 blinking = "Never"
