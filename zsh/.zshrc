@@ -15,7 +15,6 @@ plug "zap-zsh/fzf"
 plug "zsh-users/zsh-syntax-highlighting"
 
 # Sources
-plug "$HOME/.config/zsh/prompt.zsh"
 plug "$HOME/.config/zsh/exports.zsh"
 plug "$HOME/.config/zsh/aliases.zsh"
 # make sure to never track your secret file
