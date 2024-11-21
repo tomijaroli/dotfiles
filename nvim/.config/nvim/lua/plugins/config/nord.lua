@@ -1,3 +1,10 @@
+M = {}
+
+M.repository = "gbprod/nord.nvim"
+M.name = "nord"
+M.priority = 1000
+M.lazy = false
+
 local styles
 
 if vim.g.user_enable_transparent_background then
@@ -7,7 +14,7 @@ if vim.g.user_enable_transparent_background then
   }
 end
 
-require("nord").setup {
+M.opts = {
   transparent_background = vim.g.user_enable_transparent_background,
   styles = styles,
   integrations = {
@@ -46,5 +53,4 @@ require("nord").setup {
   end,
 }
 
-vim.cmd.colorscheme "nord"
-vim.cmd.hi "Comment gui=none"
+return M

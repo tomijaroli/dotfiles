@@ -1,10 +1,14 @@
+local theme = require "plugins.config.nord"
+
 return {
-  "gbprod/nord.nvim",
-  name = "nord",
-  priority = 1000,
-  lazy = false,
+  theme.repository,
+  name = theme.name,
+  priority = theme.priority,
+  lazy = theme.lazy,
+  opts = theme.opts,
   config = function()
-    require "plugins.config.nord"
+    vim.cmd.colorscheme(theme.name)
+    vim.cmd.hi "Comment gui=none"
   end,
 }
 
