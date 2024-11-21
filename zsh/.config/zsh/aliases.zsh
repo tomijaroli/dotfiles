@@ -7,7 +7,7 @@ alias zapu="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 
 alias jd="z ~/dotfiles"
 
 # nvim config
-# alias vim="nvim"
+alias vim="nvim"
 alias vimrc="vim ~/.config/nvim/"
 alias jv="z ~/.config/nvim"
 
