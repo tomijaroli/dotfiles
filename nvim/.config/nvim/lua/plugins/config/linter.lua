@@ -1,6 +1,6 @@
 require("lint").linters_by_ft = {
   swift = { "swiftlint" },
-  markdown = { "markdownlint" },
+--   markdown = { "markdownlint" },
 }
 
 require "plugins.autocommands.linter"
