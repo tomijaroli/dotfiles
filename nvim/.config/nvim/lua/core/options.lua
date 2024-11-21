@@ -16,6 +16,9 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.fcs = "eob: "
 vim.opt.fillchars.eob = " "
 
+vim.opt.wrap = false
+vim.opt.linebreak = true
+
 -- Search settings
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -62,8 +65,6 @@ vim.opt.undofile = true
 -- Appends
 vim.opt.path:append "**"
 vim.opt.iskeyword:append "-"
-
-vim.wo.number = true
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]

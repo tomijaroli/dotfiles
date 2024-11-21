@@ -39,6 +39,9 @@ vim.keymap.set("n", "<leader>wt", ":set wrap!<CR>", { desc = "Toggle word wrappi
 
 vim.keymap.set("i", "jk", "<ESC>") -- quick exit to normal mode
 
+vim.keymap.set("v", "<", "<gv", { desc = "Indent selection left" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent selection right" })
+
 -- vim-maximizer
 vim.keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>", { desc = "Zoom to current window" })
 
