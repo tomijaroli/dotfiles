@@ -34,8 +34,7 @@ require("lualine").setup {
         sources = { "nvim_diagnostic" },
         symbols = { error = " ", warn = " ", info = " ", hint = " " },
       },
-      "encoding",
-      "filetype",
+      "branch",
     },
     lualine_c = {
       { "diff" },
@@ -56,7 +55,10 @@ require("lualine").setup {
       },
       { xcodebuild_device, color = { fg = "#f9e2af", bg = "#161622" } },
     },
-    lualine_y = { "branch" },
+    lualine_y = {
+      "encoding",
+      "filetype",
+    },
     lualine_z = { "location" },
   },
   inactive_sections = {
