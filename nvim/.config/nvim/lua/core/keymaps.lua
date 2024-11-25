@@ -27,8 +27,8 @@ vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", { silent = true, desc = "Clos
 vim.keymap.set("n", "<leader>tn", "<Cmd>BufferLineCycleNext<CR>", { desc = "Go to next tab" })
 vim.keymap.set("n", "<leader>tp", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Go to previous tab" })
 
-vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "Go to next buffer" })
-vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", { desc = "Go to next buffer" })
+vim.keymap.set("n", "<Tab>", ":bnext<CR>", { silent = true, desc = "Go to next buffer" })
+vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", { silent = true, desc = "Go to next buffer" })
 vim.keymap.set("n", "<leader>tX", ":bdelete!<CR>", { silent = true, desc = "Close current buffer" })
 vim.keymap.set("n", "<leader>tO", "<cmd> enew <CR>", { silent = true, desc = "Open new buffer" })
 
