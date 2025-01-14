@@ -1,5 +1,5 @@
 [user]
-	email = tamas.jaroli@gmail.com
+	email = hi@tomijaroli.me
 	name = Tomi Jaroli
 [rebase]
 	autosquash = true
@@ -14,3 +14,5 @@
 	required = true
 [core]
 	excludesfile = "~/.gitignore_global"
+[color]
+	ui = true
