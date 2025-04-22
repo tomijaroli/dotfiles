@@ -64,6 +64,8 @@ function xopen() {
 }
 alias xrl="xed .; osascript -e 'tell app "XCode" to close window 0'; xed ."
 
+alias deeplink="xcrun simctl openurl booted"
+
 # Listing
 
 # EZA ls
