@@ -62,7 +62,7 @@ history = 10000
 multiplier = 3
 
 [window]
-decorations = "none"
+decorations = "Full"
 dynamic_padding = false
 dynamic_title = true
 opacity = 0.8
