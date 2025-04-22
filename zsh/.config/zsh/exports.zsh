@@ -51,4 +51,7 @@ eval "$(zoxide init zsh)"
 eval "$(gdircolors ~/.dircolors)"
 export EXA_COLORS=$LS_COLORS
 
+# iOS module tool
+export PATH="$PATH:$HOME/.mint/bin"
+
 export TMUX_THEME="nord"
