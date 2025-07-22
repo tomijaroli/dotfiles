@@ -22,7 +22,7 @@ alias ta="tmux attach -t"
 alias td="tmux detach"
 alias tls="tmux ls"
 alias tkc="tmux kill-session"
-alias tka="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
+alias tka="tmux ls | cut -d: -f1 | xargs -n 1 tmux kill-session -t"
 alias tks="tmux kill-server"
 
 # Navigation
