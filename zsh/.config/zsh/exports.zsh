@@ -55,3 +55,11 @@ export EXA_COLORS=$LS_COLORS
 export PATH="$PATH:$HOME/.mint/bin"
 
 export TMUX_THEME="nord"
+
+# SSH Management
+
+HOST_SHORT="$(hostname -s 2>/dev/null)"
+
+if [[ "$HOST_SHORT" == tomi-woltbook* ]]; then
+  export SSH_AUTH_SOCK=/Users/tomi/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+fi
