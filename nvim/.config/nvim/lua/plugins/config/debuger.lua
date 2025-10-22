@@ -45,7 +45,6 @@ xcodebuild.setup(codelldbPath)
 masondap.setup {
   automatic_setup = true,
   handlers = {},
-  ensure_installed = { "delve" },
 }
 
 local define = vim.fn.sign_define
