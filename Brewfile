@@ -11,6 +11,7 @@ brew "eza"
 brew "fzf"
 brew "neovim"
 brew "ripgrep"
+brew "starship"
 brew "stow"
 brew "tldr"
 brew "tmux"
@@ -50,12 +51,14 @@ brew "rbenv"
 brew "ruby-build"
 
 # iOS development tools
+brew "fastlane"
 brew "mockolo"
 brew "needle"
 brew "swiftformat"
 brew "swiftlint"
 brew "xcbeautify"
 brew "xcodegen"
+brew "xcodes"
 
 # Tiling window management
 brew "koekeishiya/formulae/skhd"
