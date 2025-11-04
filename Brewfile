@@ -17,6 +17,7 @@ brew "tldr"
 brew "tmux"
 brew "tree"
 brew "tree-sitter"
+brew "tree-sitter-cli"
 brew "zoxide"
 brew "zsh"
 
