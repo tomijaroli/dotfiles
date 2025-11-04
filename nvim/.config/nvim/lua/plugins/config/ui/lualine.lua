@@ -12,7 +12,14 @@ return {
     },
     sections = {
       lualine_a = { "mode" },
-      lualine_b = { "branch" },
+      lualine_b = {
+        "branch",
+        {
+          "diagnostics",
+          sources = { "nvim_diagnostic" },
+          symbols = { error = " ", warn = " ", info = " ", hint = " " },
+        },
+      },
       lualine_c = {
         {
           "filename",
@@ -22,14 +29,14 @@ return {
             readonly = "",
           },
         },
+        { "diff" },
+        { "searchcount", maxcount = 999, timeout = 500 },
       },
-      lualine_x = {
-        "encoding",
-        "filetype",
-      },
+      lualine_x = { "encoding", "filetype" },
       lualine_y = { "progress" },
       lualine_z = { "location" },
     },
     extensions = { "quickfix" },
   },
 }
+
