@@ -1,5 +1,9 @@
 local opts = { noremap = true, silent = true }
 
+vim.keymap.set('n', '<leader>o', '<CMD>update<CR> :source<CR>', { desc = "Save and reload current file" })
+vim.keymap.set('n', '<leader>x', '<CMD>.lua<CR>', { desc = "Execute current line" })
+vim.keymap.set('n', '<leader><leader>x', '<CMD>source %<CR>', { desc = "Execute current file" })
+
 -- General Editing
 vim.keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear highlights" })
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
@@ -7,9 +11,6 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent left and keep selection" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and keep selection" })
 vim.keymap.set("n", "gG", "gg<S-v>G", { desc = "Select all" })
 vim.keymap.set("n", "<leader>wt", ":set wrap!<CR>", { desc = "Toggle word wrapping" })
-
-vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
-vim.keymap.set('n', '<leader>x', '.lua<CR>')
 
 -- Buffers
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "Next buffer" })
@@ -34,24 +35,13 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" }
 vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Show diagnostic" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list (default: :lopen / :lclose for location list)" })
 
--- ===============================
 -- Registers
--- ===============================
 vim.keymap.set({ 'n', 'v', 'x' }, 'y', '"+y')
 vim.keymap.set({ 'n', 'v', 'x' }, 'd', '"+d')
-vim.keymap.set("n", "x", '"_x', { 
-  desc = "Delete without yank (default: x yanks into register)" 
-})
-vim.keymap.set("n", "c", '"_c', { 
-  desc = "Change without yank (default: c yanks into register)" 
-})
-vim.keymap.set("n", "C", '"_C', { 
-  desc = "Change line without yank (default: C yanks into register)" 
-})
+vim.keymap.set("n", "x", '"_x', { desc = "Delete without yank" })
+vim.keymap.set("n", "c", '"_c', { desc = "Change without yank" })
+vim.keymap.set("n", "C", '"_C', { desc = "Change line without yank" })
 
--- ===============================
 -- WhichKey
--- ===============================
 vim.keymap.set("n", "<C-Space>", "<cmd>WhichKey \\<leader><CR>", opts)  
--- default: no mapping, WhichKey is plugin-specific
 
