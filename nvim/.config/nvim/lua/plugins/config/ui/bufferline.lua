@@ -22,7 +22,7 @@ return {
     highlights = {
       fill = { link = "Normal" },
       background = { link = "Normal" },
-      buffer_selected = { link = "Normal" },
+      buffer_selected = { fg = nil, bg = nil, bold = true },
       buffer_visible = { link = "Normal" },
       separator = { link = "Normal" },
       separator_visible = { link = "Normal" },
