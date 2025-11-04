@@ -1,7 +1,3 @@
--- ===============================
--- Core Editor Options
--- ===============================
-
 -- Line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -70,10 +66,6 @@ vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.path:append("**")
 vim.opt.iskeyword:append("-")
 vim.opt.whichwrap:append("<,>,[,],h,l")
-
--- ===============================
--- Optional Enhancements
--- ===============================
 
 -- Cleaner command-line messages
 vim.opt.shortmess:append("c")
