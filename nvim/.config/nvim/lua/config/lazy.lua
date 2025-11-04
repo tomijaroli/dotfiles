@@ -17,9 +17,7 @@ if not status then
 end
 
 lazy.setup(
-  {
-    { import = "plugins" },
-  },
+  { import = "plugins" },
   {
     change_detection = {
       notify = false
