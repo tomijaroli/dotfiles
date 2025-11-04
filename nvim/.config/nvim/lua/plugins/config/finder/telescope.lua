@@ -12,18 +12,30 @@ return {
     { "<leader>sd", "<cmd>Telescope diagnostics<CR>", desc = "[S]earch [D]iagnostics" },
     { "<leader><leader>", "<cmd>Telescope buffers<CR>", desc = "[ ] Find existing buffers" },
     { "<leader>st", "<cmd>TodoTelescope<CR>", desc = "[S]earch [T]odo Comments" },
-    { "<leader>/", function()
-        require("telescope.builtin").current_buffer_fuzzy_find({
+    {
+      "<leader>/",
+      function()
+        require("telescope.builtin").current_buffer_fuzzy_find {
           winblend = 10,
           previewer = false,
-        })
-      end, desc = "[/] Fuzzily search in current buffer" },
-    { "<leader>s/", function()
+        }
+      end,
+      desc = "[/] Fuzzily search in current buffer",
+    },
+    {
+      "<leader>s/",
+      function()
         require("telescope.builtin").live_grep { grep_open_files = true, prompt_title = "Live Grep in Open Files" }
-      end, desc = "[S]earch [/] in Open Files" },
-    { "<leader>sn", function()
+      end,
+      desc = "[S]earch [/] in Open Files",
+    },
+    {
+      "<leader>sn",
+      function()
         require("telescope.builtin").find_files { cwd = vim.fn.stdpath "config" }
-      end, desc = "[S]earch [N]eovim files" },
+      end,
+      desc = "[S]earch [N]eovim files",
+    },
   },
   opts = {
     defaults = {
@@ -42,7 +54,9 @@ return {
     },
     pickers = {
       live_grep = {
-        additional_args = function(_) return { "--hidden" } end,
+        additional_args = function(_)
+          return { "--hidden" }
+        end,
       },
     },
     extensions = {
@@ -56,4 +70,3 @@ return {
     pcall(require("telescope").load_extension, "ui-select")
   end,
 }
-

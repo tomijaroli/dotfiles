@@ -1,3 +1,3 @@
 return {
-  require 'plugins.config.syntax.nvim-treesitter',
+  require "plugins.config.syntax.nvim-treesitter",
 }

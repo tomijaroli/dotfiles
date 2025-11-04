@@ -1,4 +1,4 @@
-local lang_data = require("plugins.config.lsp.languages")
+local lang_data = require "plugins.config.lsp.languages"
 
 return {
   "nvim-treesitter/nvim-treesitter",

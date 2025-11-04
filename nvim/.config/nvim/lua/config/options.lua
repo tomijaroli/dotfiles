@@ -60,15 +60,15 @@ vim.opt.mouse = "a"
 
 -- Undo
 vim.opt.undofile = true
-vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
+vim.opt.undodir = vim.fn.stdpath "data" .. "/undo"
 
 -- Append
-vim.opt.path:append("**")
-vim.opt.iskeyword:append("-")
-vim.opt.whichwrap:append("<,>,[,],h,l")
+vim.opt.path:append "**"
+vim.opt.iskeyword:append "-"
+vim.opt.whichwrap:append "<,>,[,],h,l"
 
 -- Cleaner command-line messages
-vim.opt.shortmess:append("c")
+vim.opt.shortmess:append "c"
 
 -- Completion options for nvim-cmp
 vim.opt.completeopt = { "menuone", "noselect" }
@@ -85,4 +85,3 @@ vim.opt.conceallevel = 0
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 99
-

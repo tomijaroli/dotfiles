@@ -2,12 +2,16 @@ local M = {}
 
 local function inject_single(plugin_spec, dep_key, registry, injected)
   injected = injected or {}
-  if injected[dep_key] then return end
+  if injected[dep_key] then
+    return
+  end
 
   local dep = registry[dep_key]
   if not dep then
     local valid_keys = {}
-    for k, _ in pairs(registry.keys) do table.insert(valid_keys, k) end
+    for k, _ in pairs(registry.keys) do
+      table.insert(valid_keys, k)
+    end
     vim.notify(
       string.format(
         "[Dependency Injection] Invalid key: '%s'. Available keys: %s",
@@ -32,9 +36,15 @@ local function inject_single(plugin_spec, dep_key, registry, injected)
 
   if has_opts or has_event or has_keys then
     spec = { dep.repository }
-    if has_opts then spec.opts = dep.opts end
-    if has_event then spec.event = dep.event end
-    if has_keys then spec.keys = dep.keys end
+    if has_opts then
+      spec.opts = dep.opts
+    end
+    if has_event then
+      spec.event = dep.event
+    end
+    if has_keys then
+      spec.keys = dep.keys
+    end
   else
     spec = dep.repository
   end
@@ -52,4 +62,3 @@ function M.inject_dependencies_by_key(plugin_spec, keys_to_inject, registry)
 end
 
 return M
-

@@ -1,9 +1,9 @@
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set('n', '<leader>o', '<CMD>update<CR> :source<CR>', { desc = "Save and reload current file" })
-vim.keymap.set('n', '<leader><leader>x', '<CMD>source %<CR>', { desc = "Execute current file" })
-vim.keymap.set('n', '<leader>x', '<CMD>.lua<CR>', { desc = "Execute current line" })
-vim.keymap.set('v', '<leader>x', '<CMD>lua<CR>', { desc = "Execute current line" })
+vim.keymap.set("n", "<leader>o", "<CMD>update<CR> :source<CR>", { desc = "Save and reload current file" })
+vim.keymap.set("n", "<leader><leader>x", "<CMD>source %<CR>", { desc = "Execute current file" })
+vim.keymap.set("n", "<leader>x", "<CMD>.lua<CR>", { desc = "Execute current line" })
+vim.keymap.set("v", "<leader>x", "<CMD>lua<CR>", { desc = "Execute current line" })
 
 -- General Editing
 vim.keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear highlights" })
@@ -34,15 +34,19 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move right (default: <C-w>l)" }
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Show diagnostic" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list (default: :lopen / :lclose for location list)" })
+vim.keymap.set(
+  "n",
+  "<leader>q",
+  vim.diagnostic.setloclist,
+  { desc = "Open diagnostics list (default: :lopen / :lclose for location list)" }
+)
 
 -- Registers
-vim.keymap.set({ 'n', 'v', 'x' }, 'y', '"+y')
-vim.keymap.set({ 'n', 'v', 'x' }, 'd', '"+d')
+vim.keymap.set({ "n", "v", "x" }, "y", '"+y')
+vim.keymap.set({ "n", "v", "x" }, "d", '"+d')
 vim.keymap.set("n", "x", '"_x', { desc = "Delete without yank" })
 vim.keymap.set("n", "c", '"_c', { desc = "Change without yank" })
 vim.keymap.set("n", "C", '"_C', { desc = "Change line without yank" })
 
 -- WhichKey
-vim.keymap.set("n", "<C-Space>", "<cmd>WhichKey \\<leader><CR>", opts)  
-
+vim.keymap.set("n", "<C-Space>", "<cmd>WhichKey \\<leader><CR>", opts)

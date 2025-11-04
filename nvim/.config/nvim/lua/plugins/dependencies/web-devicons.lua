@@ -1,4 +1,4 @@
-local keystore = require("plugins.dependencies.keystore")
+local keystore = require "plugins.dependencies.keystore"
 
 local M = {}
 

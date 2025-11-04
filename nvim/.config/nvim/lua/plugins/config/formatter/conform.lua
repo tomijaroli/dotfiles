@@ -21,5 +21,5 @@ return {
       swift = { "swiftformat" },
       yaml = { "yamlls" },
     },
-  }
+  },
 }

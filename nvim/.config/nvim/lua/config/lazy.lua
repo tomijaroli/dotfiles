@@ -16,11 +16,8 @@ if not status then
   return
 end
 
-lazy.setup(
-  { import = "plugins" },
-  {
-    change_detection = {
-      notify = false
-    }
-  }
-)
+lazy.setup({ import = "plugins" }, {
+  change_detection = {
+    notify = false,
+  },
+})
