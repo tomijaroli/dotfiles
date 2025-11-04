@@ -47,12 +47,12 @@ return {
                     },
                 },
             },
-            sourcekit = {
-                cmd = { "sourcekit-lsp" },
-                root_dir = vim.fs.dirname(
-                    vim.fs.find({ ".git", "Package.swift", "compile_commands.json" }, { upward = true })[1]
-                ),
-            },
+            -- sourcekit = {
+            --     cmd = { "sourcekit-lsp" },
+            --     root_dir = vim.fs.dirname(
+            --         vim.fs.find({ ".git", "Package.swift", "compile_commands.json" }, { upward = true })[1]
+            --     ),
+            -- },
         }
 
         -- Configure LSP servers based on Treesitter languages
@@ -71,6 +71,9 @@ return {
             callback = function(event)
                 local bufnr = event.buf
                 local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+
+                local formatted = false
+
                 for _, client in ipairs(clients) do
                     if client.supports_method("textDocument/formatting") then
                         vim.lsp.buf.format({
@@ -78,7 +81,18 @@ return {
                             async = true,
                             filter = function(c) return c.id == client.id end,
                         })
+                        formatted = true
                         break
+                    end
+                end
+
+                -- If no LSP supports formatting, fallback to CLI formatter
+                if not formatted then
+                    local ft = vim.bo[bufnr].filetype
+                    if ft == "lua" then
+                        vim.cmd("silent! !stylua " .. vim.fn.expand("%"))
+                    elseif ft == "swift" then
+                        vim.cmd("silent! !swiftformat " .. vim.fn.expand("%"))
                     end
                 end
             end,
