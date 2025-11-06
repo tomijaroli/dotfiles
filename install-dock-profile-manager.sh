@@ -3,26 +3,33 @@ set -euo pipefail
 
 echo "▶️  Installing Dock Profile Manager…"
 
-# Where to link binaries
 BIN_DIR="$HOME/.local/bin"
 mkdir -p "$BIN_DIR"
 
 DOCK_SCRIPTS="$HOME/dotfiles/scripts/dock"
 
-# Ensure scripts are executable
-chmod +x "$DOCK_SCRIPTS"/*.sh
+# Make scripts executable
+for file in "$DOCK_SCRIPTS"/*.sh; do
+  [[ -e "$file" ]] || continue
+  chmod +x "$file"
+done
 
-# Scripts to link
-declare -A DOCK_LINKS=(
-  ["$DOCK_SCRIPTS/dock.sh"]="dock"
-  ["$DOCK_SCRIPTS/switch-default.sh"]="dock-default"
-  ["$DOCK_SCRIPTS/switch-dev.sh"]="dock-dev"
-  ["$DOCK_SCRIPTS/switch-studio.sh"]="dock-studio"
+# List scripts and command names in pairs
+LINKS=(
+  "$DOCK_SCRIPTS/dock.sh"          "dock"
+  "$DOCK_SCRIPTS/switch-default.sh" "dock-default"
+  "$DOCK_SCRIPTS/switch-dev.sh"     "dock-dev"
+  "$DOCK_SCRIPTS/switch-studio.sh"  "dock-studio"
+  "$DOCK_SCRIPTS/export-dock.sh"    "dock-export"
 )
 
 echo "🔗 Linking dock scripts into $BIN_DIR"
-for src in "${!DOCK_LINKS[@]}"; do
-  dest="$BIN_DIR/${DOCK_LINKS[$src]}"
+
+# Loop in pairs: src dest
+for ((i=0; i<${#LINKS[@]}; i+=2)); do
+  src="${LINKS[i]}"
+  dest="$BIN_DIR/${LINKS[i+1]}"
+
   if [[ -L "$dest" || -e "$dest" ]]; then
     echo "  ⏭️  Already exists: $dest"
   else
