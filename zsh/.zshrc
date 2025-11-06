@@ -20,6 +20,8 @@ plug "$HOME/.config/zsh/aliases.zsh"
 # make sure to never track your secret file
 [ -f $HOME/.config/zsh/.secrets.zsh ] && plug "$HOME/.config/zsh/.secrets.zsh"
 
+plug "$HOME/dotfiles/scripts/dock/zsh/dock-switch.plugin.zsh"
+
 # Keybinds
 bindkey -e
 bindkey '^ ' autosuggest-accept

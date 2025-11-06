@@ -70,4 +70,10 @@ nvm use stable
 echo "Installing patched fonts..."
 fonts/install.sh
 
+if [[ -f "$HOME/dotfiles/scripts/dock/install-dock.sh" ]]; then
+  bash "$HOME/dotfiles/scripts/dock/install-dock.sh"
+else
+  echo "⚠️ Dock installer missing, skipping"
+fi
+
 echo "All done!"
