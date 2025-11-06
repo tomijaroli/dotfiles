@@ -68,7 +68,9 @@ return {
     vim.api.nvim_create_autocmd("LspAttach", {
       callback = function(ev)
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
-        if client.server_capabilities.documentHighlightProvider then
+        if not client then
+          vim.notify("LSP client not found for buffer " .. ev.buf, vim.log.levels.WARN)
+        elseif client.server_capabilities.documentHighlightProvider then
           require("plugins.config.lsp.document-highlight").setup(ev.buf)
         end
       end,
