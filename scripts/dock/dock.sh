@@ -19,14 +19,6 @@ fi
 echo "📂 Target profile: $PROFILE"
 
 ### ─────────────────────────────────────────────
-### Backup current Dock state
-### ─────────────────────────────────────────────
-BACKUP_DIR="$HOME/.config/dock/backups"
-mkdir -p "$BACKUP_DIR"
-BACKUP_FILE="$BACKUP_DIR/dock-$(date -u +%Y%m%dT%H%M%SZ).plist"
-defaults export com.apple.dock "$BACKUP_FILE" >/dev/null 2>&1 || true
-
-### ─────────────────────────────────────────────
 ### Detect current dock profile
 ### ─────────────────────────────────────────────
 CURRENT_PROFILE=""
