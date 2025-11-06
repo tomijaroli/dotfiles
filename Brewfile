@@ -7,6 +7,7 @@ tap "koekeishiya/formulae"
 cask_args appdir: "~/Applications", require_sha: true
 
 # Terminal and shell environment
+brew "bob"
 brew "eza"
 brew "fzf"
 brew "neovim"
