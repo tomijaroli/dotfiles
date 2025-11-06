@@ -50,8 +50,8 @@ dock-export studio
 - Clean readable output like:
 
 ```
-[dev] OK Finder (/System/Applications/Finder.app)
-[dev] MISSING Chrome (/Applications/Google Chrome.app)
+[dev] OK Finder - /System/Applications/Finder.app
+[dev] MISSING Chrome - /Applications/Google Chrome.app
 ```
 
 No backups are created — Dock changes are fully reversible via `dock-export`.
