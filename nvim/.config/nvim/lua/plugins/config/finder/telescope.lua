@@ -7,7 +7,7 @@ return {
     { "<leader>sk", "<cmd>Telescope keymaps<CR>", desc = "[S]earch [K]eymaps" },
     { "<leader>sf", "<cmd>Telescope find_files hidden=true<CR>", desc = "[S]earch [F]iles" },
     { "<leader>ss", "<cmd>Telescope builtin<CR>", desc = "[S]earch [S]elect Telescope" },
-    { "<leader>sg", "<cmd>Telescope live_grep<CR>", desc = "[S]earch by [G]rep" },
+    { "<leader>sg", "<cmd>Telescope live_grep hidden=true<CR>", desc = "[S]earch by [G]rep" },
     { "<leader>sd", "<cmd>Telescope diagnostics<CR>", desc = "[S]earch [D]iagnostics" },
     { "<leader><leader>", "<cmd>Telescope buffers<CR>", desc = "[ ] Find existing buffers" },
     { "<leader>st", "<cmd>TodoTelescope<CR>", desc = "[S]earch [T]odo Comments" },
@@ -49,13 +49,6 @@ return {
         "--column",
         "--smart-case",
         "--hidden",
-      },
-    },
-    pickers = {
-      live_grep = {
-        additional_args = function(_)
-          return { "--hidden" }
-        end,
       },
     },
     extensions = {
