@@ -67,6 +67,8 @@ return {
 
     require("plugins.config.lsp.diagnostics").setup()
 
+    vim.cmd [[autocmd CursorHoldI * lua vim.lsp.buf.signature_help()]]
+
     -- Configure LSP servers based on Treesitter languages
     for _, lang in ipairs(lang_data.treesitter_languages) do
       local lsp = lang_data.ts_to_lsp[lang]
