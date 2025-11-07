@@ -35,6 +35,16 @@ return {
     -- Default options for all LSP servers
     local default_opts = {}
 
+    -- Inject nvim-cmp LSP capabilities
+    local cmp_ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+    if cmp_ok then
+      capabilities = cmp_lsp.default_capabilities(capabilities)
+    end
+
+    default_opts.capabilities = capabilities
+
     -- Server-specific overrides
     local server_opts = {
       lua_ls = {
