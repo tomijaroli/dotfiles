@@ -38,7 +38,13 @@ vim.keymap.set(
   "n",
   "<leader>q",
   vim.diagnostic.setloclist,
-  { desc = "Open diagnostics list (default: :lopen / :lclose for location list)" }
+  { desc = "Open local diagnostics list (default: :lopen / :lclose for location list)" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>Q",
+  vim.diagnostic.setqflist,
+  { desc = "Open global diagnostics list (default: :lopen / :lclose for location list)" }
 )
 
 -- Registers
