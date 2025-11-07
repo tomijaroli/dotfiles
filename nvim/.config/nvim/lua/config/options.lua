@@ -52,7 +52,7 @@ vim.opt.sidescrolloff = 8
 
 -- Completion / updates
 vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 600
 vim.opt.inccommand = "split"
 
 -- Mouse
