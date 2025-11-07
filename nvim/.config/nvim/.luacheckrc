@@ -1,3 +1,5 @@
+---@diagnostic disable: lowercase-global
+
 std = "lua54"
 
 globals = {
