@@ -14,5 +14,5 @@ di.inject_dependencies_by_key(lualine, dependencies, dependencies_registry)
 return {
   bufferline,
   lualine,
-  require "plugins.config.ui.tokyonight",
+  require "plugins.config.ui.nightfox",
 }
