@@ -5,8 +5,7 @@ return {
   keys = {
     { "<leader>sh", "<cmd>Telescope help_tags<CR>", desc = "[S]earch [H]elp" },
     { "<leader>sk", "<cmd>Telescope keymaps<CR>", desc = "[S]earch [K]eymaps" },
-    { "<leader>sf", "<cmd>Telescope find_files<CR>", desc = "[S]earch [F]iles" },
-    { "<leader>sF", "<cmd>Telescope find_files hidden=true<CR>", desc = "[S]earch [F]iles including hidden" },
+    { "<leader>sf", "<cmd>Telescope find_files hidden=true<CR>", desc = "[S]earch [F]iles" },
     { "<leader>ss", "<cmd>Telescope builtin<CR>", desc = "[S]earch [S]elect Telescope" },
     { "<leader>sg", "<cmd>Telescope live_grep<CR>", desc = "[S]earch by [G]rep" },
     { "<leader>sd", "<cmd>Telescope diagnostics<CR>", desc = "[S]earch [D]iagnostics" },
