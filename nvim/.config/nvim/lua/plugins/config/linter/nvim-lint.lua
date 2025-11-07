@@ -30,26 +30,24 @@ return {
       callback = function(args)
         local buf = args.buf
         local ft = vim.bo[buf].filetype
-
-        local linters_by_ft_ok, linters_by_ft = pcall(function()
-          return lint.linters_by_ft
-        end)
-        if not linters_by_ft_ok or type(linters_by_ft) ~= "table" then
-          vim.notify("[nvim-lint] linters_by_ft is not a table (skipping lint).", vim.log.levels.WARN)
-          return
-        end
-
+        local linters_by_ft = lint.linters_by_ft or {}
         local ft_linters = linters_by_ft[ft]
+
         if type(ft_linters) ~= "table" then
-          -- Nothing configured for this filetype or value is invalid → skip
           return
         end
 
-        local try_link_ok, err = pcall(function()
-          lint.try_lint()
-        end)
-        if not try_link_ok then
-          vim.notify("[nvim-lint] try_lint failed: " .. tostring(err), vim.log.levels.ERROR)
+        -- filter linters for which executable exists
+        local available_linters = {}
+        for _, linter_name in ipairs(ft_linters) do
+          local linter = lint.linters[linter_name]
+          if linter and linter.cmd and vim.fn.executable(linter.cmd) == 1 then
+            table.insert(available_linters, linter_name)
+          end
+        end
+
+        if #available_linters > 0 then
+          lint.try_lint(buf, available_linters)
         end
       end,
     })
