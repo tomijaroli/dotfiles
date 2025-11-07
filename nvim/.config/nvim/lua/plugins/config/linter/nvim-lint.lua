@@ -30,14 +30,12 @@ return {
       callback = function(args)
         local buf = args.buf
         local ft = vim.bo[buf].filetype
-        local linters_by_ft = lint.linters_by_ft or {}
-        local ft_linters = linters_by_ft[ft]
+        local ft_linters = lint.linters_by_ft[ft]
 
         if type(ft_linters) ~= "table" then
           return
         end
 
-        -- filter linters for which executable exists
         local available_linters = {}
         for _, linter_name in ipairs(ft_linters) do
           local linter = lint.linters[linter_name]
@@ -47,7 +45,8 @@ return {
         end
 
         if #available_linters > 0 then
-          lint.try_lint(buf, available_linters)
+          -- **Do not pass `buf` here**, only the list of linters
+          lint.try_lint(available_linters)
         end
       end,
     })
