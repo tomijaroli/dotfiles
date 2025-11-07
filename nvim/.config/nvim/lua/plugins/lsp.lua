@@ -15,4 +15,5 @@ return {
   require "plugins.config.lsp.mason-tool-installer",
   require "plugins.config.lsp.lsp-config",
   lspsaga,
+  require "plugins.config.lsp.lsp-signature",
 }
