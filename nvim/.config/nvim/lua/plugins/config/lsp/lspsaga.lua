@@ -33,11 +33,4 @@ return {
       on_insert = false,
     },
   },
-  -- config = function(_, opts)
-  --     local status_ok, saga = pcall(require, "lspsaga")
-  --     if not status_ok then
-  --         return
-  --     end
-  --     saga.setup(opts)
-  -- end,
 }
