@@ -23,6 +23,7 @@ return {
       bash = { "shfmt" },
       zsh = { "shfmt" },
       yaml = { "yamlls" },
+      markdown = { "prettier" },
     },
   },
 }
