@@ -1,7 +1,7 @@
 return {
   "williamboman/mason-lspconfig.nvim",
   opts = {
-    ensure_installed = { "lua_ls", "bashls" },
+    ensure_installed = { "lua_ls", "bashls", "shfmt" },
     automatic_installation = false,
   },
 }

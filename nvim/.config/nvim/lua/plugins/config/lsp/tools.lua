@@ -6,6 +6,7 @@ M.tools = {
   -- "swiftformat",
   "stylua",
   "shellcheck",
+  "shfmt",
 }
 
 return M
