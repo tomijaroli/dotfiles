@@ -23,7 +23,6 @@ M.ts_to_lsp = {
   json = "jsonls",
   -- swift = "sourcekit",
   yaml = "yamlls",
-  go = "gopls",
   c = "clangd",
 }
 
