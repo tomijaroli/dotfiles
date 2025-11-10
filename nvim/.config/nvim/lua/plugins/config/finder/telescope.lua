@@ -3,14 +3,14 @@ return {
   tag = "0.1.8",
   cmd = "Telescope",
   keys = {
-    { "<leader>sh", "<cmd>Telescope help_tags<CR>", desc = "[S]earch [H]elp" },
-    { "<leader>sk", "<cmd>Telescope keymaps<CR>", desc = "[S]earch [K]eymaps" },
-    { "<leader>sf", "<cmd>Telescope find_files hidden=true<CR>", desc = "[S]earch [F]iles" },
-    { "<leader>ss", "<cmd>Telescope builtin<CR>", desc = "[S]earch [S]elect Telescope" },
-    { "<leader>sg", "<cmd>Telescope live_grep hidden=true<CR>", desc = "[S]earch by [G]rep" },
-    { "<leader>sd", "<cmd>Telescope diagnostics<CR>", desc = "[S]earch [D]iagnostics" },
+    { "<leader>ff", "<cmd>Telescope find_files hidden=true<CR>", desc = "[F]ind [F]iles" },
+    { "<leader>fg", "<cmd>Telescope live_grep hidden=true<CR>", desc = "[F]ind by [G]rep" },
+    { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "[F]ind [H]elp" },
+    { "<leader>fk", "<cmd>Telescope keymaps<CR>", desc = "[F]ind [K]eymaps" },
+    { "<leader>fs", "<cmd>Telescope builtin<CR>", desc = "[F]ind [S]elect Telescope" },
+    { "<leader>fd", "<cmd>Telescope diagnostics<CR>", desc = "[F]ind [D]iagnostics" },
+    { "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "[F]ind [T]odo Comments" },
     { "<leader><leader>", "<cmd>Telescope buffers<CR>", desc = "[ ] Find existing buffers" },
-    { "<leader>st", "<cmd>TodoTelescope<CR>", desc = "[S]earch [T]odo Comments" },
     {
       "<leader>/",
       function()
@@ -22,18 +22,11 @@ return {
       desc = "[/] Fuzzily search in current buffer",
     },
     {
-      "<leader>s/",
-      function()
-        require("telescope.builtin").live_grep { grep_open_files = true, prompt_title = "Live Grep in Open Files" }
-      end,
-      desc = "[S]earch [/] in Open Files",
-    },
-    {
-      "<leader>sn",
+      "<leader>fn",
       function()
         require("telescope.builtin").find_files { cwd = vim.fn.stdpath "config" }
       end,
-      desc = "[S]earch [N]eovim files",
+      desc = "[F]ind [N]eovim files",
     },
   },
   opts = {

@@ -1,9 +1,9 @@
 local opts = { noremap = true, silent = true }
 
 vim.keymap.set("n", "<leader>o", "<CMD>update<CR> :source<CR>", { desc = "Save and reload current file" })
-vim.keymap.set("n", "<leader><leader>x", "<CMD>source %<CR>", { desc = "Execute current file" })
-vim.keymap.set("n", "<leader>x", "<CMD>.lua<CR>", { desc = "Execute current line" })
-vim.keymap.set("v", "<leader>x", "<CMD>lua<CR>", { desc = "Execute current line" })
+vim.keymap.set("n", "<leader><leader>s", "<CMD>source %<CR>", { desc = "Execute current file" })
+vim.keymap.set("n", "<leader>s", "<CMD>.lua<CR>", { desc = "Execute current line" })
+vim.keymap.set("v", "<leader>s", "<CMD>lua<CR>", { desc = "Execute current line" })
 
 -- General Editing
 vim.keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear highlights" })
