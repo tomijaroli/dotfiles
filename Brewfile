@@ -63,6 +63,10 @@ brew "xcbeautify"
 brew "xcodegen"
 brew "xcodes"
 brew "xcode-build-server"
+brew "pipx"
+brew "jq"
+brew "wojciech-kulik/tap/xcp"
+brew "pymobiledevice3"
 
 # Tiling window management
 brew "koekeishiya/formulae/skhd"
