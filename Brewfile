@@ -62,6 +62,7 @@ brew "swiftlint"
 brew "xcbeautify"
 brew "xcodegen"
 brew "xcodes"
+brew "xcode-build-server"
 
 # Tiling window management
 brew "koekeishiya/formulae/skhd"
