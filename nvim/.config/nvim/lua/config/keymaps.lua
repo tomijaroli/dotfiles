@@ -31,8 +31,6 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move up (default: <C-w>k)" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move right (default: <C-w>l)" })
 
 -- Diagnostics
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Show diagnostic" })
 vim.keymap.set(
   "n",
@@ -53,6 +51,3 @@ vim.keymap.set({ "n", "v", "x" }, "d", '"+d')
 vim.keymap.set("n", "x", '"_x', { desc = "Delete without yank" })
 vim.keymap.set("n", "c", '"_c', { desc = "Change without yank" })
 vim.keymap.set("n", "C", '"_C', { desc = "Change line without yank" })
-
--- WhichKey
-vim.keymap.set("n", "<C-Space>", "<cmd>WhichKey \\<leader><CR>", opts)
