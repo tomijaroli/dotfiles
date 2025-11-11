@@ -34,7 +34,7 @@ return {
 
     -- Safe auto-lint on save
     vim.api.nvim_create_autocmd("BufWritePost", {
-      group = vim.api.nvim_create_augroup("UserAutoLint", { clear = true }),
+      group = vim.api.nvim_create_augroup("user-auto-lint", { clear = true }),
       callback = function(args)
         local buf = args.buf
         local file_type = vim.bo[buf].filetype
