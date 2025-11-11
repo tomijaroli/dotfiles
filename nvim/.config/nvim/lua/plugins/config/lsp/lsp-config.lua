@@ -28,7 +28,21 @@ return {
       local lsp = language.lsp
       if lsp and not seen[lsp] then
         seen[lsp] = true
-        local opts = vim.tbl_deep_extend("force", default_opts, language.lsp_config or {})
+        local language_opts = language.lsp_config or {}
+
+        if lsp == "sourcekit" then
+          if vim.fn.executable "xcrun" == 1 then
+            language_opts = vim.tbl_deep_extend(
+              "force",
+              language_opts,
+              { cmd = { vim.trim(vim.fn.system "xcrun -f sourcekit-lsp") } }
+            )
+          else
+            vim.notify("xcrun not found; sourcekit LSP will not be given a cmd", vim.log.levels.WARN)
+          end
+        end
+
+        local opts = vim.tbl_deep_extend("force", default_opts, language_opts)
         vim.lsp.config(lsp, opts)
         vim.lsp.enable(lsp)
       end
