@@ -6,7 +6,6 @@ return {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
-    "onsails/lspkind.nvim",
   },
   config = function()
     local cmp_ok, cmp = pcall(require, "cmp")
