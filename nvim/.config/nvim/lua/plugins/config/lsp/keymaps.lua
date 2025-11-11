@@ -116,11 +116,21 @@ M.register = function(buffer, client, options)
     return not capability or (client.server_capabilities and client.server_capabilities[capability])
   end
 
+  local default_mapping_options = {
+    buffer = buffer,
+    noremap = true,
+    silent = true,
+  }
+
   for _, mapping in ipairs(keymap_definitions) do
     if client_supports(mapping.capability) then
       local action = resolve_action(mapping.action)
       if action then
-        vim.keymap.set(mapping.mode, mapping.key, action, { buffer = buffer, desc = mapping.description })
+        local merged_opts = vim.tbl_extend("force", default_mapping_options, mapping.opts or {})
+        if mapping.description then
+          merged_opts.desc = mapping.description
+        end
+        vim.keymap.set(mapping.mode, mapping.key, action, merged_opts)
       end
     end
   end
