@@ -8,21 +8,20 @@ return {
       return
     end
 
-    lint.linters_by_ft.lua = { "luacheck" }
-    lint.linters_by_ft.swift = { "swiftlint" }
-    lint.linters_by_ft.python = { "ruff" }
-    lint.linters_by_ft.javascript = { "eslint_d" }
-    lint.linters_by_ft.typescript = { "eslint_d" }
-    lint.linters_by_ft.sh = { "shellcheck" }
-    lint.linters_by_ft.bash = { "shellcheck" }
-    lint.linters_by_ft.zsh = { "shellcheck" }
+    local lang_data = require "plugins.config.lsp.languages"
 
-    lint.linters.luacheck = {
-      cmd = "luacheck",
-      stdin = false,
-      args = { "--codes", "--std", "lua54" },
-      ignore_exitcode = true,
-    }
+    -- Extract linters_by_ft from languages table
+    for ft, language in pairs(lang_data.languages) do
+      if language.linters then
+        lint.linters_by_ft[ft] = language.linters
+      end
+
+      if language.linter_config then
+        for linter_name, config in pairs(language.linter_config) do
+          lint.linters[linter_name] = config
+        end
+      end
+    end
 
     -- Safe auto-lint on save
     vim.api.nvim_create_autocmd("BufWritePost", {

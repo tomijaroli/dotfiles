@@ -11,7 +11,7 @@ M.setup = function()
   local signs = {
     Error = "",
     Warn = "",
-    Hint = "󰠠",
+    Hint = "",
     Info = "",
   }
 
