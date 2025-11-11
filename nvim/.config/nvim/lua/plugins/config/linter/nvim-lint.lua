@@ -2,6 +2,7 @@ return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPre", "BufNewFile", "BufWritePost" },
   config = function()
+    -- inside config = function()
     local lint_ok, lint = pcall(require, "lint")
     if not lint_ok then
       vim.notify("nvim-lint not available", vim.log.levels.WARN)
@@ -10,15 +11,23 @@ return {
 
     local lang_data = require "plugins.config.lsp.languages"
 
-    -- Extract linters_by_ft from languages table
-    for ft, language in pairs(lang_data.languages) do
+    lint.linters_by_ft = lint.linters_by_ft or {}
+    lint.linters = lint.linters or {}
+
+    -- populate linters and linter configs, but MERGE into builtins if present
+    for file_type, language in pairs(lang_data.languages) do
       if language.linters then
-        lint.linters_by_ft[ft] = language.linters
+        lint.linters_by_ft[file_type] = language.linters
       end
 
       if language.linter_config then
-        for linter_name, config in pairs(language.linter_config) do
-          lint.linters[linter_name] = config
+        for linter_name, user_config in pairs(language.linter_config) do
+          local builtin = lint.linters[linter_name]
+          if builtin and type(builtin) == "table" then
+            lint.linters[linter_name] = vim.tbl_deep_extend("force", builtin, user_config)
+          else
+            lint.linters[linter_name] = user_config
+          end
         end
       end
     end
@@ -28,8 +37,8 @@ return {
       group = vim.api.nvim_create_augroup("UserAutoLint", { clear = true }),
       callback = function(args)
         local buf = args.buf
-        local ft = vim.bo[buf].filetype
-        local ft_linters = lint.linters_by_ft[ft]
+        local file_type = vim.bo[buf].filetype
+        local ft_linters = lint.linters_by_ft[file_type]
 
         if type(ft_linters) ~= "table" then
           return
@@ -38,13 +47,18 @@ return {
         local available_linters = {}
         for _, linter_name in ipairs(ft_linters) do
           local linter = lint.linters[linter_name]
-          if linter and linter.cmd and vim.fn.executable(linter.cmd) == 1 then
-            table.insert(available_linters, linter_name)
+          if linter and linter.cmd then
+            local cmd_to_test = linter.cmd
+            if type(cmd_to_test) == "table" then
+              cmd_to_test = cmd_to_test[1]
+            end
+            if type(cmd_to_test) == "string" and vim.fn.executable(cmd_to_test) == 1 then
+              table.insert(available_linters, linter_name)
+            end
           end
         end
 
         if #available_linters > 0 then
-          -- **Do not pass `buf` here**, only the list of linters
           lint.try_lint(available_linters)
         end
       end,
