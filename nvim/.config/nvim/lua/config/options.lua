@@ -54,6 +54,7 @@ vim.opt.sidescrolloff = 8
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 600
 vim.opt.inccommand = "split"
+vim.opt.autoread = true
 
 -- Mouse
 vim.opt.mouse = "a"
