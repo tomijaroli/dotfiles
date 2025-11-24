@@ -15,4 +15,5 @@ return {
   bufferline,
   lualine,
   require "plugins.config.ui.nightfox",
+  require "plugins.config.ui.fidget",
 }
