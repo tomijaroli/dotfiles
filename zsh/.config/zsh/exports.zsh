@@ -57,8 +57,6 @@ export EXA_COLORS=$LS_COLORS
 # iOS module tool
 export PATH="$PATH:$HOME/.mint/bin"
 
-export TMUX_THEME="nord"
-
 # SSH Management
 
 HOST_SHORT="$(hostname -s 2>/dev/null)"
