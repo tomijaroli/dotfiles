@@ -40,7 +40,6 @@ return {
           else
             vim.notify("xcrun not found; sourcekit LSP will not be given a cmd", vim.log.levels.WARN)
           end
-          vim.cmd [[autocmd CursorHoldI * lua vim.lsp.buf.signature_help()]]
         end
 
         local opts = vim.tbl_deep_extend("force", default_opts, language_opts)
@@ -50,6 +49,16 @@ return {
           -- disable formatting capabilities so external formatters (Conform) win
           client.server_capabilities.documentFormattingProvider = false
           client.server_capabilities.documentRangeFormattingProvider = false
+
+          -- enable signature help if the server supports it
+          if client.server_capabilities.signatureHelpProvider then
+            vim.api.nvim_create_autocmd("CursorHoldI", {
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.signature_help()
+              end,
+            })
+          end
 
           -- call any language-specific on_attach the user configured
           if type(user_on_attach) == "function" then
