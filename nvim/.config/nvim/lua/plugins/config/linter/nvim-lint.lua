@@ -47,14 +47,27 @@ return {
         local available_linters = {}
         for _, linter_name in ipairs(ft_linters) do
           local linter = lint.linters[linter_name]
-          if linter and linter.cmd then
-            local cmd_to_test = linter.cmd
+          
+          -- Handle both function (built-in linters) and table (custom linters)
+          local cmd_to_test = nil
+          if type(linter) == "function" then
+            -- Built-in linter - it's a function that returns config
+            -- Just check if the command exists by name
+            if vim.fn.executable(linter_name) == 1 then
+              table.insert(available_linters, linter_name)
+            end
+          elseif type(linter) == "table" and linter.cmd then
+            -- Custom linter - it's a table with cmd field
+            cmd_to_test = linter.cmd
             if type(cmd_to_test) == "table" then
               cmd_to_test = cmd_to_test[1]
             end
             if type(cmd_to_test) == "string" and vim.fn.executable(cmd_to_test) == 1 then
               table.insert(available_linters, linter_name)
             end
+          elseif linter then
+            -- Linter exists but we can't determine availability - add it anyway
+            table.insert(available_linters, linter_name)
           end
         end
 

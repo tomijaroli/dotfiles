@@ -40,17 +40,29 @@ return {
           else
             vim.notify("xcrun not found; sourcekit LSP will not be given a cmd", vim.log.levels.WARN)
           end
+          vim.cmd [[autocmd CursorHoldI * lua vim.lsp.buf.signature_help()]]
         end
 
         local opts = vim.tbl_deep_extend("force", default_opts, language_opts)
+
+        local user_on_attach = opts.on_attach
+        opts.on_attach = function(client, bufnr)
+          -- disable formatting capabilities so external formatters (Conform) win
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+
+          -- call any language-specific on_attach the user configured
+          if type(user_on_attach) == "function" then
+            user_on_attach(client, bufnr)
+          end
+        end
+
         vim.lsp.config(lsp, opts)
         vim.lsp.enable(lsp)
       end
     end
 
     require("plugins.config.lsp.diagnostics").setup()
-
-    vim.cmd [[autocmd CursorHoldI * lua vim.lsp.buf.signature_help()]]
 
     -- LSP Attach autocommand: completion + document highlighting
     vim.api.nvim_create_autocmd("LspAttach", {
