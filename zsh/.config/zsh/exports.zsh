@@ -49,6 +49,9 @@ export PATH="$PATH:$HOME/scripts"
 export GOPATH="$HOME/Developer/go"
 export PATH="$PATH:$GOPATH/bin"
 
+# Pedregal
+export PATH="$PATH:/Applications/OrbStack.app/Contents/MacOS/bin"
+
 # Zoxide
 eval "$(zoxide init zsh)"
 eval "$(gdircolors ~/.dircolors)"
