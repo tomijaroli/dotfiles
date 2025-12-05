@@ -11,6 +11,11 @@ return {
   config = function()
     require("xcodebuild").setup {
       show_build_progress_bar = false,
+      integrations = {
+        pymobiledevice = {
+          enabled = true,
+        },
+      },
       logs = {
         auto_open_on_success_tests = false,
         auto_open_on_failed_tests = true,

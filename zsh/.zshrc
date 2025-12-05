@@ -22,15 +22,17 @@ plug "$HOME/.config/zsh/aliases.zsh"
 
 plug "$HOME/dotfiles/scripts/dock/zsh/dock.plugin.zsh"
 
+[ -f $HOME/.pymobiledevice3.zsh ] && source "$HOME/.pymobiledevice3.zsh"
+
 # Keybinds
 bindkey -e
 bindkey '^ ' autosuggest-accept
 
 export PATH="$HOME/.local/bin":$PATH
 
-if command -v bat &> /dev/null; then
-    alias cat="bat -pp --theme \"Visual Studio Dark+\"" 
-    alias catt="bat --theme \"Visual Studio Dark+\"" 
+if command -v bat &>/dev/null; then
+    alias cat="bat -pp --theme \"Visual Studio Dark+\""
+    alias catt="bat --theme \"Visual Studio Dark+\""
 fi
 
 eval "$(starship init zsh)"
