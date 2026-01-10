@@ -1,0 +1,18 @@
+general.import = ["~/.config/alacritty/alacritty.common.toml"]
+
+# Linux-specific settings
+[font.bold]
+family = "Meslo LGM Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "Meslo LGM Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "Meslo LGM Nerd Font"
+style = "Regular"
+
+[window]
+decorations = "None"
+opacity = 0.8

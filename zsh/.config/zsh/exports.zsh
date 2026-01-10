@@ -34,6 +34,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
+# Neovim bob package manager
+export PATH="$PATH:$HOME/.local/share/bob/nightly/bin"
+
 # Maestro testing
 export PATH=$PATH:$HOME/.maestro/bin
 
@@ -46,6 +49,9 @@ export PATH="$PATH:$HOME/scripts"
 export GOPATH="$HOME/Developer/go"
 export PATH="$PATH:$GOPATH/bin"
 
+# Pedregal
+export PATH="$PATH:/Applications/OrbStack.app/Contents/MacOS/bin"
+
 # Zoxide
 eval "$(zoxide init zsh)"
 eval "$(gdircolors ~/.dircolors)"
@@ -53,8 +59,6 @@ export EXA_COLORS=$LS_COLORS
 
 # iOS module tool
 export PATH="$PATH:$HOME/.mint/bin"
-
-export TMUX_THEME="nord"
 
 # SSH Management
 

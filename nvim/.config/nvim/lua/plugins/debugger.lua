@@ -1,20 +1,9 @@
+local dap = require "plugins.config.debugger.nvim-dap"
+local dap_ui = require "plugins.config.debugger.nvim-dap-ui"
+dap_ui.dependencies = dap_ui.dependencies or {}
+table.insert(dap_ui.dependencies, dap)
+
 return {
-  {
-    "mfussenegger/nvim-dap",
-    dependencies = {
-      "wojciech-kulik/xcodebuild.nvim",
-      "williamboman/mason.nvim",
-      "jay-babu/mason-nvim-dap.nvim",
-      "leoluz/nvim-dap-go",
-      {
-        "rcarriga/nvim-dap-ui",
-        dependencies = {
-          "nvim-neotest/nvim-nio",
-        },
-      },
-    },
-    config = function()
-      require "plugins.config.debuger"
-    end,
-  },
+  dap,
+  dap_ui,
 }

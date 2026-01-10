@@ -7,9 +7,13 @@ tap "koekeishiya/formulae"
 cask_args appdir: "~/Applications", require_sha: true
 
 # Terminal and shell environment
+brew "bob"
 brew "eza"
 brew "fzf"
 brew "neovim"
+brew "luacheck"
+brew "lua-language-server"
+brew "stylua"
 brew "ripgrep"
 brew "starship"
 brew "stow"
@@ -17,8 +21,12 @@ brew "tldr"
 brew "tmux"
 brew "tree"
 brew "tree-sitter"
+brew "tree-sitter-cli"
 brew "zoxide"
 brew "zsh"
+brew "shfmt"
+brew "prettier"
+brew "rubocop"
 
 # Git
 brew "git"
@@ -59,6 +67,11 @@ brew "swiftlint"
 brew "xcbeautify"
 brew "xcodegen"
 brew "xcodes"
+brew "xcode-build-server"
+brew "pipx"
+brew "jq"
+brew "wojciech-kulik/tap/xcp"
+brew "pymobiledevice3"
 
 # Tiling window management
 brew "koekeishiya/formulae/skhd"

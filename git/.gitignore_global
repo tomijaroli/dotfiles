@@ -5,3 +5,5 @@ original_logs.log
 report.json
 settings.json
 xcodebuild.log
+
+**/xcodebuild/*

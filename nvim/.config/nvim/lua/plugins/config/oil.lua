@@ -1,11 +1,21 @@
-require "plugins.autocommands.oil"
-
-local oil = require "oil"
-
-oil.setup {
-  view_options = {
-    show_hidden = true,
+return {
+  "stevearc/oil.nvim",
+  ---@module 'oil'
+  ---@type oil.SetupOpts
+  opts = {
+    view_options = {
+      show_hidden = true,
+    },
   },
+  keys = {
+    {
+      "-",
+      function()
+        require("oil").open_float()
+      end,
+      desc = "Open Oil (floating)",
+      mode = "n",
+    },
+  },
+  lazy = false,
 }
-
-vim.keymap.set("n", "-", oil.open_float, { desc = "Open parent directory" })

@@ -1,37 +1,15 @@
+local luasnip = require "plugins.config.completion.luasnip"
+local friendly_snippets = require "plugins.config.completion.friendly-snippets"
+luasnip.dependencies = luasnip.dependencies or {}
+table.insert(luasnip.dependencies, friendly_snippets)
+
+local lspkind = require "plugins.config.completion.lspkind"
+local cmp = require "plugins.config.completion.cmp"
+cmp.dependencies = cmp.dependencies or {}
+table.insert(cmp.dependencies, lspkind)
+
 return {
-  {
-    "hrsh7th/nvim-cmp",
-    lazy = false,
-    priority = 100,
-    dependencies = {
-      "onsails/lspkind.nvim",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-buffer",
-      {
-        "L3MON4D3/LuaSnip",
-        build = "make install_jsregexp",
-        dependencies = {
-          {
-            "rafamadriz/friendly-snippets",
-            config = function()
-              require("luasnip.loaders.from_vscode").lazy_load()
-            end,
-          },
-        },
-      },
-      "saadparwaiz1/cmp_luasnip",
-    },
-    config = function()
-      require "plugins.config.completion"
-    end,
-  },
-  {
-    "olexsmir/gopher.nvim",
-    ft = "go",
-    opts = {},
-    build = function()
-      vim.cmd [[silent! GoInstallDeps]]
-    end,
-  },
+  cmp,
+  luasnip,
+  lspkind,
 }

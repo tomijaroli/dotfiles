@@ -54,9 +54,7 @@ set pumheight=10 " Popup menu height
 
 set backspace=indent,eol,start " Configurable backspace behavior
 
-" Clipboard settings
-
-set clipboard=unnamedplus
+" Clipboard settings (OS-specific configuration below at line 188)
 
 " Window split settings
 
