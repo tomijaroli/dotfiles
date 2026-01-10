@@ -1,125 +1,135 @@
 #!/bin/bash
 
-# Detect OS
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    OS="macos"
-    echo "Detected macOS"
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    OS="linux"
-    echo "Detected Linux"
-else
-    echo "Unsupported OS: $OSTYPE"
-    exit 1
-fi
+###############################################################################
+# Dotfiles Installation Script
+# Modular cross-platform installer for macOS and Linux
+###############################################################################
 
-# macOS specific: Install Xcode Command Line Tools
-if [[ "$OS" == "macos" ]]; then
-    xcode-select -p &> /dev/null
-    if [[ $? -ne 0 ]]; then
-        echo "Xcode Command Line Tools for Xcode not found. Installing from Software Update..."
+set -e  # Exit on error
 
-        touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
-        PROD=$(softwareupdate -l | grep "\*.*Command Line" | tail -n 1 | sed 's/^[^C]* //')
-        softwareupdate -i "$PROD" --verbose;
+###############################################################################
+# Bootstrap: Clone repo if running via curl
+###############################################################################
+
+bootstrap_if_needed() {
+    # Check if we're in the dotfiles repo (has the scripts directory)
+    if [[ ! -d "scripts/install" ]]; then
+        echo "📦 Bootstrapping: Cloning dotfiles repository..."
+        
+        # Clone the repository
+        git clone https://github.com/tomijaroli/dotfiles.git "$HOME/dotfiles"
+        
+        echo "✓ Repository cloned to $HOME/dotfiles"
+        echo "🔄 Re-executing installer from cloned repository..."
+        echo ""
+        
+        # Re-execute the script from the cloned repo
+        cd "$HOME/dotfiles"
+        exec bash "$HOME/dotfiles/install.sh" "$@"
     fi
-fi
+}
 
-# Clone dotfiles repository
-echo "Cloning dotfiles repository..."
-git clone https://github.com/tomijaroli/dotfiles.git ~/dotfiles
+# Run bootstrap check
+bootstrap_if_needed "$@"
 
-# Install or update Homebrew (macOS only)
-if [[ "$OS" == "macos" ]]; then
-    which -s brew
-    if [[ $? != 0 ]] ; then
-        # Install Homebrew
-        echo "Homebrew installation not found, installing..."
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        eval "$(/opt/homebrew/bin/brew shellenv)"
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export DOTFILES_DIR="$SCRIPT_DIR"
+
+###############################################################################
+# OS Detection
+###############################################################################
+
+detect_os() {
+    echo "Detecting operating system..."
+    
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        export OS="macos"
+        echo "✓ Detected macOS"
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        export OS="linux"
+        echo "✓ Detected Linux"
     else
-        # Update brew formulae
-        echo "Homebrew installation found, updating..."
-        brew update
+        echo "✗ Unsupported OS: $OSTYPE"
+        echo "This installer only supports macOS and Linux"
+        exit 1
     fi
+}
 
-    # Install packages via homebrew 
-    echo "Installing packages via Homebrew..."
-    /opt/homebrew/bin/brew doctor
-    /opt/homebrew/bin/brew bundle install --file=~/dotfiles/Brewfile
+###############################################################################
+# Source installation modules
+###############################################################################
 
-    echo "Disable font smoothing for terminals..."
-    defaults write org.alacritty AppleFontSmoothing -int 0
-    defaults write net.kovidgoyal.kitty AppleFontSmoothing -int 0
-else
-    # Linux package installation
-    echo "On Linux, please install packages manually or use your distribution's package manager"
-    echo "Required packages: stow, git, alacritty, kitty, tmux, zsh, neovim, nvm"
-fi
-
-# Install zap zsh plugin manager
-echo "Installing zap plugin manager for zsh..."
-/bin/bash -c "$(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.sh)"
-
-# Install TPM - TMUX Package manager
-echo "Installing TPM - TMUX Package manager..."
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# Install dotfiles config with stow
-echo "Installing dotfiles configuration..."
-if [[ -f ~/.zshrc ]]; then
-    echo "Existing ~/.zshrc file found, created backup at ~/.zshrc.bak"
-    mv ~/.zshrc ~/.zshrc.bak
-fi
-
-if [[ -f ~/.zprofile ]]; then
-    echo "Existing ~/.zprofile file found, created backup at ~/.zprofile.bak"
-    mv ~/.zprofile ~/.zprofile.bak
-fi
-
-# Determine stow command based on OS
-if [[ "$OS" == "macos" ]]; then
-    STOW_CMD="/opt/homebrew/bin/stow"
-else
-    STOW_CMD="stow"
-fi
-
-cd ~/dotfiles && $STOW_CMD alacritty dircolors git kitty lldb skhd tmux yabai zsh
-
-# Platform-specific Alacritty configuration
-echo "Setting up platform-specific Alacritty configuration..."
-if [[ "$OS" == "macos" ]]; then
-    ln -sf ~/.config/alacritty/alacritty.macos.toml ~/.config/alacritty/alacritty.toml
-    echo "✓ Linked macOS Alacritty config"
-else
-    ln -sf ~/.config/alacritty/alacritty.linux.toml ~/.config/alacritty/alacritty.toml
-    echo "✓ Linked Linux Alacritty config"
-fi
-
-echo "Installing neovim config..."
-git clone https://github.com/tomijaroli/nvim-config.git ~/.config/nvim
-
-echo "Installing node..."
-export NVM_DIR="$HOME/.nvm"
-if [[ "$OS" == "macos" ]]; then
-    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
-    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-else
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-fi
-nvm install node
-nvm use stable
-
-echo "Installing patched fonts..."
-fonts/install.sh
-
-# macOS specific: Dock configuration
-if [[ "$OS" == "macos" ]]; then
-    if [[ -f "$HOME/dotfiles/scripts/dock/install-dock.sh" ]]; then
-      bash "$HOME/dotfiles/scripts/dock/install-dock.sh"
+source_modules() {
+    # Source common utilities
+    if [[ -f "$DOTFILES_DIR/scripts/install/common.sh" ]]; then
+        source "$DOTFILES_DIR/scripts/install/common.sh"
     else
-      echo "⚠️ Dock installer missing, skipping"
+        echo "✗ Error: common.sh not found at $DOTFILES_DIR/scripts/install/common.sh"
+        exit 1
     fi
-fi
+    
+    # Source platform-specific installer
+    if [[ -f "$DOTFILES_DIR/scripts/install/${OS}.sh" ]]; then
+        source "$DOTFILES_DIR/scripts/install/${OS}.sh"
+    else
+        echo "✗ Error: ${OS}.sh not found at $DOTFILES_DIR/scripts/install/${OS}.sh"
+        exit 1
+    fi
+}
 
-echo "All done!"
+###############################################################################
+# Main installation
+###############################################################################
+
+main() {
+    clear
+    
+    echo "╔════════════════════════════════════════════════════════════╗"
+    echo "║                                                            ║"
+    echo "║           Dotfiles Installation Script                    ║"
+    echo "║           Cross-platform configuration setup              ║"
+    echo "║                                                            ║"
+    echo "╚════════════════════════════════════════════════════════════╝"
+    echo ""
+    
+    # Detect OS
+    detect_os
+    
+    # Source modules
+    source_modules
+    
+    # Show installation summary
+    echo ""
+    echo "Installation Summary:"
+    echo "  • OS: $OS"
+    echo "  • Dotfiles directory: $DOTFILES_DIR"
+    echo "  • Target: $HOME"
+    echo ""
+    
+    # Confirm installation
+    read -p "Continue with installation? (y/N) " -n 1 -r
+    echo ""
+    
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Installation cancelled."
+        exit 0
+    fi
+    
+    # Run platform-specific installation
+    if [[ "$OS" == "macos" ]]; then
+        run_macos_install
+    elif [[ "$OS" == "linux" ]]; then
+        run_linux_install
+    fi
+    
+    echo ""
+    echo "╔════════════════════════════════════════════════════════════╗"
+    echo "║                                                            ║"
+    echo "║           🎉 Installation Complete! 🎉                     ║"
+    echo "║                                                            ║"
+    echo "╚════════════════════════════════════════════════════════════╝"
+}
+
+# Run main installation
+main "$@"
