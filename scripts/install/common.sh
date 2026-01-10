@@ -58,8 +58,6 @@ COMMON_STOW_PACKAGES=(
 MACOS_STOW_PACKAGES=(
     dock
     lldb
-    skhd
-    yabai
 )
 
 # Linux-only packages

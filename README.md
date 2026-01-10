@@ -1,50 +1,174 @@
-# Portable environment
+# Cross-Platform Dotfiles
 
-A simple and minimal environment setup with dotfiles and easy installation, using:
+A comprehensive, cross-platform dotfiles configuration for macOS and Linux (Wayland/Hyprland). Minimal, modular, and easy to install with a single command.
 
-- [Alacritty terminal emulator](https://github.com/alacritty/alacritty)
-- [ZSH](https://www.zsh.org/) shell
-- [Amethyst](https://ianyh.com/amethyst/) window manager and [tmux](https://github.com/tmux/tmux)
-- [GNU Stow](https://www.gnu.org/software/stow/) for linking config files
+## Features
 
-The goal of the project was to create a one command installer, so every time I have a clean install of macOS, I can setup my usual environment with the least friction possbile, and save time with automating all the tedious manual configuration.
+- **Cross-Platform**: Same dotfiles work on macOS and Linux
+- **Modular Design**: Platform-specific overrides where needed
+- **One-Command Install**: Bootstrap from a fresh system
+- **Lightweight**: No oh-my-zsh, minimal dependencies
+- **Modern Tools**: Alacritty, Neovim, Tmux, Starship, Zoxide, Eza
 
-Also I aimed to keep the setup as lightweight as possible (e.g. no oh-my-zsh used).
+## Platforms
+
+**macOS:**
+- Terminal: Alacritty
+- Shell: Zsh/Bash with Zap plugin manager
+- Editor: Neovim with full LSP support
+- Multiplexer: Tmux with TPM
+- Fonts: Nerd Fonts (Hack, Meslo)
+- Tools: Homebrew, Node.js, Python, Ruby, Go
+
+**Linux (Wayland):**
+- Compositor: Hyprland
+- Terminal: Alacritty, Foot
+- Bar: Waybar
+- Launcher: Rofi
+- Notifications: Mako
+- Lock Screen: Hyprlock / Swaylock
+- Shell: Zsh/Bash (same config as macOS)
+- Editor: Neovim (same config as macOS)
 
 ## Preview
 
-![Screenshot 2023-01-06 at 16 00 20](https://user-images.githubusercontent.com/3617451/211028707-faf600a3-d404-4e43-b6e8-c00a59fbbe95.jpg)
+<!-- TODO: Add macOS screenshot -->
+
+<!-- TODO: Add Linux/Hyprland screenshot -->
 
 ## Installation
 
-```
+**One-liner (bootstraps if needed):**
+```bash
 sh <(curl -sL https://raw.githubusercontent.com/tomijaroli/dotfiles/main/install.sh)
 ```
 
-### What does install do
-
-- Xcode Command Line Tools installation
-- [Homebrew](https://brew.sh/) installation, with the packages and casks needed
-- Plugin manager installation for TMUX ([TPM](https://github.com/tmux-plugins/tpm)) and for ZSH ([Zap](https://github.com/zap-zsh/zap) - minimal plugin manager)
-- Installs and links all my configuration files from the `dotfiles` folder
-- Installs my [neovim](https://neovim.io/) config
-- Installs latest [nodejs](https://nodejs.org/en/) (so [tree-sitter](https://github.com/tree-sitter/tree-sitter) can be happy)
-- Installs some patched fonts that can be used in the terminal and in neovim
-
-### Neovim config
-
-My neovim configuration lives in another repository, [can be found here](https://github.com/tomijaroli/nvim-config)
-
-## Tools and packages installed automatically
-
-### via Homebrew
-
-```
-bat coreutils exa fzf git git-lfs magic-wormhole neovim nmap nvm poetry pyenv ripgrep rbenv ruby-build stow swiftlint tldr tmux tree tree-sitter xcodegen yarn zoxide zsh
+**Or if already cloned:**
+```bash
+cd ~/dotfiles
+./install.sh
 ```
 
-### via Homebrew casks
+The installer automatically detects your OS and installs the appropriate packages and configurations.
+
+## What Gets Installed
+
+### Common (macOS + Linux)
+- **Shells**: Zsh + Bash (cross-platform configs)
+- **Terminal**: Alacritty
+- **Editor**: Neovim (full LSP, formatters, debugger)
+- **Multiplexer**: Tmux with plugins
+- **Tools**: Git, Starship, Zoxide, Eza, Bat, Fzf
+- **Fonts**: Hack Nerd Font, Meslo Nerd Font
+
+### macOS-Only
+- **Homebrew**: Package manager + Brewfile
+- **Xcode CLI Tools**: Command-line developer tools
+- **Dock Manager**: Custom Dock profile switching
+- **LLDB Config**: Enhanced debugger for iOS development
+
+### Linux-Only
+- **Hyprland**: Wayland compositor
+- **Waybar**: Status bar
+- **Rofi**: Application launcher
+- **Mako**: Notification daemon
+- **Foot**: Wayland-native terminal
+- **Hyprlock/Swaylock**: Screen lockers
+- **Wlogout**: Logout menu
+- **GTK Themes**: Nordic, Graphite
+
+## Structure
 
 ```
-alacritty amethyst appcleaner discord fork google-chrome insomnia meetingbar proxyman
+dotfiles/
+├── install.sh              # Main installer (self-bootstrapping)
+├── scripts/
+│   ├── install/            # Modular installation scripts
+│   │   ├── common.sh       # Shared functions & package lists
+│   │   ├── macos.sh        # macOS-specific installation
+│   │   └── linux.sh        # Linux-specific installation
+│   ├── dock/               # Dock profile manager (macOS)
+│   └── nvim/               # Neovim utility scripts
+├── alacritty/              # Terminal config (cross-platform)
+├── bash/                   # Bash config (cross-platform)
+├── zsh/                    # Zsh config (cross-platform)
+├── nvim/                   # Neovim config (cross-platform)
+├── tmux/                   # Tmux config (cross-platform)
+├── vim/                    # Vim config (cross-platform)
+├── git/                    # Git config (cross-platform)
+├── starship/               # Prompt config (cross-platform)
+├── fonts/                  # Nerd Fonts
+├── lldb/                   # LLDB config (macOS-only)
+├── dock/                   # Dock profiles (macOS-only)
+├── hypr/                   # Hyprland config (Linux-only)
+├── waybar/                 # Waybar config (Linux-only)
+├── rofi/                   # Rofi config (Linux-only)
+├── mako/                   # Mako config (Linux-only)
+├── foot/                   # Foot terminal config (Linux-only)
+├── swaylock/               # Swaylock config (Linux-only)
+├── wlogout/                # Wlogout config (Linux-only)
+├── themes/                 # GTK themes (Linux-only)
+└── wallpapers/             # Wallpapers (Linux-only)
 ```
+
+Each directory contains a README with detailed configuration information.
+
+## Key Configurations
+
+### Shell (Bash/Zsh)
+- **Cross-platform** with OS-specific overrides
+- Modular structure: `exports.common`, `exports.macos`, `exports.linux`
+- Same structure for aliases
+- Zap plugin manager (lightweight alternative to oh-my-zsh)
+- Integrations: Zoxide, Eza, Bat, Fzf, Starship
+
+### Alacritty
+- Common config with platform-specific imports
+- macOS: MesloLGS NF, full decorations, opacity 1.0
+- Linux: Meslo LGM Nerd Font, no decorations, opacity 0.8
+- Nord color theme
+
+### Neovim
+- Full LSP support (via Mason)
+- Language-specific configs (Swift, Lua, Bash, TypeScript, etc.)
+- Debugger integration (nvim-dap)
+- iOS development support (xcodebuild.nvim)
+- Telescope, Oil.nvim, Treesitter
+- Cross-platform compatible
+
+### Tmux
+- Vi mode keybindings
+- Custom Nord/OneDark themes
+- Plugins: vim-tmux-navigator, resurrect, continuum
+- System clipboard integration
+
+## Post-Install
+
+### Tmux Plugins
+```bash
+# Open tmux and press: prefix + I (capital i)
+```
+
+### Zsh Plugins
+Automatically installed via Zap on first shell launch.
+
+### Neovim LSP Servers
+Automatically installed by Mason when opening files.
+
+## Customization
+
+All configurations are modular and documented. See individual READMEs in each directory for customization options.
+
+**Common customizations:**
+- Shell aliases/exports: Edit `{bash,zsh}/.config/{bash,zsh}/aliases.*.{bash,zsh}`
+- Neovim: Modify `nvim/.config/nvim/lua/`
+- Alacritty colors: Edit `alacritty/.config/alacritty/themes/`
+- Tmux theme: Edit `tmux/.config/tmux/{nord,onedark}-theme.conf`
+
+## Secrets Management
+
+Create `.secrets.{bash,zsh}` files in `~/.config/{bash,zsh}/` for private environment variables (gitignored).
+
+## License
+
+MIT License - See [LICENSE](LICENSE) file for details.

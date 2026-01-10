@@ -2,11 +2,6 @@
 
 # macOS-specific aliases
 
-# Window management - yabai + skhd (macOS only)
-alias startwm="yabai --start-service && skhd --start-service"
-alias restartwm="yabai --restart-service && skhd --restart-service"
-alias stopwm="yabai --stop-service && skhd --stop-service"
-
 # TMUX (macOS-specific kill all sessions)
 alias tka="tmux ls | cut -d: -f1 | xargs -n 1 tmux kill-session -t"
 
