@@ -43,7 +43,7 @@ Export current Dock to a profile file:
 dock-export default
 ```
 
-## Behaviour
+## Behavior
 - Only the target profile is checked during switching
 - Missing apps are detected & reported
 - Dock restarts automatically after switch
