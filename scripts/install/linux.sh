@@ -31,7 +31,7 @@ install_linux_packages() {
     detect_distro
     
     # Required packages
-    local packages="stow git alacritty tmux zsh neovim nvm bat eza zoxide fzf starship"
+    local packages="bob stow git alacritty tmux zsh nvm bat eza zoxide fzf starship"
     local wayland_packages="hyprland waybar rofi mako foot wlogout swaylock"
     
     case "$DISTRO" in
@@ -44,15 +44,17 @@ install_linux_packages() {
         ubuntu|debian|pop|linuxmint)
             log_info "Installing packages via apt..."
             sudo apt update
-            sudo apt install -y stow git alacritty tmux zsh neovim build-essential curl
+            sudo apt install -y stow git alacritty tmux zsh build-essential curl
             log_warning "Some packages may need to be installed from alternative sources"
             log_info "Consider installing: bat (batcat), eza, zoxide, fzf, starship"
+            log_info "Bob (Neovim version manager) will be installed from source"
             ;;
             
         fedora|rhel|centos)
             log_info "Installing packages via dnf..."
-            sudo dnf install -y stow git alacritty tmux zsh neovim bat eza zoxide fzf starship
+            sudo dnf install -y stow git alacritty tmux zsh bat eza zoxide fzf starship
             log_warning "Wayland packages may need to be installed from COPR or compiled"
+            log_info "Bob (Neovim version manager) will be installed from source"
             ;;
             
         *)
@@ -85,6 +87,34 @@ install_aur_helper() {
         else
             log_success "yay already installed"
         fi
+    fi
+}
+
+# Install bob (Neovim version manager) for Linux
+install_bob_linux() {
+    if command_exists bob; then
+        log_success "bob already installed"
+        return 0
+    fi
+    
+    log_section "Installing bob (Neovim version manager)"
+    
+    # Check if cargo is installed
+    if ! command_exists cargo; then
+        log_info "Installing Rust (required for bob)..."
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        source "$HOME/.cargo/env"
+        log_success "Rust installed"
+    fi
+    
+    log_info "Installing bob via cargo..."
+    cargo install --git https://github.com/MordechaiHadad/bob.git
+    
+    if command_exists bob; then
+        log_success "bob installed"
+    else
+        log_error "bob installation failed"
+        return 1
     fi
 }
 
@@ -153,6 +183,7 @@ run_linux_install() {
     # Linux-specific installations
     install_aur_helper
     install_linux_packages
+    install_bob_linux
     install_nvm_linux
     
     # Common installations
@@ -170,6 +201,7 @@ run_linux_install() {
     
     # Additional installations
     install_fonts
+    install_neovim
     install_node
     
     log_section "Linux Installation Complete!"

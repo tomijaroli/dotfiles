@@ -213,3 +213,25 @@ install_node() {
         log_warning "NVM not found, skipping Node.js installation"
     fi
 }
+
+# Install Neovim nightly via bob
+install_neovim() {
+    log_section "Installing Neovim via Bob"
+    
+    if ! command_exists bob; then
+        log_error "Bob not found. Please install bob first."
+        return 1
+    fi
+    
+    log_info "Installing Neovim nightly via bob..."
+    bob install nightly
+    bob use nightly
+    
+    if command_exists nvim; then
+        local nvim_version=$(nvim --version | head -n 1)
+        log_success "Neovim installed: $nvim_version"
+    else
+        log_error "Neovim installation failed"
+        return 1
+    fi
+}

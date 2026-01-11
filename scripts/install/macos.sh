@@ -122,6 +122,7 @@ run_macos_install() {
     
     # Additional installations
     install_fonts
+    install_neovim
     install_node
     install_dock_config
     

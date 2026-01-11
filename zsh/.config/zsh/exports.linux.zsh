@@ -4,6 +4,11 @@
 
 export BROWSER="firefox"
 
+# Neovim bob package manager
+if [ -d "$HOME/.local/share/bob/nightly/bin" ]; then
+    export PATH="$PATH:$HOME/.local/share/bob/nightly/bin"
+fi
+
 # Nvm (Linux standard path)
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"

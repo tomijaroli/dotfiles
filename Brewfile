@@ -10,7 +10,6 @@ cask_args appdir: "~/Applications", require_sha: true
 brew "bob"
 brew "eza"
 brew "fzf"
-brew "neovim"
 brew "luacheck"
 brew "lua-language-server"
 brew "stylua"
