@@ -1,1 +1,78 @@
-alacritty.macos.toml
+general.import = ["~/.config/alacritty/themes/nord.toml"]
+
+# Linux-specific settings
+[font.bold]
+family = "Meslo LGM Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "Meslo LGM Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "Meslo LGM Nerd Font"
+style = "Regular"
+
+[cursor.style]
+blinking = "Never"
+shape = "Block"
+
+[font]
+size = 14.0
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.offset]
+x = 0
+y = 0
+
+[[keyboard.bindings]]
+chars = "\u001Bb"
+key = "Left"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bf"
+key = "Right"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001BOH"
+key = "Left"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u001BOF"
+key = "Right"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0015"
+key = "Back"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u001B\u007F"
+key = "Back"
+mods = "Alt"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[window]
+decorations = "Full"
+opacity = 1
+dynamic_padding = false
+dynamic_title = true
+# blur = true
+
+[window.dimensions]
+columns = 164
+lines = 36
+
+[window.padding]
+x = 4
+y = 4

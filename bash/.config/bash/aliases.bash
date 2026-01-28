@@ -3,15 +3,11 @@
 # bash
 alias dotrc="nvim ~/dotfiles"
 alias bl=". ~/.bashrc"
+alias jd="z dotfiles"
 
 # nvim
 alias vim="nvim"
 alias vimrc="nvim ~/.config/nvim/"
-
-# window management - yabai + skhd
-alias startwm="yabai --start-service && skhd --start-service"
-alias restartwm="yabai --restart-service && skhd --restart-service"
-alias stopwm="yabai --stop-service && skhd --stop-service"
 
 # TMUX
 alias tn="tmux new -s"
@@ -19,7 +15,7 @@ alias ta="tmux attach -t"
 alias td="tmux detach"
 alias tls="tmux ls"
 alias tkc="tmux kill-session"
-alias tka="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
+alias tka="tmux ls | grep : | cut -d. -f1 | awk '{print substr(\$1, 0, length(\$1)-1)}' | xargs kill"
 alias tks="tmux kill-server"
 
 # Navigation
@@ -47,21 +43,6 @@ function moveonto() {
     git rebase -i HEAD~$1 --onto $2
 }
 alias lg="lazygit"
-
-# iOS development
-alias xkill="killall Xcode"
-function xopen() {
-    project_file=$(find . -type d -maxdepth 1 -name '*.xcodeproj')
-    if [ -z "$project_file" ]
-    then
-        echo "Project file not found in the current directory!"
-    else
-        open ${project_file}
-    fi
-}
-alias xrl="xed .; osascript -e 'tell app "XCode" to close window 0'; xed ."
-
-# Listing
 
 # EZA ls
 if [ -x "$(command -v eza)" ]; then
@@ -95,3 +76,8 @@ function google() {
 
 # Find aliases
 alias findalias="PS4='+%x:%I>' bash -i -x -c '' |& grep "
+
+# Search on google (Linux - using xdg-open)
+function webs() {
+    xdg-open "http://search.brave.com/search?q=$1";
+}

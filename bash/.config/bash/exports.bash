@@ -1,51 +1,55 @@
 #!/bin/bash
 
+# Linux-specific exports
+
+export BROWSER="brave"
+
+# XDG Paths
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+
 # History
 export HISTFILE="$XDG_DATA_HOME"/.bash_history
 export HISTSIZE=1000000
 export SAVEHIST=1000000
 
+# Editor and Terminal
 export EDITOR="nvim"
 export TERMINAL="alacritty"
-export BROWSER="Safari"
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 export PATH="$HOME/.local/bin":$PATH
 
-# Homebrew
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-
 # Python
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
+if command -v pyenv &> /dev/null; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+fi
 
 # Ruby
-export RBENV_ROOT="$HOME/.rbenv"
-export PATH="$RBENV_ROOT/bin:$PATH"
-eval "$(rbenv init - --path)"
-eval "$(rbenv init -)"
+if command -v rbenv &> /dev/null; then
+    export RBENV_ROOT="$HOME/.rbenv"
+    export PATH="$RBENV_ROOT/bin:$PATH"
+    eval "$(rbenv init - --path)"
+    eval "$(rbenv init -)"
+fi
 
-# Nvm
+# Neovim bob package manager
+if [ -d "$HOME/.local/share/bob/nightly/bin" ]; then
+    export PATH="$PATH:$HOME/.local/share/bob/nightly/bin"
+fi
+
+# Nvm (Linux standard path)
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
-# Maestro testing
-export PATH=$PATH:$HOME/.maestro/bin
+# Add local bin if not already added
+export PATH="$HOME/.local/bin:$PATH"
 
-# Android
-export ANDROID_HOME=/Users/$USER/Library/Android/sdk
-export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
-export PATH="$PATH:$HOME/scripts"
-
-# Go
-export GOPATH="$HOME/Developer/go"
-export PATH="$PATH:$GOPATH/bin"
-
-# Zoxide
-eval "$(zoxide init bash)"
-eval "$(gdircolors ~/.dircolors)"
+eval "$(dircolors ~/.dircolors)"
 export EXA_COLORS=$LS_COLORS
+
