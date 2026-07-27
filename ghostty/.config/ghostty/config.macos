@@ -1,0 +1,8 @@
+# macOS-specific Ghostty configuration
+#
+# `config` should symlink to this file on macOS (mirrors the Alacritty
+# `alacritty.toml -> alacritty.macos.toml` symlink).
+
+config-file = config.common
+font-family = "MesloLGS NF"
+background-opacity = 1

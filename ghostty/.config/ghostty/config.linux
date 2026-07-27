@@ -1,0 +1,16 @@
+# Linux-specific Ghostty configuration
+# Ported from ~/.config/alacritty/alacritty.linux.toml
+#
+# On Linux, point the `config` symlink at this file instead:
+#   ln -sf config.linux config
+
+config-file = config.common
+
+font-family = "Meslo LGM Nerd Font"
+
+# Alacritty decorations = "None"
+window-decoration = false
+
+# Alacritty opacity = 0.8
+background-opacity = 0.8
+# background-blur = true

@@ -1,0 +1,11 @@
+# Shared Ghostty configuration (all platforms)
+#
+# NOTE: Ghostty has no per-OS conditionals in a single file. This mirrors the
+# Alacritty layout instead: this file holds the shared settings, and the
+# OS-specific files (config.macos / config.linux) import it and add overrides.
+# The `config` entrypoint is a symlink to the file for the current OS.
+
+theme = Nord
+font-size = 14
+window-padding-x = 4
+window-padding-y = 4
