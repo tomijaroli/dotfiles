@@ -130,7 +130,7 @@ Each directory contains a README with detailed configuration information.
 - Nord color theme
 
 ### Neovim
-- `nvim` — general editor: builtin LSP + completion, vim.pack, Telescope, Oil, Treesitter
+- `nvim` — general editor: builtin LSP + completion, vim.pack, mini.pick, Oil, Treesitter
 - `xim` — macOS overlay: sourcekit, xcodebuild.nvim, DAP (`alias xim`)
 - Language servers and formatters from Homebrew / PATH (no Mason)
 

@@ -1,7 +1,6 @@
 require("lazyload").on_vim_enter(function()
   vim.pack.add {
     { src = "https://github.com/nvim-lua/plenary.nvim" },
-    { src = "https://github.com/nvim-telescope/telescope.nvim" },
     { src = "https://github.com/MunifTanjim/nui.nvim" },
     { src = "https://github.com/wojciech-kulik/xcodebuild.nvim" },
     { src = "https://github.com/nvim-neotest/nvim-nio" },
@@ -9,11 +8,27 @@ require("lazyload").on_vim_enter(function()
     { src = "https://github.com/rcarriga/nvim-dap-ui" },
   }
 
-  pcall(require, "telescope")
+  local pickers = require "xcodebuild.ui.pickers"
+  pickers.setup = function() end
+  local upvalue_index = 1
+  while true do
+    local name = debug.getupvalue(pickers.show, upvalue_index)
+    if not name then
+      error "xcodebuild.ui.pickers is missing the integration upvalue"
+    end
+    if name == "integration" then
+      debug.setupvalue(pickers.show, upvalue_index, require "ios.xcodebuild-pick")
+      break
+    end
+    upvalue_index = upvalue_index + 1
+  end
 
   require("xcodebuild").setup {
     show_build_progress_bar = false,
     integrations = {
+      telescope_nvim = { enabled = false },
+      snacks_nvim = { enabled = false },
+      fzf_lua = { enabled = false },
       pymobiledevice = {
         enabled = true,
       },
@@ -55,7 +70,9 @@ require("lazyload").on_vim_enter(function()
   vim.keymap.set("n", "<leader>xs", "<cmd>XcodebuildFailingSnapshots<cr>", { desc = "Show Failing Snapshots" })
   vim.keymap.set("n", "<leader>xd", "<cmd>XcodebuildSelectDevice<cr>", { desc = "Select Device" })
   vim.keymap.set("n", "<leader>xp", "<cmd>XcodebuildSelectTestPlan<cr>", { desc = "Select Test Plan" })
-  vim.keymap.set("n", "<leader>xq", "<cmd>Telescope quickfix<cr>", { desc = "Show QuickFix List" })
+  vim.keymap.set("n", "<leader>xq", function()
+    require("mini.extra").pickers.list { scope = "quickfix" }
+  end, { desc = "Show QuickFix List" })
   vim.keymap.set("n", "<leader>xx", "<cmd>XcodebuildQuickfixLine<cr>", { desc = "Quickfix Line" })
   vim.keymap.set("n", "<leader>xa", "<cmd>XcodebuildCodeActions<cr>", { desc = "Show Xcode Code Actions" })
 
