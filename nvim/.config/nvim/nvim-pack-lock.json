@@ -1,0 +1,8 @@
+{
+  "plugins": {
+    "nightfox.nvim": {
+      "rev": "4dacd3f0185a2227bdf3b6c0975a8f0bf87cac9a",
+      "src": "https://github.com/EdenEast/nightfox.nvim"
+    }
+  }
+}

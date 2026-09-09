@@ -71,7 +71,7 @@ vim.opt.whichwrap:append "<,>,[,],h,l"
 -- Cleaner command-line messages
 vim.opt.shortmess:append "c"
 
--- Completion options for nvim-cmp
+-- Builtin completion (refined when LSP attach enables vim.lsp.completion)
 vim.opt.completeopt = { "menuone", "noselect" }
 
 -- Disable swap/backup clutter
@@ -82,7 +82,7 @@ vim.opt.swapfile = false
 -- Conceal for markdown/plain text
 vim.opt.conceallevel = 0
 
--- Optional folding (Treesitter)
+-- Treesitter folding (builtin foldexpr, no nvim-treesitter plugin required)
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevel = 99
