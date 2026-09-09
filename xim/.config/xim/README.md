@@ -1,6 +1,6 @@
 # xim (iOS Neovim)
 
-Second Neovim app on top of [`nvim/`](../nvim/README.md). Launch with `xim` (`NVIM_APPNAME=xim nvim`).
+Second Neovim app on top of [`nvim`](../../../nvim/.config/nvim/README.md). Launch with `xim` (`NVIM_APPNAME=xim nvim`).
 
 macOS-only (stowed via `MACOS_STOW_PACKAGES`). Uses `~/.config/xim` and `~/.local/share/xim` so plugins are cloned separately from default `nvim`.
 

@@ -2,21 +2,20 @@
 
 General-purpose editor for Neovim 0.13+ (bob nightly). Plugins via builtin `vim.pack`. LSP configs are vendored in `lsp/`; binaries come from the system PATH.
 
-iOS / Xcode tooling lives in a second app: [`xim/`](../xim/README.md) (`NVIM_APPNAME=xim`).
+iOS / Xcode tooling lives in a second app: [`xim`](../../../xim/.config/xim/README.md) (`NVIM_APPNAME=xim`).
 
 ## Structure
 
 ```
-nvim/.config/nvim/
-  init.lua                 # Entry
-  nvim-pack-lock.json      # vim.pack lockfile (commit this)
-  lua/
-    config/                # options, keymaps, globals, autocmds
-    languages.lua          # treesitter / format / lint registry
-    lazyload.lua           # VimEnter plugin queue
-  lsp/                     # vim.lsp.config files (lua_ls, bashls, html, jsonls, yamlls)
-  plugin/                  # one file per plugin (vim.pack.add + setup)
-  after/ftplugin/
+init.lua                 # Entry
+nvim-pack-lock.json      # vim.pack lockfile (commit this)
+lua/
+  config/                # options, keymaps, globals, autocmds
+  languages.lua          # treesitter / format / lint registry
+  lazyload.lua           # VimEnter plugin queue
+lsp/                     # vim.lsp.config files (lua_ls, bashls, html, jsonls, yamlls)
+plugin/                  # one file per plugin (vim.pack.add + setup)
+after/ftplugin/
 ```
 
 ## Two apps
