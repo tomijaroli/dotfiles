@@ -1,4 +1,6 @@
-require("lazyload").on_vim_enter(function()
+local lazyload = require "lazyload"
+
+local setup = lazyload.once(function()
   vim.pack.add {
     { src = "https://github.com/stevearc/conform.nvim" },
   }
@@ -26,10 +28,23 @@ require("lazyload").on_vim_enter(function()
     log_level = vim.log.levels.ERROR,
     formatters_by_ft = formatters_by_ft,
     formatters = formatters,
-    format_on_save = {
+  }
+end)
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = vim.api.nvim_create_augroup("user-auto-format", { clear = true }),
+  nested = true,
+  callback = function(event)
+    local language = Config.languages[vim.bo[event.buf].filetype]
+    if not (language and language.formatters) then
+      return
+    end
+    setup()
+    require("conform").format {
+      bufnr = event.buf,
       timeout_ms = 500,
       lsp_format = "never",
       stop_after_first = true,
-    },
-  }
-end)
+    }
+  end,
+})

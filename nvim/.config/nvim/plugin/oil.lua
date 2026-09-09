@@ -1,4 +1,6 @@
-require("lazyload").on_vim_enter(function()
+local lazyload = require "lazyload"
+
+local setup = lazyload.once(function()
   vim.pack.add {
     { src = "https://github.com/stevearc/oil.nvim" },
   }
@@ -8,8 +10,9 @@ require("lazyload").on_vim_enter(function()
       show_hidden = true,
     },
   }
-
-  vim.keymap.set("n", "-", function()
-    require("oil").open_float()
-  end, { desc = "Open Oil (floating)" })
 end)
+
+vim.keymap.set("n", "-", function()
+  setup()
+  require("oil").open_float()
+end, { desc = "Open Oil (floating)" })

@@ -45,7 +45,7 @@ Kept plugins: nightfox, nvim-treesitter (`main`), conform, nvim-lint, mini.pick 
 
 Completion is builtin (`vim.lsp.completion`). Format-on-save is Conform (CLI formatters, not LSP format).
 
-Add a plugin by creating `plugin/<name>.lua` that calls `vim.pack.add` (defer with `require("lazyload").on_vim_enter` unless it must load at startup, e.g. colorscheme).
+Add a plugin by creating `plugin/<name>.lua` that calls `vim.pack.add`. Defer with `require("lazyload")`: `on_vim_enter` (lualine), `on_very_lazy` (after first paint), or load on keys / FileType / InsertEnter / BufWrite / LspAttach. Colorscheme and treesitter stay at startup.
 
 ## Key bindings
 

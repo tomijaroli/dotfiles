@@ -3,8 +3,8 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "json", "yaml" },
   once = true,
   callback = function()
-    vim.pack.add {
+    vim.pack.add({
       { src = "https://github.com/gennaro-tedesco/nvim-jqx" },
-    }
+    }, { load = true })
   end,
 })

@@ -1,4 +1,6 @@
-require("lazyload").on_vim_enter(function()
+local lazyload = require "lazyload"
+
+local setup = lazyload.once(function()
   vim.pack.add {
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
     { src = "https://github.com/nvimdev/lspsaga.nvim" },
@@ -17,3 +19,9 @@ require("lazyload").on_vim_enter(function()
     },
   }
 end)
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("user-lspsaga", { clear = true }),
+  once = true,
+  callback = setup,
+})

@@ -14,7 +14,9 @@ vim.pack.add {
   { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 }
 
-require("nvim-treesitter").install(Config.treesitter_parsers())
+vim.schedule(function()
+  require("nvim-treesitter").install(Config.treesitter_parsers())
+end)
 
 local indent_disabled = {}
 for file_type, language in pairs(Config.languages) do
