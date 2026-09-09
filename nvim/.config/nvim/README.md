@@ -41,7 +41,7 @@ Check with `:checkhealth vim.lsp`.
 
 `vim.pack` clones into `stdpath("data")/site/pack/core/opt`. First launch installs from `nvim-pack-lock.json`. Update with `:lua vim.pack.update()`.
 
-Kept plugins: nightfox, nvim-treesitter (`main`), conform, nvim-lint, telescope + fzf-native, oil, gitsigns, lualine.
+Kept plugins: nightfox, nvim-treesitter (`main`), conform, nvim-lint, telescope + fzf-native, oil, gitsigns, lualine, which-key, indent-blankline, colorizer, autopairs, sleuth, todo-comments, nvim-jqx, fidget, lspsaga.
 
 Completion is builtin (`vim.lsp.completion`). Format-on-save is Conform (CLI formatters, not LSP format).
 
@@ -51,13 +51,13 @@ Add a plugin by creating `plugin/<name>.lua` that calls `vim.pack.add` (defer wi
 
 **Leader:** `Space`
 
-**General:** `jk` insert-exit, `<Esc>` clear search, `<leader>wt` wrap, `-` Oil, `<leader>tt` floating terminal, `lg` lazygit (`:terminal`)
+**General:** `jk` insert-exit, `<Esc>` clear search, `<leader>wt` wrap, `-` Oil, `<leader>tt` floating terminal, `lg` lazygit (`:terminal`), `<leader>?` which-key (buffer-local)
 
 **Buffers:** `<Tab>` / `<S-Tab>`, `<leader>bd`, `<leader><leader>` Telescope buffers
 
 **Telescope:** `<leader>ff` files, `<leader>fg` grep, `<leader>fh` help, `<leader>fk` keymaps, `<leader>fs` builtins, `<leader>fd` diagnostics, `<leader>/` buffer, `<leader>fn` nvim config
 
-**LSP (defaults + Telescope):** `grn` rename, `gra` code action, `grd` definition, `grr` references, `gri` implementation, `grt` type, `gO` document symbols, `gW` workspace symbols, `<C-Space>` completion, `<leader>th` inlay hints
+**LSP (defaults + Telescope):** `grn` rename, `gra` code action, `grd` definition, `grr` references, `gri` implementation, `grt` type, `gO` document symbols, `gW` workspace symbols, `<C-Space>` completion, `<leader>th` inlay hints. Signature help on CursorHoldI. lspsaga winbar breadcrumbs; `:Lspsaga outline`
 
 **Git:** `<leader>gp` hunk preview, `<leader>gb` blame
 

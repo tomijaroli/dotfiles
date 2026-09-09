@@ -22,6 +22,7 @@ vim.api.nvim_create_autocmd("LspDetach", {
   callback = function(event)
     vim.lsp.buf.clear_references()
     pcall(vim.api.nvim_clear_autocmds, { group = "user-lsp-highlight", buffer = event.buf })
+    pcall(vim.api.nvim_clear_autocmds, { group = "user-lsp-signature", buffer = event.buf })
   end,
 })
 
@@ -61,6 +62,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
         buffer = buf,
         group = highlight_augroup,
         callback = vim.lsp.buf.clear_references,
+      })
+    end
+
+    if client:supports_method("textDocument/signatureHelp", buf) then
+      vim.api.nvim_create_autocmd("CursorHoldI", {
+        buffer = buf,
+        group = vim.api.nvim_create_augroup("user-lsp-signature", { clear = false }),
+        callback = function()
+          vim.lsp.buf.signature_help { silent = true }
+        end,
       })
     end
 
