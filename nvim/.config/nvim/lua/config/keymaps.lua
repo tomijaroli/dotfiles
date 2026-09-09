@@ -1,10 +1,5 @@
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<leader>o", "<CMD>update<CR> :source<CR>", { desc = "Save and reload current file" })
-vim.keymap.set("n", "<leader><leader>s", "<CMD>source %<CR>", { desc = "Execute current file" })
-vim.keymap.set("n", "<leader>s", "<CMD>.lua<CR>", { desc = "Execute current line" })
-vim.keymap.set("v", "<leader>s", "<CMD>lua<CR>", { desc = "Execute current line" })
-
 -- General Editing
 vim.keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear highlights" })
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
@@ -51,3 +46,8 @@ vim.keymap.set({ "n", "v", "x" }, "d", '"+d')
 vim.keymap.set("n", "x", '"_x', { desc = "Delete without yank" })
 vim.keymap.set("n", "c", '"_c', { desc = "Change without yank" })
 vim.keymap.set("n", "C", '"_C', { desc = "Change line without yank" })
+
+vim.keymap.set("n", "lg", function()
+  vim.cmd "tabnew | terminal lazygit"
+  vim.cmd "startinsert"
+end, { desc = "Open lazygit" })

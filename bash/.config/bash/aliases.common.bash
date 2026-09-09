@@ -9,6 +9,8 @@ alias bl=". ~/.bashrc"
 # nvim
 alias vim="nvim"
 alias vimrc="nvim ~/.config/nvim/"
+alias xim='NVIM_APPNAME=xim nvim'
+alias ximrc="xim ~/.config/xim/"
 
 # TMUX
 alias tn="tmux new -s"

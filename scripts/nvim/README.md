@@ -1,38 +1,21 @@
 # Neovim Utility Scripts
 
-Helper scripts for managing Neovim configuration and caches.
-
-## Scripts
-
 ### `clear-caches.sh`
 
-Interactive script to clean or backup Neovim data directories.
+Wipe plugin installs and caches for `nvim` and `xim` **without** touching `~/.config`. Use after this repo is checked out / stowed on a machine that still has the old lazy.nvim / Mason data.
 
-**What it handles:**
-- **Config** (`~/.config/nvim/`) - Your Neovim configuration
-- **Caches** (`~/.local/share/nvim/`, `~/.local/state/nvim/`, `~/.cache/nvim/`) - Plugin data, state, and caches
-- **Mason** (`~/.local/share/nvim/mason/`) - LSP servers, formatters, linters installed by Mason
+Removes (if present):
 
-**Options for each:**
-1. Delete completely
-2. Backup to `*.bak`
-3. Skip
+- `~/.local/share/{nvim,xim}` — lazy.nvim, Mason, packer, vim.pack clones, treesitter parsers
+- `~/.local/state/{nvim,xim}` — shada, logs
+- `~/.cache/{nvim,xim}` — luacache and other caches
 
-**Usage:**
+Respects `XDG_DATA_HOME`, `XDG_STATE_HOME`, and `XDG_CACHE_HOME`.
 
 ```bash
-./scripts/nvim/clear-caches.sh
+./scripts/nvim/clear-caches.sh           # confirm, then delete
+./scripts/nvim/clear-caches.sh --dry-run
+./scripts/nvim/clear-caches.sh --yes     # no prompt
 ```
 
-The script will prompt you interactively for each component.
-
-## When to Use
-
-- **Fresh start**: Delete everything to reset Neovim to a clean state
-- **Testing changes**: Backup before major config updates
-- **Troubleshooting**: Clear caches when experiencing plugin issues
-- **Mason problems**: Clear Mason cache to reinstall LSP servers
-
-## Cross-Platform
-
-Works on macOS and Linux. The XDG cache directories are standard across both platforms.
+Then open `nvim` (and `xim` on macOS). Plugins reinstall from `nvim-pack-lock.json`. LSP binaries stay on PATH (Homebrew); they are not in these directories.

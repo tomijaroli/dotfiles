@@ -15,7 +15,7 @@ A comprehensive, cross-platform dotfiles configuration for macOS and Linux (Wayl
 **macOS:**
 - Terminal: Alacritty
 - Shell: Zsh/Bash with Zap plugin manager
-- Editor: Neovim with full LSP support
+- Editor: Neovim (`nvim`) plus iOS overlay (`xim`)
 - Multiplexer: Tmux with TPM
 - Fonts: Nerd Fonts (Hack, Meslo)
 - Tools: Homebrew, Node.js, Python, Ruby, Go
@@ -56,7 +56,7 @@ The installer automatically detects your OS and installs the appropriate package
 ### Common (macOS + Linux)
 - **Shells**: Zsh + Bash (cross-platform configs)
 - **Terminal**: Alacritty
-- **Editor**: Neovim (full LSP, formatters, debugger)
+- **Editor**: Neovim (`nvim` general, `xim` iOS)
 - **Multiplexer**: Tmux with plugins
 - **Tools**: Git, Starship, Zoxide, Eza, Bat, Fzf
 - **Fonts**: Hack Nerd Font, Meslo Nerd Font
@@ -93,6 +93,7 @@ dotfiles/
 ├── bash/                   # Bash config (cross-platform)
 ├── zsh/                    # Zsh config (cross-platform)
 ├── nvim/                   # Neovim config (cross-platform)
+├── xim/                    # iOS Neovim overlay (macOS, NVIM_APPNAME=xim)
 ├── tmux/                   # Tmux config (cross-platform)
 ├── vim/                    # Vim config (cross-platform)
 ├── git/                    # Git config (cross-platform)
@@ -129,12 +130,9 @@ Each directory contains a README with detailed configuration information.
 - Nord color theme
 
 ### Neovim
-- Full LSP support (via Mason)
-- Language-specific configs (Swift, Lua, Bash, TypeScript, etc.)
-- Debugger integration (nvim-dap)
-- iOS development support (xcodebuild.nvim)
-- Telescope, Oil.nvim, Treesitter
-- Cross-platform compatible
+- `nvim` — general editor: builtin LSP + completion, vim.pack, mini.pick, Oil, Treesitter
+- `xim` — macOS overlay: sourcekit, xcodebuild.nvim, DAP (`alias xim`)
+- Language servers and formatters from Homebrew / PATH (no Mason)
 
 ### Tmux
 - Vi mode keybindings
@@ -152,8 +150,8 @@ Each directory contains a README with detailed configuration information.
 ### Zsh Plugins
 Automatically installed via Zap on first shell launch.
 
-### Neovim LSP Servers
-Automatically installed by Mason when opening files.
+### Neovim
+Plugins install on first `nvim` / `xim` launch (`vim.pack`). LSP binaries come from Homebrew (`brew bundle`). If this machine still has the previous lazy.nvim / Mason install, run `./scripts/nvim/clear-caches.sh` first.
 
 ## Customization
 
@@ -161,7 +159,7 @@ All configurations are modular and documented. See individual READMEs in each di
 
 **Common customizations:**
 - Shell aliases/exports: Edit `{bash,zsh}/.config/{bash,zsh}/aliases.*.{bash,zsh}`
-- Neovim: Modify `nvim/.config/nvim/lua/`
+- Neovim: Modify `nvim/.config/nvim/` (or `xim/.config/xim/` for iOS)
 - Alacritty colors: Edit `alacritty/.config/alacritty/themes/`
 - Tmux theme: Edit `tmux/.config/tmux/{nord,onedark}-theme.conf`
 

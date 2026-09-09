@@ -1,102 +1,89 @@
 #!/usr/bin/env bash
+# Remove plugins and caches from a previous Neovim install (lazy.nvim, Mason,
+# packer, luacache, …) so the next launch can install via vim.pack.
+# Does not touch ~/.config/nvim or ~/.config/xim.
+set -euo pipefail
 
-# Helper functions for colored messages
-info() { echo -e "\033[1;34m$1\033[0m"; }
-warn() { echo -e "\033[1;33m$1\033[0m"; }
-error() { echo -e "\033[1;31m$1\033[0m"; }
+usage() {
+  cat <<'EOF'
+Usage: clear-caches.sh [--dry-run] [--yes]
 
-# Function to handle Neovim config cleanup
-clear_config() {
-    info "What do you want to do with your Neovim config?"
-    echo "  1) Delete (~/.config/nvim)"
-    echo "  2) Backup to ~/.config/nvim.bak"
-    echo "  3) Skip"
-    read -rp "Choose an option (1-3): " choice
+Clear Neovim plugin data and caches for nvim and xim. Config files are left
+alone (run this after the new config is already checked out / stowed).
 
-    case "$choice" in
-    1)
-        warn "Deleting Neovim config..."
-        rm -rf ~/.config/nvim/
-        ;;
-    2)
-        warn "Backing up Neovim config..."
-        if [ -d ~/.config/nvim ]; then
-            mv ~/.config/nvim{,.bak}
-        else
-            error "No config found to backup."
-        fi
-        ;;
-    3)
-        info "Skipping config."
-        ;;
-    *)
-        error "Invalid choice. Skipping config."
-        ;;
-    esac
+  --dry-run   Print paths that would be removed
+  --yes       Do not ask for confirmation
+EOF
 }
 
-# Function to handle Neovim cache cleanup (includes Mason)
-clear_cache() {
-    info "What do you want to do with your Neovim caches (including Mason)?"
-    echo "  1) Delete (~/.local/share/state/cache/nvim + mason)"
-    echo "  2) Backup to *.bak"
-    echo "  3) Skip"
-    read -rp "Choose an option (1-3): " choice
-
-    case "$choice" in
-    1)
-        warn "Deleting Neovim caches..."
-        rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim
-        ;;
-    2)
-        warn "Backing up Neovim caches..."
-        for dir in ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim; do
-            if [ -d "$dir" ]; then
-                mv "${dir}"{,.bak}
-            else
-                error "No cache found at $dir"
-            fi
-        done
-        ;;
-    3)
-        info "Skipping caches."
-        ;;
+DRY_RUN=0
+YES=0
+for arg in "$@"; do
+  case "$arg" in
+    --dry-run) DRY_RUN=1 ;;
+    --yes | -y) YES=1 ;;
+    -h | --help)
+      usage
+      exit 0
+      ;;
     *)
-        error "Invalid choice. Skipping caches."
-        ;;
-    esac
+      echo "Unknown option: $arg" >&2
+      usage >&2
+      exit 2
+      ;;
+  esac
+done
 
-    # Handle Mason cache cleanup separately for clarity
-    info "What do you want to do with your Mason cache (~/.local/share/nvim/mason)?"
-    echo "  1) Delete"
-    echo "  2) Backup to mason.bak"
-    echo "  3) Skip"
-    read -rp "Choose an option (1-3): " mason_choice
+DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+APPS=(nvim xim)
 
-    case "$mason_choice" in
-    1)
-        warn "Deleting Mason cache..."
-        rm -rf ~/.local/share/nvim/mason
-        ;;
-    2)
-        warn "Backing up Mason cache..."
-        if [ -d ~/.local/share/nvim/mason ]; then
-            mv ~/.local/share/nvim/mason{,.bak}
-        else
-            error "No Mason cache found to backup."
-        fi
-        ;;
-    3)
-        info "Skipping Mason cache."
-        ;;
+info() { printf '\033[1;34m%s\033[0m\n' "$*"; }
+warn() { printf '\033[1;33m%s\033[0m\n' "$*"; }
+
+targets=()
+for app in "${APPS[@]}"; do
+  targets+=("$DATA_HOME/$app" "$STATE_HOME/$app" "$CACHE_HOME/$app")
+done
+
+existing=()
+for path in "${targets[@]}"; do
+  if [[ -e $path ]]; then
+    existing+=("$path")
+  fi
+done
+
+if [[ ${#existing[@]} -eq 0 ]]; then
+  info "Nothing to clear. Next nvim / xim launch will install plugins via vim.pack."
+  exit 0
+fi
+
+info "Will remove (plugins, state, cache — not ~/.config):"
+for path in "${existing[@]}"; do
+  echo "  $path"
+done
+
+if [[ $DRY_RUN -eq 1 ]]; then
+  info "Dry run; nothing deleted."
+  exit 0
+fi
+
+if pgrep -x nvim >/dev/null 2>&1; then
+  warn "Neovim is running. Quit it first so files are not recreated."
+  exit 1
+fi
+
+if [[ $YES -ne 1 ]]; then
+  read -r -p "Continue? [y/N] " reply
+  case "$reply" in
+    y | Y | yes | YES) ;;
     *)
-        error "Invalid choice. Skipping Mason cache."
-        ;;
-    esac
-}
+      info "Aborted."
+      exit 0
+      ;;
+  esac
+fi
 
-# Main
-info "=== Neovim Cleanup Script ==="
-clear_config
-clear_cache
-info "Done!"
+rm -rf "${existing[@]}"
+info "Cleared. Open nvim (and xim on macOS) to install plugins from the lockfile."

@@ -12,6 +12,8 @@ alias jd="z ~/dotfiles"
 alias vim="nvim"
 alias vimrc="vim ~/.config/nvim/"
 alias jv="z ~/.config/nvim"
+alias xim='NVIM_APPNAME=xim nvim'
+alias ximrc="xim ~/.config/xim/"
 
 # TMUX
 alias tn="tmux new -s"
