@@ -1,102 +1,79 @@
 #!/usr/bin/env bash
 
-# Helper functions for colored messages
 info() { echo -e "\033[1;34m$1\033[0m"; }
 warn() { echo -e "\033[1;33m$1\033[0m"; }
 error() { echo -e "\033[1;31m$1\033[0m"; }
 
-# Function to handle Neovim config cleanup
-clear_config() {
-    info "What do you want to do with your Neovim config?"
-    echo "  1) Delete (~/.config/nvim)"
-    echo "  2) Backup to ~/.config/nvim.bak"
-    echo "  3) Skip"
-    read -rp "Choose an option (1-3): " choice
+APPS=(nvim xim)
 
-    case "$choice" in
-    1)
-        warn "Deleting Neovim config..."
-        rm -rf ~/.config/nvim/
-        ;;
-    2)
-        warn "Backing up Neovim config..."
-        if [ -d ~/.config/nvim ]; then
-            mv ~/.config/nvim{,.bak}
-        else
-            error "No config found to backup."
-        fi
-        ;;
-    3)
-        info "Skipping config."
-        ;;
-    *)
-        error "Invalid choice. Skipping config."
-        ;;
-    esac
-}
-
-# Function to handle Neovim cache cleanup (includes Mason)
-clear_cache() {
-    info "What do you want to do with your Neovim caches (including Mason)?"
-    echo "  1) Delete (~/.local/share/state/cache/nvim + mason)"
+clear_configs() {
+    info "What do you want to do with Neovim configs?"
+    echo "  1) Delete (~/.config/nvim and ~/.config/xim)"
     echo "  2) Backup to *.bak"
     echo "  3) Skip"
     read -rp "Choose an option (1-3): " choice
 
     case "$choice" in
     1)
-        warn "Deleting Neovim caches..."
-        rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim
+        warn "Deleting Neovim configs..."
+        rm -rf ~/.config/nvim ~/.config/xim
         ;;
     2)
-        warn "Backing up Neovim caches..."
-        for dir in ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim; do
-            if [ -d "$dir" ]; then
-                mv "${dir}"{,.bak}
+        warn "Backing up Neovim configs..."
+        for app in "${APPS[@]}"; do
+            if [ -e "$HOME/.config/$app" ]; then
+                mv "$HOME/.config/$app" "$HOME/.config/${app}.bak"
             else
-                error "No cache found at $dir"
+                error "No config found at ~/.config/$app"
             fi
         done
         ;;
     3)
-        info "Skipping caches."
+        info "Skipping configs."
         ;;
     *)
-        error "Invalid choice. Skipping caches."
-        ;;
-    esac
-
-    # Handle Mason cache cleanup separately for clarity
-    info "What do you want to do with your Mason cache (~/.local/share/nvim/mason)?"
-    echo "  1) Delete"
-    echo "  2) Backup to mason.bak"
-    echo "  3) Skip"
-    read -rp "Choose an option (1-3): " mason_choice
-
-    case "$mason_choice" in
-    1)
-        warn "Deleting Mason cache..."
-        rm -rf ~/.local/share/nvim/mason
-        ;;
-    2)
-        warn "Backing up Mason cache..."
-        if [ -d ~/.local/share/nvim/mason ]; then
-            mv ~/.local/share/nvim/mason{,.bak}
-        else
-            error "No Mason cache found to backup."
-        fi
-        ;;
-    3)
-        info "Skipping Mason cache."
-        ;;
-    *)
-        error "Invalid choice. Skipping Mason cache."
+        error "Invalid choice. Skipping configs."
         ;;
     esac
 }
 
-# Main
+clear_data() {
+    info "What do you want to do with Neovim data (plugins, state, cache)?"
+    echo "  1) Delete (~/.local/share/{nvim,xim}, state, cache)"
+    echo "  2) Backup to *.bak"
+    echo "  3) Skip"
+    read -rp "Choose an option (1-3): " choice
+
+    local dirs=()
+    for app in "${APPS[@]}"; do
+        dirs+=("$HOME/.local/share/$app" "$HOME/.local/state/$app" "$HOME/.cache/$app")
+    done
+
+    case "$choice" in
+    1)
+        warn "Deleting Neovim data..."
+        rm -rf "${dirs[@]}"
+        ;;
+    2)
+        warn "Backing up Neovim data..."
+        for dir in "${dirs[@]}"; do
+            if [ -d "$dir" ]; then
+                mv "${dir}"{,.bak}
+            else
+                error "No directory found at $dir"
+            fi
+        done
+        ;;
+    3)
+        info "Skipping data."
+        ;;
+    *)
+        error "Invalid choice. Skipping data."
+        ;;
+    esac
+}
+
 info "=== Neovim Cleanup Script ==="
-clear_config
-clear_cache
+clear_configs
+clear_data
 info "Done!"
