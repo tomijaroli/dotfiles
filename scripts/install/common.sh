@@ -58,6 +58,7 @@ COMMON_STOW_PACKAGES=(
 MACOS_STOW_PACKAGES=(
     dock
     lldb
+    xim
 )
 
 # Linux-only packages
