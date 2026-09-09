@@ -79,9 +79,6 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
 
--- Conceal for markdown/plain text
-vim.opt.conceallevel = 0
-
 -- Treesitter folding (builtin foldexpr, no nvim-treesitter plugin required)
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
