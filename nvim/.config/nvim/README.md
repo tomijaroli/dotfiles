@@ -63,6 +63,16 @@ Add a plugin by creating `plugin/<name>.lua` that calls `vim.pack.add`. Defer wi
 
 **Diagnostics:** `<leader>de` float, `<leader>q` loclist, `<leader>Q` qflist, `<leader>ml` lint
 
+## Migrating from the old config
+
+If this machine still has lazy.nvim / Mason plugin data, clear it before the first launch so vim.pack can install from the lockfile (does not touch `~/.config`):
+
+```bash
+./scripts/nvim/clear-caches.sh
+```
+
+See [`scripts/nvim`](../../../scripts/nvim/README.md).
+
 ## Requirements
 
 Neovim 0.13+ (this repo installs nightly via bob).

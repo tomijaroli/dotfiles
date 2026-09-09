@@ -2,15 +2,20 @@
 
 ### `clear-caches.sh`
 
-Interactive cleanup for both Neovim apps (`nvim` and `xim`).
+Wipe plugin installs and caches for `nvim` and `xim` **without** touching `~/.config`. Use after this repo is checked out / stowed on a machine that still has the old lazy.nvim / Mason data.
 
-**Config:** `~/.config/nvim`, `~/.config/xim`  
-**Data:** `~/.local/share/{nvim,xim}` (vim.pack plugins), `~/.local/state/{nvim,xim}`, `~/.cache/{nvim,xim}`
+Removes (if present):
 
-Options: delete, backup to `*.bak`, or skip.
+- `~/.local/share/{nvim,xim}` — lazy.nvim, Mason, packer, vim.pack clones, treesitter parsers
+- `~/.local/state/{nvim,xim}` — shada, logs
+- `~/.cache/{nvim,xim}` — luacache and other caches
+
+Respects `XDG_DATA_HOME`, `XDG_STATE_HOME`, and `XDG_CACHE_HOME`.
 
 ```bash
-./scripts/nvim/clear-caches.sh
+./scripts/nvim/clear-caches.sh           # confirm, then delete
+./scripts/nvim/clear-caches.sh --dry-run
+./scripts/nvim/clear-caches.sh --yes     # no prompt
 ```
 
-LSP servers are **not** stored here; they come from Homebrew / the system PATH. After deleting plugin data, the next `nvim` / `xim` launch re-clones plugins from the lockfiles.
+Then open `nvim` (and `xim` on macOS). Plugins reinstall from `nvim-pack-lock.json`. LSP binaries stay on PATH (Homebrew); they are not in these directories.

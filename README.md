@@ -151,7 +151,7 @@ Each directory contains a README with detailed configuration information.
 Automatically installed via Zap on first shell launch.
 
 ### Neovim
-Plugins install on first `nvim` / `xim` launch (`vim.pack`). LSP binaries come from Homebrew (`brew bundle`).
+Plugins install on first `nvim` / `xim` launch (`vim.pack`). LSP binaries come from Homebrew (`brew bundle`). If this machine still has the previous lazy.nvim / Mason install, run `./scripts/nvim/clear-caches.sh` first.
 
 ## Customization
 
