@@ -37,4 +37,6 @@ fi
 HOST_SHORT="$(hostname -s 2>/dev/null)"
 if [[ "$HOST_SHORT" == tomi-woltbook* ]]; then
   export SSH_AUTH_SOCK=/Users/tomi/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+elif [ -S "$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh" ]; then
+  export SSH_AUTH_SOCK="$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
 fi
