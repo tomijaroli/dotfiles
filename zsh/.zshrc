@@ -71,3 +71,7 @@ fi
 if command -v starship &>/dev/null; then
     eval "$(starship init zsh)"
 fi
+
+# <-- Start of core-developer-tools -->
+source "/Users/tamas.jaroli/Developer/core-developer-tools/setup/shell/aliases.sh"
+# <-- End of core-developer-tools -->

@@ -25,3 +25,8 @@ if [[ "$OS_TYPE" == "macos" ]]; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
 fi
+
+# <-- Start of core-developer-tools -->
+typeset -U path
+path+=("/Users/tamas.jaroli/Developer/core-developer-tools/bin")
+# <-- End of core-developer-tools -->
