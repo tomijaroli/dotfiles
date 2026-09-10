@@ -4,6 +4,8 @@ vim.g.loaded = 1
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.have_nerd_font = true
+vim.g.mkdp_auto_start = 1
+vim.g.mkdp_auto_close = 1
 
 -- Plugins still call these; Neovim 0.13 only wraps them in vim.deprecate.
 -- Rebind before plugin/*.lua so :checkhealth vim.deprecated stays clean.
