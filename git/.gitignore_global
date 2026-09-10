@@ -7,3 +7,13 @@ settings.json
 xcodebuild.log
 
 **/xcodebuild/*
+
+**/.claude/settings.local.json
+
+## Local-only Claude Code skills, under test before sharing with the team
+**/.claude/skills/prep/
+**/.claude/skills/pre-commit/
+**/.claude/skills/commit/
+**/.claude/skills/push/
+**/.claude/skills/README.md
+**/.claude/skills/switch/
